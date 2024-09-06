@@ -1,0 +1,19 @@
+<app-login-form>
+  <div image-content class="text-center">
+    <img src="assets/image/student.png" class="w-24 h-24">
+  </div>
+  <div form-inputs class="flex flex-col gap-5">
+    <input #name pInputText placeholder="Nome" class="w-full" />
+    <input #email pInputText type="email" placeholder="E-mail" class="w-full" />
+    <input #password pInputText type="password" placeholder="Senha" class="w-full" />
+    <input #repassword pInputText type="password" placeholder="Confirmar a Senha" class="w-full" />
+    <p-button [loading]="loading()" (onClick)="signUp(name.value, email.value, password.value, repassword.value)"
+      label="Cadastrar" styleClass="w-full bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md"></p-button>
+  </div>
+  <div footer-content class="text-[0.85rem]" routerLink="/account/login" matRipple>
+    <span>Já tem uma conta? </span>
+    <span class="text-[#F54407]">Entrar</span>
+  </div>
+</app-login-form>
+
+<p-toast position="top-center" styleClass="w-[80vw]" />

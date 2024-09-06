@@ -1,0 +1,20 @@
+<div class="bg-white px-6 pt-5 pb-4 rounded-xl">
+  <div class="flex flex-col">
+    <ng-content select="[image-content]"></ng-content>
+
+    <div class="mt-5">
+      <ng-content select="[form-inputs]"></ng-content>
+    </div>
+
+    <p-divider layout="horizontal" align="center" styleClass="text-sm">OU</p-divider>
+
+    <p-button severity="danger" label="Continuar com o Google" icon="pi pi-google" styleClass="w-full shadow-md" />
+    <p-button label="Continuar com o Facebook" icon="pi pi-facebook" styleClass="w-full mt-5 shadow-md" />
+
+    <ion-item lines="none" [button]="true" class="mt-4">
+      <div class="flex justify-center w-full">
+        <ng-content select="[footer-content]"></ng-content>
+      </div>
+    </ion-item>
+  </div>
+</div>

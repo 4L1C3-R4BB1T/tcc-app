@@ -1,0 +1,7 @@
+{
+  "name": "fraciona-plus",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
