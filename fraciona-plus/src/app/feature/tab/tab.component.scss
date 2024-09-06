@@ -1,0 +1,21 @@
+ion-tab-bar,
+ion-tabs {
+  --background: #F99007;
+}
+
+ion-icon,
+ion-label {
+  --color: white;
+  color: white !important;
+}
+
+.tab-selected {
+  ion-icon,
+  ion-label {
+    opacity: 0.6 !important;
+  }
+}
+
+ion-fab-button {
+  --background: #eee;
+}
