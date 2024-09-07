@@ -1,17 +1,17 @@
 <app-login-form>
   <div image-content class="text-center">
-    <img src="assets/image/math.png" class="w-24 h-24">
+    <img src="assets/image/login/math.png" class="w-24 h-24">
   </div>
   <div form-inputs>
     <input #email pInputText placeholder="E-mail" class="w-full" />
     <input #password pInputText type="password" placeholder="Senha" class="w-full mt-5" />
     <ion-item lines="none" button>
-      <div slot="end" class="text-[0.85rem] text-[#F54407]">Esqueceu sua senha?</div>
+      <div slot="end" class="text-sm text-[#F54407]">Esqueceu sua senha?</div>
     </ion-item>
     <p-button [loading]="loading()" (onClick)="signIn(email.value, password.value)" label="Entrar"
       styleClass="w-full mt-3 bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md"></p-button>
   </div>
-  <div footer-content class="text-[0.85rem]" matRipple routerLink="/account/register">
+  <div footer-content class="text-sm" matRipple routerLink="/account/register">
     <span>Não tem uma conta?</span>
     <span class="text-[#F54407]"> Cadastre-se</span>
   </div>

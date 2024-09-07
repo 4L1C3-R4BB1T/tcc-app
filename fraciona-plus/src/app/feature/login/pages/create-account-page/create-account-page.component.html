@@ -1,6 +1,6 @@
 <app-login-form>
   <div image-content class="text-center">
-    <img src="assets/image/student.png" class="w-24 h-24">
+    <img src="assets/image/login/student.png" class="w-24 h-24">
   </div>
   <div form-inputs>
     <input #name pInputText placeholder="Nome" class="w-full" />
@@ -10,7 +10,7 @@
     <p-button [loading]="loading()" (onClick)="signUp(name.value, email.value, password.value, repassword.value)"
       label="Cadastrar" styleClass="w-full bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md mt-5"></p-button>
   </div>
-  <div footer-content class="text-[0.85rem]" routerLink="/account/login" matRipple>
+  <div footer-content class="text-sm" routerLink="/account/login" matRipple>
     <span>Já tem uma conta? </span>
     <span class="text-[#F54407]">Entrar</span>
   </div>

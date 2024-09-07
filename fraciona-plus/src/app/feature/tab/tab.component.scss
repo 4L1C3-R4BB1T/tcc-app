@@ -1,16 +1,17 @@
 ion-tab-bar,
 ion-tabs {
   --background: #F99007;
+  border-radius: 0;
 }
 
-ion-icon,
+i,
 ion-label {
   --color: white;
   color: white !important;
 }
 
 .tab-selected {
-  ion-icon,
+  i,
   ion-label {
     opacity: 0.6 !important;
   }
