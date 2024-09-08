@@ -28,11 +28,15 @@ import { RippleModule } from 'primeng/ripple';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
+import { TimelineModule } from 'primeng/timeline';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
+import { ClickedDirective } from './clicked.directive';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ClickedDirective
+  ],
   imports: [],
   exports: [
     CommonModule,
@@ -60,13 +64,15 @@ import { ToggleButtonModule } from 'primeng/togglebutton';
     InputTextModule,
     MatRippleModule,
     ChartModule,
+    TimelineModule,
     ImageModule,
     EditorModule,
     FileUploadModule,
     MatButtonModule,
     MatDialogModule,
     CarouselModule,
-    BadgeModule
+    BadgeModule,
+    ClickedDirective
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,34 @@
+.progress {
+  @apply list-none flex gap-8 cursor-pointer flex-col;
+
+  &__item {
+    @apply p-1.5 w-24 h-24 rounded-full relative;
+    border: 0.5em solid #eee;
+    border-top: 0.5rem solid rgb(47, 199, 47);
+
+    &-content {
+      @apply bg-green-500 flex p-5 items-center justify-center rounded-full w-full h-full;
+      border-bottom: 0.3rem solid rgba(0, 0, 0, 0.5);
+      transform: translateY(-0.1rem);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &.clicked {
+        transform: translateY(0) !important;
+        box-shadow: none !important;
+      }
+    }
+
+    &--disabled {
+      border: none;
+
+      .progress__item-content {
+        background-color: #eee !important;
+        cursor: not-allowed;
+      }
+
+      i {
+        color: #b2aeae !important;
+      }
+    }
+  }
+}
