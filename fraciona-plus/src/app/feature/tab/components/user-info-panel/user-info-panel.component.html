@@ -1,20 +1,23 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <div slot="start" class="flex items-center gap-2 w-full pt-3 pb-2 px-2">
+    <div slot="start" class="flex items-center gap-2 w-full pt-1 pl-4 pr-2">
+
       <div class="flex gap-4 flex-1 items-center">
         <p-avatar routerLink="/tabs/perfil" image="assets/image/user/student.png" shape="circle"
-          styleClass="font-bold bg-white text-white p-1" size="large" />
+          styleClass="font-bold bg-white text-white mt-2" size="large" />
 
-        <div class="flex-1">
-          <span class="text-lg">Nome</span>
-          <ion-progress-bar color="light" [value]="0.5" />
+        <div class="flex-1 flex flex-col">
+          <span class="text-lg mb-1">Livia</span>
+          <div class="flex flex-col items-end">
+            <ion-progress-bar color="light" [value]="0.38" />
+            <span class="text-[0.8rem] opacity-90">38/100 - Nível 15</span>
+          </div>
         </div>
       </div>
 
-      <div>
-        Nível
+      <div class="mt-2">
+        <img src="assets/image/level/7.png" class="w-16">
       </div>
-
 
     </div>
   </ion-toolbar>
