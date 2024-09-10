@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, signal } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserInfoPanelComponent } from './components/user-info-panel/user-info-panel.component';
 import { ChallengePageComponent } from './pages/challenge-page/challenge-page.component';
@@ -25,4 +25,6 @@ import { TrailProgressComponent } from './pages/learn-page/components/trail-prog
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export default class TabModule { }
+export default class TabModule {
+
+}

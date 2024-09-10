@@ -32,6 +32,7 @@ import { TimelineModule } from 'primeng/timeline';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { ClickedDirective } from './clicked.directive';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { ClickedDirective } from './clicked.directive';
     TagModule,
     ToggleButtonModule,
     TabViewModule,
+    OverlayPanelModule,
     MenuModule,
     IconFieldModule,
     SplitButtonModule,

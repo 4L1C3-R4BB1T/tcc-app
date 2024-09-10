@@ -1,5 +1,6 @@
-import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { IonTabBar, IonTabs, TabsCustomEvent } from "@ionic/angular";
 import { filter, map, Subscription } from "rxjs";
 
 @Component({
@@ -7,7 +8,7 @@ import { filter, map, Subscription } from "rxjs";
   templateUrl: './tab.component.html',
   styleUrl: './tab.component.scss',
 })
-export class TabComponent implements OnDestroy, OnInit {
+export class TabComponent implements OnInit, OnDestroy {
 
   public selectedTab = signal('');
 
@@ -34,5 +35,4 @@ export class TabComponent implements OnDestroy, OnInit {
   public ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
 }
