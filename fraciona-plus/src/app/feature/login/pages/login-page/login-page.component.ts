@@ -20,14 +20,14 @@ export class LoginPageComponent {
   ) { }
 
   signIn(email: string, password: string) {
-    if (!email || !password) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Preencha todos os campos!',
-      });
-      return;
-    }
+    // if (!email || !password) {
+    //   this.messageService.add({
+    //     severity: 'error',
+    //     summary: 'Erro',
+    //     detail: 'Preencha todos os campos!',
+    //   });
+    //   return;
+    // }
 
     this.loading.set(true);
     setTimeout(() => {

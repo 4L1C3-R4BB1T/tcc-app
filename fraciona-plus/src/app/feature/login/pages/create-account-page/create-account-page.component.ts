@@ -20,23 +20,23 @@ export class CreateAccountPageComponent {
   ) { }
 
   signUp(name: string, email: string, password: string, repassword: string) {
-    if (!name || !email || !password || !repassword) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Preencha todos os campos!',
-      });
-      return;
-    }
+    // if (!name || !email || !password || !repassword) {
+    //   this.messageService.add({
+    //     severity: 'error',
+    //     summary: 'Erro',
+    //     detail: 'Preencha todos os campos!',
+    //   });
+    //   return;
+    // }
 
-    if (password !== repassword) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Confirmação de senha incorreta!',
-      });
-      return;
-    }
+    // if (password !== repassword) {
+    //   this.messageService.add({
+    //     severity: 'error',
+    //     summary: 'Erro',
+    //     detail: 'Confirmação de senha incorreta!',
+    //   });
+    //   return;
+    // }
 
     this.loading.set(true);
     setTimeout(() => {
