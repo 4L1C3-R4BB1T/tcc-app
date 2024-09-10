@@ -5,7 +5,7 @@
   </div>
   <ul class="progress">
     <li (click)="op.toggle($event)" class="progress__item {{ item.disabled ? 'progress__item--disabled' : '' }}" *ngFor="let item of items">
-      <p-overlayPanel #op styleClass="bg-[var(--ion-color-primary)] w-[70vw] !left-1/2 !-translate-x-1/2">
+      <p-overlayPanel  #op styleClass="pb-3 bg-[var(--ion-color-primary)] w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
         <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
          <div class="flex flex-col">
             <ion-text class="font-bold text-lg">Aprenda somar</ion-text>
@@ -16,7 +16,7 @@
               <span>4</span>
             </div>
          </div>
-          <button pButton class="bg-white border-none mt-4 text-center text-[#58CC02] ">Começar +10 XP</button>
+          <button pButton class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] ">Começar +10 XP</button>
         </div>
       </p-overlayPanel>
       <div class="progress__item-content" appClicked [effectDisabled]="item.disabled!">
