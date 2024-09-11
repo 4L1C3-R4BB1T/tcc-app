@@ -1,6 +1,5 @@
-import { Component, inject, OnDestroy, OnInit, signal, ViewChild } from "@angular/core";
+import { Component, inject, OnDestroy, OnInit, signal } from "@angular/core";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
-import { IonTabBar, IonTabs, TabsCustomEvent } from "@ionic/angular";
 import { filter, map, Subscription } from "rxjs";
 
 @Component({
@@ -22,8 +21,8 @@ export class TabComponent implements OnInit, OnDestroy {
       filter(event => event instanceof NavigationEnd),
       map((project: any) => project.url as string))
       .subscribe(url => {
-        if (url === '/tabs/study') {
-          this.selectedTab.set('study');
+        if (url === '/tabs/learn') {
+          this.selectedTab.set('learn');
         }
       }));
   }
@@ -35,4 +34,5 @@ export class TabComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     this.subscription.unsubscribe();
   }
+
 }

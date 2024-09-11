@@ -21,6 +21,16 @@ export class TrailProgressComponent {
       action() { }
     },
     {
+      id: 2,
+      action() { },
+      disabled: true,
+    },
+    {
+      id: 3,
+      action() { },
+      disabled: true,
+    },
+    {
       id: 4,
       action() { },
       disabled: true,

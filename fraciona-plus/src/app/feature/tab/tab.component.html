@@ -1,30 +1,35 @@
-<ion-tabs  (ionTabsDidChange)="onChange($event)">
+<ion-tabs (ionTabsDidChange)="onChange($event)">
+
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
-    <ion-fab-button routerLink="/tabs/add-post">
+    <ion-fab-button routerLink="/tabs/challenge" [ngClass]="{ 'tab-selected': selectedTab() === 'challenge' }">
       <i class="fa-solid fa-flag fa-xl"></i>
     </ion-fab-button>
   </ion-fab>
+
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home" [ngClass]="{ 'tab-selected': selectedTab() === 'home' }">
-      <i class="fa-solid fa-house fa-xl"></i>
+    <ion-tab-button tab="home" [ngClass]="{ 'tab-selected': selectedTab() === 'home' }"
+      routerLink="/tabs/home">
+      <i class="fa-solid fa-house fa-2xl"></i>
     </ion-tab-button>
 
-    <ion-tab-button class="learn" tab="learn" [ngClass]="{ 'tab-selected': selectedTab() === 'learn' }">
-      <i class="fa-solid fa-book fa-xl"></i>
+    <ion-tab-button class="learn" tab="learn" [ngClass]="{ 'tab-selected': selectedTab() === 'learn' }"
+      routerLink="/tabs/learn">
+      <i class="fa-solid fa-book fa-2xl"></i>
     </ion-tab-button>
 
     <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
-      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z"
-        fill="red" fill-rule="evenodd">
+      <path d="M100 0v50H0V0c.543 27.153 22.72 49 50 49S99.457 27.153 99.99 0h.01z" fill="red" fill-rule="evenodd">
       </path>
     </svg>
 
-    <ion-tab-button class="ranking" routerLink="/tabs/ranking" [ngClass]="{ 'tab-selected': selectedTab() === 'ranking' }">
-      <i class="fa-solid fa-trophy fa-xl"></i>
+    <ion-tab-button class="ranking" [ngClass]="{ 'tab-selected': selectedTab() === 'ranking' }"
+      routerLink="/tabs/ranking">
+      <i class="fa-solid fa-trophy fa-2xl"></i>
     </ion-tab-button>
 
-    <ion-tab-button tab="perfil" [ngClass]="{ 'tab-selected': selectedTab() === 'perfil' }">
-      <i class="fa-solid fa-user fa-xl"></i>
+    <ion-tab-button tab="perfil" [ngClass]="{ 'tab-selected': selectedTab() === 'perfil' }"
+      routerLink="/tabs/perfil">
+      <i class="fa-solid fa-user fa-2xl"></i>
     </ion-tab-button>
   </ion-tab-bar>
 
