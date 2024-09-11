@@ -1,8 +1,8 @@
 <ion-tabs (ionTabsDidChange)="onChange($event)">
 
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
-    <ion-fab-button routerLink="/tabs/challenge" [ngClass]="{ 'tab-selected': selectedTab() === 'challenge' }">
-      <i class="fa-solid fa-flag fa-xl"></i>
+    <ion-fab-button routerLink="/tabs/learn" [ngClass]="{ 'tab-selected': selectedTab() === 'learn' }">
+      <i class="fa-solid fa-book fa-xl"></i>
     </ion-fab-button>
   </ion-fab>
 
@@ -12,9 +12,9 @@
       <i class="fa-solid fa-house fa-2xl"></i>
     </ion-tab-button>
 
-    <ion-tab-button class="learn" tab="learn" [ngClass]="{ 'tab-selected': selectedTab() === 'learn' }"
-      routerLink="/tabs/learn">
-      <i class="fa-solid fa-book fa-2xl"></i>
+    <ion-tab-button class="challenge" tab="challenge" [ngClass]="{ 'tab-selected': selectedTab() === 'challenge' }"
+      routerLink="/tabs/challenge">
+      <i class="fa-solid fa-flag fa-2xl"></i>
     </ion-tab-button>
 
     <svg height="50" viewBox="0 0 100 50" width="100" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +22,7 @@
       </path>
     </svg>
 
-    <ion-tab-button class="ranking" [ngClass]="{ 'tab-selected': selectedTab() === 'ranking' }"
+    <ion-tab-button class="ranking" tab="ranking" [ngClass]="{ 'tab-selected': selectedTab() === 'ranking' }"
       routerLink="/tabs/ranking">
       <i class="fa-solid fa-trophy fa-2xl"></i>
     </ion-tab-button>
