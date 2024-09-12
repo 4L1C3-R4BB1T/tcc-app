@@ -27,6 +27,8 @@ export class TrailProgressComponent implements OnInit, OnChanges {
 
   listOverlayPanel!: QueryList<OverlayPanel>;
 
+  inverse = input(false);
+
   items: TrailItem[] = [
     {
       id: 1,

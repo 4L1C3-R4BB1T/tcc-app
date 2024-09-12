@@ -85,6 +85,7 @@
   transform: translateX(0) translateY(0);
 }
 
+
 .progress>li:nth-child(2) {
   right: 40%;
 }
@@ -99,4 +100,23 @@
 
 .progress>li:nth-child(5) {
   right: 0%;
+}
+
+.progress.inverse {
+  & >li:nth-child(2) {
+    left: 40%;
+  }
+
+  & >li:nth-child(3) {
+    left: 60%;
+  }
+
+  & >li:nth-child(4) {
+    left: 40%;
+  }
+
+  & >li:nth-child(5) {
+    left: 0%;
+  }
+
 }

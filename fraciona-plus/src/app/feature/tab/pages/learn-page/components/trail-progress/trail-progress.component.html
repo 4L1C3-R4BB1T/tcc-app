@@ -1,6 +1,6 @@
-<div class="flex items-center flex-col">
+<div class="flex items-center flex-col relative">
 
-  <ul class="progress">
+  <ul class="progress" [ngClass]="{ 'inverse': inverse() }">
     <li #trailItem *ngFor="let item of items" class="relative">
 
       <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }"
@@ -36,7 +36,7 @@
       </div>
     </li>
   </ul>
-  <div class="absolute left-1/2 top-1/2 translate-x-3">
+  <div class="absolute top-1/2 {{ inverse() ? 'right-1/2  -translate-x-5' : 'left-1/2 translate-x-3' }}">
     <img src="assets/image/trail-progress/book.gif"  class="w-20">
   </div>
 </div>
