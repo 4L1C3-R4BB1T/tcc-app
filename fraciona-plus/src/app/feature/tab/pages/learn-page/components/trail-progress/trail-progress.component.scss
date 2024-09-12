@@ -1,8 +1,8 @@
 .progress {
-  @apply list-none flex gap-8 cursor-pointer flex-col;
+  @apply list-none flex gap-8 flex-col;
 
   &__item {
-    @apply p-1.5 w-32 h-32 rounded-full relative;
+    @apply p-1.5 w-32 h-32 rounded-full relative cursor-pointer;
     border: 0.5rem solid #eee;
     border-top: 0.5rem solid rgb(47, 199, 47);
     border-right: 0.5rem solid rgb(47, 199, 47);
@@ -34,6 +34,11 @@
   }
 }
 
-::ng-deep .p-overlaypanel:before {
-  left: 50% !important;
+::ng-deep {
+  .p-overlaypanel {
+    &::before {
+      left: 50% !important;
+      border-bottom-color: var(--ion-color-primary);
+    }
+  }
 }
