@@ -35,11 +35,43 @@
   }
 }
 
+.triangle {
+    border-radius: 2px;
+    content: "";
+    height: 1rem;
+    transform: rotate(45deg);
+    width: 1rem;
+    z-index: 999;
+    @apply bg-gradient-to-r from-blue-500 to-purple-600;
+}
+
+.no-visible {
+  opacity: 0 !important;
+  transform: translateY(20px) !important;
+  transition: all 0.2s ease-in !important;
+}
+
 ::ng-deep {
   .p-overlaypanel {
     &::before {
       left: 50% !important;
       border-bottom-color: var(--ion-color-primary);
     }
+  }
+}
+
+.float-animation {
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(0.8rem);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
   }
 }
