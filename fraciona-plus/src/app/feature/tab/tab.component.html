@@ -2,13 +2,16 @@
 
   <ion-fab vertical="bottom" horizontal="center" translucent="true">
     <ion-fab-button routerLink="/tabs/learn" [ngClass]="{ 'tab-selected': selectedTab() === 'learn' }">
+      @if (selectedTab() === 'learn') {
+      <i class="fa-solid fa-book-open-reader fa-xl"></i>
+      } @else {
       <i class="fa-solid fa-book fa-xl"></i>
+      }
     </ion-fab-button>
   </ion-fab>
 
   <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home" [ngClass]="{ 'tab-selected': selectedTab() === 'home' }"
-      routerLink="/tabs/home">
+    <ion-tab-button tab="home" [ngClass]="{ 'tab-selected': selectedTab() === 'home' }" routerLink="/tabs/home">
       <i class="fa-solid fa-house fa-2xl"></i>
     </ion-tab-button>
 
@@ -27,8 +30,7 @@
       <i class="fa-solid fa-trophy fa-2xl"></i>
     </ion-tab-button>
 
-    <ion-tab-button tab="perfil" [ngClass]="{ 'tab-selected': selectedTab() === 'perfil' }"
-      routerLink="/tabs/perfil">
+    <ion-tab-button tab="perfil" [ngClass]="{ 'tab-selected': selectedTab() === 'perfil' }" routerLink="/tabs/perfil">
       <i class="fa-solid fa-user fa-2xl"></i>
     </ion-tab-button>
   </ion-tab-bar>

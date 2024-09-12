@@ -33,3 +33,7 @@
     }
   }
 }
+
+::ng-deep .p-overlaypanel:before {
+  left: 50% !important;
+}
