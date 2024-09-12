@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, effect, signal } from '@angular/core';
 
 @Component({
   selector: 'app-learn-page',
@@ -7,4 +7,13 @@ import { Component } from '@angular/core';
 })
 export class LearnPageComponent {
 
+  scrollChanged = signal(false);
+
+  constructor() {
+    effect(() => {
+      if (this.scrollChanged()) {
+        setTimeout(() => this.scrollChanged.set(false), 50);
+      }
+    }, { allowSignalWrites: true })
+  }
 }

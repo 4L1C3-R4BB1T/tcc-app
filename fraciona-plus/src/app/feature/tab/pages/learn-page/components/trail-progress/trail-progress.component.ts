@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, inject, OnDestroy, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { map } from 'rxjs';
@@ -15,11 +15,16 @@ export type TrailItem = {
   selector: 'app-trail-progress',
   templateUrl: './trail-progress.component.html',
   styleUrls: ['./trail-progress.component.scss'],
+  queries: {
+    listOverlayPanel: new ViewChildren('overlayPanel')
+  }
 })
-export class TrailProgressComponent implements OnInit, OnDestroy {
+export class TrailProgressComponent implements OnInit, OnChanges {
 
   @ViewChildren('tailItem')
   listTailItems: QueryList<ElementRef<HTMLLIElement>> = new QueryList();
+
+  listOverlayPanel!: QueryList<OverlayPanel>;
 
   items: TrailItem[] = [
     {
@@ -49,20 +54,17 @@ export class TrailProgressComponent implements OnInit, OnDestroy {
 
   changeDetectorRef = inject(ChangeDetectorRef);
 
+  scrollChanged = input(false);
+
   ngOnInit(): void {
     this.router.events.pipe(map(project => project instanceof NavigationEnd))
       .subscribe(() => this.changeDetectorRef.detectChanges());
   }
 
-
-  ngAfterViewInit(): void {
-      // *
-      // **
-      // **
-  }
-
-  ngOnDestroy(): void {
-      console.log('oi')
+  ngOnChanges(): void {
+      if (this.scrollChanged()) {
+        this.listOverlayPanel?.forEach(overlayPanel => overlayPanel.hide());
+      }
   }
 
   disabledStyleClass(item: TrailItem) {

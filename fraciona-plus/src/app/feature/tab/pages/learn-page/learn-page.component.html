@@ -1,7 +1,7 @@
 <app-user-info-panel></app-user-info-panel>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" [scrollEvents]="true" (ionScroll)="scrollChanged.set(true)">
   <div class="flex flex-col gap-5 mb-16">
-    <app-trail-progress />
+    <app-trail-progress [scrollChanged]="scrollChanged()" />
   </div>
 </ion-content>

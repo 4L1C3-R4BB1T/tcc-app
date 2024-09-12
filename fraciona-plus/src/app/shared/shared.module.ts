@@ -32,11 +32,11 @@ import { TagModule } from 'primeng/tag';
 import { TimelineModule } from 'primeng/timeline';
 import { ToastModule } from 'primeng/toast';
 import { ToggleButtonModule } from 'primeng/togglebutton';
-import { ClickedDirective } from './clicked.directive';
+import { ClickedDirective } from './directives/clicked.directive';
 
 @NgModule({
   declarations: [
-    ClickedDirective
+    ClickedDirective,
   ],
   imports: [],
   exports: [
@@ -74,7 +74,7 @@ import { ClickedDirective } from './clicked.directive';
     MatDialogModule,
     CarouselModule,
     BadgeModule,
-    ClickedDirective
+    ClickedDirective,
   ]
 })
 export class SharedModule { }
