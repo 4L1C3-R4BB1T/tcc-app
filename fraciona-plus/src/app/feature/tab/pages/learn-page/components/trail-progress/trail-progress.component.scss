@@ -8,10 +8,10 @@
     border-right: 0.6rem solid rgb(47, 199, 47);
 
     &-content {
-      @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-[80%] h-[80%];
+      @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-[80%] h-[75%];
       transform: translateY(-0.1rem);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
-      box-shadow: 0 6px 0 rgb(0, 0, 0, .2), 0 6px 0 rgba(47, 177, 47, 0.829);
+      box-shadow: 0 7px 0 rgb(0, 0, 0, .2), 0 7px 0 rgba(47, 177, 47, 0.829);
 
       &.clicked {
         transform: translateY(0);
