@@ -1,7 +1,41 @@
-<app-user-info-panel></app-user-info-panel>
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <app-user-info-panel slot="start" class="w-full"></app-user-info-panel>
+  </ion-toolbar>
+  <ion-toolbar>
+    <div slot="start" style="border-bottom: 0.3rem solid #cf8216" class="w-full mt-4 mx-2  mat-elevation-z4 rounded-xl bg-[var(--ion-color-primary)] text-white flex gap-1 text-sm shadow-md">
+     <div class="flex flex-col gap-1 py-4 ps-4 flex-1">
+        <ion-text class="uppercase font-bold text-base">Seção 1</ion-text>
+        <ion-text class="text-base font-medium">{{ currentTitle() }}</ion-text>
+     </div>
+     <div class="min-w-14 flex items-center justify-center" style="border-left: 0.1rem solid #ebeaead3">
+        <i class="fa-solid fa-graduation-cap text-2xl"></i>
+     </div>
+    </div>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content class="ion-padding" [scrollEvents]="true" (ionScroll)="scrollChanged.set(true)">
-  <div class="flex flex-col gap-5 mb-16">
-    <app-trail-progress [scrollChanged]="scrollChanged()" />
+<ion-content class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <div class="pb-[500px] flex flex-col gap-2">
+    <ng-container>
+     <div class="mt-12">
+        <app-trail-progress [scrollChanged]="scrollChanged()" />
+        <div class="mt-5">
+          <div class="divider">
+            <span class="font-semibold text-gray-500">Operações básicas</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container>
+      <div class="mt-12">
+         <app-trail-progress [scrollChanged]="scrollChanged()" title="Coisa 2" />
+         <div class="mt-5">
+           <div class="divider">
+             <span class="font-semibold text-gray-500">Coisa 2</span>
+           </div>
+         </div>
+       </div>
+     </ng-container>
   </div>
 </ion-content>

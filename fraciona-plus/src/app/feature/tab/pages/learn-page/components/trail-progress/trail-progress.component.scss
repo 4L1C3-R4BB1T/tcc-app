@@ -23,12 +23,14 @@
     }
 
     &--disabled {
+      @apply w-[80px] h-[80px];
       border: none;
 
       .progress__item-content {
+
         background-color: #eee !important;
         cursor: not-allowed;
-        box-shadow: 0 8px 0 rgba(64, 73, 64, 0.3), 0 8px 0 rgba(64, 73, 64, 0.3);
+        box-shadow: 0 6px 0 rgba(64, 73, 64, 0.3), 0 6px 0 rgba(64, 73, 64, 0.3);
       }
 
       i {

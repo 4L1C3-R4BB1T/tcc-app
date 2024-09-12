@@ -1,0 +1,9 @@
+.divider {
+  @apply flex items-center gap-2;
+
+  &::before, &::after {
+    @apply block h-0.5 bg-opacity-60 flex-1;
+    background-color: rgb(229, 229, 229);
+    content: "";
+  }
+}

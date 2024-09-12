@@ -20,6 +20,8 @@ export type TrailItem = {
 })
 export class TrailProgressComponent implements OnInit, OnChanges {
 
+  title = input('Aprenda sobre operações básicas');
+
   @ViewChildren('tailItem')
   listTailItems: QueryList<ElementRef<HTMLLIElement>> = new QueryList();
 
@@ -61,6 +63,7 @@ export class TrailProgressComponent implements OnInit, OnChanges {
 
   scrollChanged = input(false);
 
+  elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   ngOnInit(): void {
 
