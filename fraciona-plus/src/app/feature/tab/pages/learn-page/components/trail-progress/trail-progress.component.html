@@ -5,21 +5,17 @@
   </div>
 
   <ul class="progress">
-    <li (click)="op.toggle($event)" class="progress__item {{ item.disabled ? 'progress__item--disabled' : '' }}"
-      *ngFor="let item of items">
-      <p-overlayPanel #op
+    <li #trailItem *ngFor="let item of items" (click)="overlay.toggle($event)" [ngClass]="disabledStyleClass(item)" class="progress__item">
+      <p-overlayPanel #overlay
         styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
         <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
           <div class="flex flex-col">
             <ion-text class="font-bold text-lg">Aprenda a somar</ion-text>
             <div>
-              Lição
-              <span>1</span>
-              de
-              <span>4</span>
+              Lição <span>1</span> de <span>4</span>
             </div>
           </div>
-          <button pButton
+          <button pButton (click)="item.action()"
             class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] rounded-xl shadow-lg">
             Começar + 10xp
           </button>
@@ -32,5 +28,4 @@
 
     </li>
   </ul>
-
 </div>

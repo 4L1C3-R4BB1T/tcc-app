@@ -9,19 +9,34 @@ export class ClickedDirective {
   effectDisabled = false;
 
   constructor(
-    readonly elementRef: ElementRef
+    private readonly elementRef: ElementRef
   ) { }
 
+
   @HostListener('mousedown', ['$event'])
-  onMouseDown(event: MouseEvent) {
+  @HostListener('touchstart', ['$event'])
+  onMouseDown(event: MouseEvent | TouchEvent) {
     if (this.effectDisabled) return;
-    this.elementRef.nativeElement?.classList.add('clicked');
+    this.addClickedClass();
   }
 
   @HostListener('mouseup', ['$event'])
-  onMouseUp(event: MouseEvent) {
+  @HostListener('touchend', ['$event'])
+  onMouseUp(event: MouseEvent | TouchEvent) {
     if (this.effectDisabled) return;
-    this.elementRef.nativeElement?.classList.remove('clicked');
+    this.removeClickedClass();
+  }
+
+  private addClickedClass() {
+    if (this.elementRef.nativeElement) {
+      this.elementRef.nativeElement.classList.add('clicked');
+    }
+  }
+
+  private removeClickedClass() {
+    if (this.elementRef.nativeElement) {
+      this.elementRef.nativeElement.classList.remove('clicked');
+    }
   }
 
 }

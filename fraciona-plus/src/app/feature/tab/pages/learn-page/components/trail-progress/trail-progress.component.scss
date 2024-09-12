@@ -1,3 +1,5 @@
+
+
 .progress {
   @apply list-none flex gap-8 flex-col;
 
@@ -9,13 +11,12 @@
 
     &-content {
       @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-full h-full;
-      // border-bottom: 0.4rem solid rgba(0, 0, 0, 0.5);
       transform: translateY(-0.1rem);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
 
       &.clicked {
-        transform: translateY(0) !important;
-        box-shadow: none !important;
+        transform: translateY(0);
+        box-shadow: none;
       }
     }
 
