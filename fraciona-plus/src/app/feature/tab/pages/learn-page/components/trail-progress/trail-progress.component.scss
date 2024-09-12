@@ -20,7 +20,7 @@
     }
 
     &--disabled {
-      @apply w-[80px] h-[80px];
+      @apply w-[80px] h-[76px];
       border: none;
 
       .progress__item-content {
