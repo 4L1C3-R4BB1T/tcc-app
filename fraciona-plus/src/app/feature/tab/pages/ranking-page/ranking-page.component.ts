@@ -52,14 +52,6 @@ export class RankingPageComponent {
     {
       name: 'Gabriel 9',
       exp: 1529
-    },
-    {
-      name: 'Gabriel 10',
-      exp: 1528
-    },
-    {
-      name: 'Gabriel 11',
-      exp: 1527
     }
   ];
 

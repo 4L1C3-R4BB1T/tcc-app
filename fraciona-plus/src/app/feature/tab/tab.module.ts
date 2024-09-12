@@ -1,6 +1,7 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { UserInfoPanelComponent } from './components/user-info-panel/user-info-panel.component';
+import { AchievementPageComponent } from './pages/achievement-page/achievement-page.component';
 import { ChallengePageComponent } from './pages/challenge-page/challenge-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TrailProgressComponent } from './pages/learn-page/components/trail-progress/trail-progress.component';
@@ -21,7 +22,8 @@ import { TabComponent } from './tab.component';
     PerfilPageComponent,
     UserInfoPanelComponent,
     TrailProgressComponent,
-    ChangeNameComponent
+    ChangeNameComponent,
+    AchievementPageComponent
   ],
   imports: [
     TabRoutingModule,

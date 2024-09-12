@@ -1,15 +1,15 @@
 ion-content {
   --background: url('../../../../../assets/image/background.png');
-}
 
-.gold {
-  @apply border-[#FFBB0D];
-}
+  .gold {
+    @apply border-[#FFBB0D];
+  }
 
-.silver {
-  @apply border-[#BCCCD2];
-}
+  .silver {
+    @apply border-[#BCCCD2];
+  }
 
-.bronze {
-  @apply border-[#DCA16A];
+  .bronze {
+    @apply border-[#DCA16A];
+  }
 }

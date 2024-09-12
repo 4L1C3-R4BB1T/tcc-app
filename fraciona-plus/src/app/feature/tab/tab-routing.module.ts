@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AchievementPageComponent } from './pages/achievement-page/achievement-page.component';
 import { ChallengePageComponent } from './pages/challenge-page/challenge-page.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { LearnPageComponent } from './pages/learn-page/learn-page.component';
@@ -36,6 +37,10 @@ const routes: Routes = [
       {
         path: 'perfil',
         component: PerfilPageComponent
+      },
+      {
+        path: 'achievements',
+        component: AchievementPageComponent
       },
     ]
   }

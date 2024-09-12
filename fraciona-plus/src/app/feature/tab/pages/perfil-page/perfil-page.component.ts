@@ -4,6 +4,11 @@ import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
 
+export type Achievement = {
+  image: string;
+  color: string;
+}
+
 @Component({
   selector: 'app-perfil-page',
   templateUrl: './perfil-page.component.html',
@@ -11,6 +16,29 @@ import { ChangeNameComponent } from './components/change-name/change-name.compon
   providers: [DialogService, MessageService]
 })
 export class PerfilPageComponent {
+
+  achievements: Achievement[] = [
+    {
+      image: 'puzzle.png',
+      color: '#39FF14'
+    },
+    {
+      image: 'baby.png',
+      color: '#39FF14'
+    },
+    {
+      image: 'brain.png',
+      color: '#8A2BE2'
+    },
+    {
+      image: 'box.png',
+      color: '#00BFFF'
+    },
+    {
+      image: 'party.png',
+      color: '#8A2BE2'
+    }
+  ];
 
   public closeAlertButtons: AlertButton[] = [
     {

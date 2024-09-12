@@ -84,18 +84,15 @@
       <div class="profile flex justify-between items-center">
         <span class="text-xl font-bold">Conquistas</span>
         <ion-button fill="outline" expand="block" class="normal-case h-8 text-[--ion-color-primary]"
-          color="primary">VER TODAS</ion-button>
+          color="primary" routerLink="/tabs/achievements">VER TODAS</ion-button>
       </div>
       <div
-        class="border-solid border-gray-500 border-opacity-10 rounded-xl p-2 mt-4 grid grid-cols-4 gap-4 place-items-center h-40 mat-elevation-z4">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
-        <img src="../../../../../assets/image/achievements/1.png" class="w-16">
+        class="border-solid border-gray-500 border-opacity-10 rounded-xl p-2 mt-4 grid grid-cols-4 gap-4 place-items-center mat-elevation-z4">
+
+        <div *ngFor="let achievement of achievements" class="achievement flex justify-center items-center" [ngStyle]="{'border-color': achievement.color}">
+          <img [src]="'../../../../../assets/image/achievements/' + achievement.image" class="w-8 h-8">
+        </div>
+
       </div>
     </div>
 
@@ -109,6 +106,7 @@
   </div>
 
 </ion-content>
+
 
 <p-toast [position]="'top-center'" styleClass="w-[80vw]" />
 
