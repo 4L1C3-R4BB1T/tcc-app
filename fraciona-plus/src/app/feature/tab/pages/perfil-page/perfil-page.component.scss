@@ -1,12 +1,11 @@
 .profile {
   ion-button {
     --background: #a8a5a5;
-    --border-radius: 0.75rem;
   }
 }
 
 ion-button[fill=outline] {
   --color: red;
   --border-color: red;
-  --border-radius: 0.75rem;
+  --border-radius: 0.4rem;
 }

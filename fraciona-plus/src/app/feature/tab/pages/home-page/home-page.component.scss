@@ -1,0 +1,26 @@
+ion-button {
+  --border-radius: 50%;
+  --background: #dad7d7;
+  --box-shadow: none;
+
+  ion-icon {
+    display: none;
+  }
+
+  span {
+    @apply font-bold opacity-50;
+  }
+
+  &.checked {
+    --background: #58CC02;
+
+    span {
+      display: none;
+    }
+
+    ion-icon {
+      display: block;
+      color: white;
+    }
+  }
+}

@@ -18,13 +18,13 @@
               <img [src]="'../../../../../assets/image/ranking/' + i + '.svg'" class="w-8 ">
             </span>
             } @else {
-            <span class="flex justify-center w-8">{{ i + 1 }}</span>
+            <span class="flex justify-center w-8 font-bold">{{ i + 1 }}</span>
             }
             <span>{{ user.name }}</span>
           </div>
           <div class="flex gap-2 items-center">
             <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
-            <span>{{ user.exp }}xp</span>
+            <span class="font-bold">{{ user.exp }}xp</span>
           </div>
         </div>
 
