@@ -1,18 +1,11 @@
-.profile {
-  ion-button {
-    --background: #a8a5a5;
-  }
-}
-
-ion-button[fill=outline] {
-  --color: red;
-  --border-color: red;
+ion-button {
+  --background: rgb(255, 55, 55);
   --border-radius: 0.4rem;
 }
 
 .achievement {
   width: 4rem;
   height: 4rem;
-  border-radius: 100%;
   border: solid 6px;
+  border-radius: 100%;
 }

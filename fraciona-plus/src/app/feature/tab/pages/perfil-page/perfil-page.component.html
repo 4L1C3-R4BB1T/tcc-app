@@ -3,7 +3,7 @@
   <div class="mb-16">
     <div class="p-5">
 
-      <div class="relative w-32 h-32 rounded-full mx-auto border-solid border-gray-500 border-opacity-10 mat-elevation-z4">
+      <div class="relative w-32 h-32 rounded-full mx-auto border-solid border-gray-500 border-opacity-10">
         <img class="w-full h-full rounded-full" alt="Silhouette of a person's head"
           src="../../../../../assets/image/user/student.png" />
         <span class="absolute right-0 -bottom-2 scale-90">
@@ -14,7 +14,7 @@
         </span>
       </div>
 
-      <div class="p-3 rounded-xl border-solid border-gray-500 border-opacity-10 mat-elevation-z4 mt-6">
+      <div class="p-3 rounded-xl border-solid border-gray-500 border-opacity-10 mt-6">
         <div>
           <span class="flex flex-col cursor-pointer" matRipple matRippleColor="rgba(0, 0, 0, 0.02)" (click)="showDialog()">
             <ion-label class="font-bold opacity-50 flex items-center gap-2">Nome <i
@@ -39,7 +39,7 @@
 
       <div class="flex gap-4 mt-4">
         <span
-          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10 mat-elevation-z4">
+          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10">
           <i class="fa-solid fa-circle-check fa-xl text-green-500"></i>
 
           <span class="flex flex-col">
@@ -49,7 +49,7 @@
         </span>
 
         <span
-          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10 mat-elevation-z4">
+          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10">
           <i class="fa-solid fa-circle-xmark fa-xl text-red-500"></i>
           <span class="flex flex-col">
             <ion-text class="text-lg font-bold">23</ion-text>
@@ -60,7 +60,7 @@
 
       <div class="flex gap-4 mt-4">
         <span
-          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10 mat-elevation-z4">
+          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10">
           <i class="fa-solid fa-trophy fa-xl text-yellow-400"></i>
           <span class="flex flex-col">
             <ion-text class="text-lg font-bold">8</ion-text>
@@ -69,7 +69,7 @@
         </span>
 
         <span
-          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10 mat-elevation-z4">
+          class="flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10">
           <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
           <span class="flex flex-col">
             <ion-text class="text-lg font-bold">1538</ion-text>
@@ -81,13 +81,14 @@
     </div>
 
     <div class="p-5">
-      <div class="profile flex justify-between items-center">
+      <div class="flex justify-between items-center">
         <span class="text-xl font-bold">Conquistas</span>
-        <ion-button fill="outline" expand="block" class="normal-case h-8 text-[--ion-color-primary]"
-          color="primary" routerLink="/tabs/achievements">VER TODAS</ion-button>
+        <p-button label="VER TODAS"
+          styleClass="w-full bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md normal-case h-8 text-xs"
+          routerLink="/tabs/achievements"></p-button>
       </div>
       <div
-        class="border-solid border-gray-500 border-opacity-10 rounded-xl p-2 mt-4 grid grid-cols-4 gap-4 place-items-center mat-elevation-z4">
+        class="border-solid border-gray-500 border-opacity-10 rounded-xl p-2 mt-4 grid grid-cols-4 gap-4 place-items-center">
 
         <div *ngFor="let achievement of achievements" class="achievement flex justify-center items-center"
           [ngStyle]="{'border-color': achievement.color}">
@@ -98,9 +99,9 @@
     </div>
 
     <div class="p-5">
-      <ion-button fill="outline" expand="block" class="normal-case h-12" id="close-button">
+      <ion-button expand="block" class="normal-case h-12 shadow-md" id="close-button">
         Sair</ion-button>
-      <ion-button fill="outline" expand="block" class="normal-case h-12 mt-5" id="delete-button">
+      <ion-button expand="block" class="normal-case h-12 shadow-md mt-5" id="delete-button">
         Deletar minha conta</ion-button>
     </div>
 
