@@ -6,9 +6,8 @@ import { map } from 'rxjs';
 export type TrailItem = {
   id: number;
   disabled?: boolean;
-  position?: number;
-  start?: boolean;
   action: () => void;
+  icon?: string;
 }
 
 @Component({
@@ -47,6 +46,12 @@ export class TrailProgressComponent implements OnInit, OnChanges {
       id: 4,
       action() { },
       disabled: true,
+    },
+    {
+      id: 4,
+      action() { },
+      disabled: true,
+      icon: 'fa-solid fa-trophy'
     }
   ];
 
@@ -56,7 +61,9 @@ export class TrailProgressComponent implements OnInit, OnChanges {
 
   scrollChanged = input(false);
 
+
   ngOnInit(): void {
+
     this.router.events.pipe(map(project => project instanceof NavigationEnd))
       .subscribe(() => this.changeDetectorRef.detectChanges());
   }

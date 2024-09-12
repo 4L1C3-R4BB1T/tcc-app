@@ -4,15 +4,17 @@
   @apply list-none flex gap-8 flex-col;
 
   &__item {
-    @apply p-1.5 w-32 h-32 rounded-full relative cursor-pointer;
-    border: 0.5rem solid #eee;
-    border-top: 0.5rem solid rgb(47, 199, 47);
-    border-right: 0.5rem solid rgb(47, 199, 47);
+    @apply  w-[100px] h-[100px] rounded-full relative cursor-pointer flex items-center justify-center;
+    border: 0.6rem solid #eee;
+    border-top: 0.6rem solid rgb(47, 199, 47);
+    border-right: 0.6rem solid rgb(47, 199, 47);
+
 
     &-content {
-      @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-full h-full;
+      @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-[80%] h-[80%];
       transform: translateY(-0.1rem);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
+      box-shadow: 0 6px 0 rgb(0, 0, 0,.2), 0 6px 0 rgba(47, 177, 47, 0.829);
 
       &.clicked {
         transform: translateY(0);
@@ -26,6 +28,7 @@
       .progress__item-content {
         background-color: #eee !important;
         cursor: not-allowed;
+        box-shadow: 0 6px 0 rgba(64, 73, 64, 0.3), 0 6px 0 rgba(64, 73, 64, 0.3);
       }
 
       i {
@@ -48,7 +51,7 @@
 .no-visible {
   opacity: 0 !important;
   transform: translateY(20px) !important;
-  transition: all 0.2s ease-in !important;
+  transition: all 0.3s ease-in !important;
 }
 
 ::ng-deep {
@@ -74,4 +77,24 @@
   100% {
     transform: translateX(-50%) translateY(0);
   }
+}
+
+.progress > li:nth-child(1) { right: 0;
+  transform: translateX(0) translateY(0);
+}
+
+.progress > li:nth-child(2) {
+  right: 40%;
+}
+
+.progress > li:nth-child(3) {
+  right: 60%;
+}
+
+.progress > li:nth-child(4) {
+  right: 40%;
+}
+
+.progress > li:nth-child(5) {
+  right: 0%;
 }
