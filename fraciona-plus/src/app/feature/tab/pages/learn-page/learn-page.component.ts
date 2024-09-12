@@ -14,9 +14,12 @@ export class LearnPageComponent  {
 
   scrollChanged = signal(false);
 
+  scrollStart = signal(true);
+
   currentTitle = signal('Aprenda sobre operações básicas');
 
   onScroll(event: ScrollCustomEvent) {
+    this.scrollStart.set(event.detail.scrollTop === 0);
     this.scrollChanged.set(true);
     setTimeout(() => this.scrollChanged.set(false), 50);
     this.listTrailProgress?.forEach(item => {

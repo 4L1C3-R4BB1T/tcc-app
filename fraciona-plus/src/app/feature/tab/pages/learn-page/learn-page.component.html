@@ -15,7 +15,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+<ion-content #ionContent class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div class="pb-14 flex flex-col gap-2">
     <ng-container>
      <div class="mt-12">
@@ -40,8 +40,8 @@
   </div>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end">
-  <ion-fab-button >
-    <i class="fa-solid fa-arrow-up"></i>
+<ion-fab vertical="bottom" horizontal="end" class="mb-14" *ngIf="!scrollStart()" (click)="ionContent.scrollToTop()">
+  <ion-fab-button>
+    <i class="fa-solid fa-arrow-up text-2xl"></i>
   </ion-fab-button>
 </ion-fab>
