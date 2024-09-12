@@ -16,7 +16,7 @@
 
       <div class="p-3 rounded-xl border-solid border-gray-500 border-opacity-10 shadow-lg mt-6">
         <div>
-          <span class="flex flex-col cursor-pointer" matRipple matRippleColor="rgba(0, 0, 0, 0.02)">
+          <span class="flex flex-col cursor-pointer" matRipple matRippleColor="rgba(0, 0, 0, 0.02)" (click)="showDialog()">
             <ion-label class="font-bold opacity-50 flex items-center gap-2">Nome <i
                 class="fa-solid fa-pencil text-xs"></i></ion-label>
             <ion-text class="font-medium">Livia</ion-text>
@@ -100,11 +100,28 @@
     </div>
 
     <div class="p-5">
-      <ion-button fill="outline" expand="block" class="normal-case h-12" id="close-button">Sair</ion-button>
-      <ion-button fill="outline" expand="block" class="normal-case h-12 mt-5" id="delete-button">Deletar minha
-        conta</ion-button>
+      <ion-button fill="outline" expand="block" class="normal-case h-12" id="close-button">
+        Sair</ion-button>
+      <ion-button fill="outline" expand="block" class="normal-case h-12 mt-5" id="close-button">
+        Deletar minha conta</ion-button>
     </div>
 
   </div>
 
 </ion-content>
+
+<p-toast [position]="'top-center'" styleClass="w-[80vw]" />
+
+<ion-alert
+  trigger="close-button"
+  header="Atenção!"
+  message="Você realmente tem certeza de que deseja sair agora?"
+  [buttons]="closeAlertButtons"
+></ion-alert>
+
+<ion-alert
+  trigger="delete-button"
+  header="Atenção!"
+  message="Tem certeza de que deseja continuar?"
+  [buttons]="deleteAlertButtons"
+></ion-alert>
