@@ -3,38 +3,40 @@
   <ul class="progress">
     <li #trailItem *ngFor="let item of items" class="relative">
 
-      <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }" class="float-animation absolute border-none w-32 rounded-lg text-lg h-12 left-1/2 -translate-x-1/2 -top-10 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform transition-transform duration-300 ease-in-out hover:scale-105 {{ item.disabled ? 'hidden' : '' }}">
+      <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }"
+        class="float-animation absolute border-none w-32 rounded-lg text-lg h-12 left-1/2 -translate-x-1/2 -top-10 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform transition-transform duration-300 ease-in-out hover:scale-105 {{ item.disabled ? 'hidden' : '' }}">
         Começar
         <div class="h-[1rem] left-0 absolute -bottom-3 w-full flex justify-center overflow-hidden">
-          <div class="triangle absolute -top-2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-white"></div>
+          <div
+            class="triangle absolute -top-2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-white">
+          </div>
         </div>
       </button>
 
       <div #target [ngClass]="disabledStyleClass(item)" class="progress__item" (click)="overlayPanel.toggle($event)">
-          <p-overlayPanel #overlayPanel
-            styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
-            <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
-              <div class="flex flex-col">
-                <ion-text class="font-bold text-lg">Aprenda a somar</ion-text>
-                <div>
-                  Lição <span>1</span> de <span>4</span>
-                </div>
+        <p-overlayPanel #overlayPanel
+          styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
+          <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
+            <div class="flex flex-col">
+              <ion-text class="font-bold text-lg">Aprenda a somar</ion-text>
+              <div>
+                Lição <span>1</span> de <span>4</span>
               </div>
-              <button pButton (click)="item.action()"
-                class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] rounded-xl shadow-lg">
-                Começar + 10xp
-              </button>
             </div>
-          </p-overlayPanel>
-
-          <div class="progress__item-content" appClicked [effectDisabled]="item.disabled!">
-            <i class="{{ item.icon ? item.icon : 'fa-solid fa-star' }} text-3xl text-white"></i>
+            <button pButton (click)="item.action()"
+              class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] rounded-xl shadow-lg">
+              Começar + 10xp
+            </button>
           </div>
+        </p-overlayPanel>
+
+        <div class="progress__item-content" appClicked [effectDisabled]="item.disabled!">
+          <i class="{{ item.icon ? item.icon : 'fa-solid fa-star' }} text-3xl text-white"></i>
+        </div>
       </div>
     </li>
   </ul>
   <div class="absolute left-1/2 top-1/2 translate-x-3">
-    <img src="assets/image/trail-progress/livro-fechado.gif"  class="w-20">
+    <img src="assets/image/trail-progress/open-book.gif"  class="w-20">
   </div>
 </div>
-

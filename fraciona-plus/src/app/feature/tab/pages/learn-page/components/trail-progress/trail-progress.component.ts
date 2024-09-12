@@ -1,4 +1,4 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, inject, input, OnChanges, OnDestroy, OnInit, QueryList, SimpleChanges, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, input, OnChanges, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { map } from 'rxjs';
@@ -50,7 +50,7 @@ export class TrailProgressComponent implements OnInit, OnChanges {
       disabled: true,
     },
     {
-      id: 4,
+      id: 5,
       action() { },
       disabled: true,
       icon: 'fa-solid fa-trophy'
@@ -66,15 +66,14 @@ export class TrailProgressComponent implements OnInit, OnChanges {
   elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
 
   ngOnInit(): void {
-
     this.router.events.pipe(map(project => project instanceof NavigationEnd))
       .subscribe(() => this.changeDetectorRef.detectChanges());
   }
 
   ngOnChanges(): void {
-      if (this.scrollChanged()) {
-        this.listOverlayPanel?.forEach(overlayPanel => overlayPanel.hide());
-      }
+    if (this.scrollChanged()) {
+      this.listOverlayPanel?.forEach(overlayPanel => overlayPanel.hide());
+    }
   }
 
   disabledStyleClass(item: TrailItem) {

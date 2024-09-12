@@ -12,7 +12,6 @@ export class ClickedDirective {
     private readonly elementRef: ElementRef
   ) { }
 
-
   @HostListener('mousedown', ['$event'])
   @HostListener('touchstart', ['$event'])
   onMouseDown(event: MouseEvent | TouchEvent) {
