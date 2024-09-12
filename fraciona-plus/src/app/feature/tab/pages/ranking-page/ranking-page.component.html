@@ -2,7 +2,7 @@
   <div class="flex flex-col">
 
     <div class="flex justify-center items-center py-5">
-      <img src="../../../../../assets/image/ranking/ranking.png" class="w-28 bg-white rounded-full p-2 shadow-lg">
+      <img src="../../../../../assets/image/ranking/ranking.png" class="w-28 bg-white rounded-full p-2 mat-elevation-z4">
     </div>
 
     <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6  w-full">
@@ -10,7 +10,7 @@
       <div class="flex flex-col gap-4 mt-4 mb-16">
 
         <div *ngFor="let user of users; let i = index"
-          class="flex justify-between items-center border-solid border-gray-500 border-opacity-10 rounded-xl p-4 h-16 shadow-lg"
+          class="flex justify-between items-center border-solid border-gray-500 border-opacity-10 rounded-xl p-4 h-16 mat-elevation-z4"
           [ngClass]="{ 'gold': i === 0, 'silver': i === 1, 'bronze': i === 2 }">
           <div class="flex gap-3 items-center">
             @if(i < 3) {
