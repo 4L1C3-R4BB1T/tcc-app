@@ -36,7 +36,12 @@
       </div>
     </li>
   </ul>
-  <div class="absolute top-1/2 {{ inverse() ? 'right-1/2  -translate-x-5' : 'left-1/2 translate-x-3' }}">
-    <img src="assets/image/trail-progress/book.gif"  class="w-20">
+  <div class="absolute top-[42%] {{ inverse() ? 'right-[55%]  -translate-x-5' : 'left-[55%] translate-x-3' }}">
+
+    @if (inverse()) {
+    <img src="assets/image/trail-progress/abacus.gif" class="w-24">
+    } @else {
+    <img src="assets/image/trail-progress/book.gif"  class="w-24">
+    }
   </div>
 </div>
