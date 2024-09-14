@@ -2,7 +2,7 @@
   <div class="flex flex-col h-full">
 
     <div class="flex justify-center items-center py-5">
-      <img src="../../../../../assets/image/achievements/achievement.png"
+      <img src="assets/image/achievements/achievement.png"
         class="w-28 bg-white rounded-full p-2 mat-elevation-z4">
     </div>
 
@@ -11,13 +11,18 @@
       <div class="grid grid-cols-2 gap-4 mt-4 mb-16">
 
         <div *ngFor="let achievement of achievements"
-          class="flex flex-col items-center justify-center gap-2 py-4 px-2 mat-elevation-z4 rounded-xl border-solid text-center h-56"
-          [ngStyle]="{'border-color': achievement.color}">
+          class="flex flex-col items-center justify-between p-2 shadow-lg rounded-xl border-solid text-center h-56"
+          [ngStyle]="{'border-color': achievement.color}"
+          [ngClass]="{ 'disabled': achievement.disabled }">
 
-          <img [src]="'../../../../../assets/image/achievements/' + achievement.image" class="w-14 h-14">
+          <img [src]="'assets/image/achievements/' + achievement.image" class="w-14 h-14">
 
           <span class="text-lg font-bold">{{ achievement.title }}</span>
           <span class="text-sm text-gray-500">{{ achievement.description }}</span>
+
+          @if (!achievement.disabled) {
+          <span class="text-[0.6rem] text-gray-500">Obtido em 14-09-2014</span>
+          }
         </div>
 
       </div>

@@ -10,28 +10,32 @@ export type Achievement = {
 }
 
 @Component({
-  selector: 'app-perfil-page',
-  templateUrl: './perfil-page.component.html',
-  styleUrls: ['./perfil-page.component.scss'],
+  selector: 'app-profile-page',
+  templateUrl: './profile-page.component.html',
+  styleUrls: ['./profile-page.component.scss'],
   providers: [DialogService, MessageService]
 })
-export class PerfilPageComponent {
+export class ProfilePageComponent {
 
   achievements: Achievement[] = [
-    {
-      image: 'puzzle.png',
-      color: '#39FF14'
-    },
     {
       image: 'baby.png',
       color: '#39FF14'
     },
     {
-      image: 'brain.png',
-      color: '#8A2BE2'
+      image: 'puzzle.png',
+      color: '#39FF14'
     },
     {
-      image: 'box.png',
+      image: 'brain.png',
+      color: '#00BFFF'
+    },
+    {
+      image: 'explorer.png',
+      color: '#00BFFF'
+    },
+    {
+      image: 'marathon.png',
       color: '#00BFFF'
     },
     {

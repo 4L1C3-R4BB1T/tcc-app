@@ -5,7 +5,7 @@
   <div class="flex flex-col gap-5 mt-4 mb-16">
 
     <div *ngFor="let challenge of challengers"
-      class="flex flex-col gap-2 py-4 px-2 mat-elevation-z4 rounded-xl border-solid"
+      class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid"
       [ngClass]="{ 'border-lime-500': challenge.difficulty === 1, 'border-yellow-400': challenge.difficulty === 2, 'border-red-500': challenge.difficulty === 3 }">
       <div class="flex justify-end">
         <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs uppercase h-5">
@@ -27,7 +27,7 @@
         </span>
       </div>
       <div class="flex gap-5 px-2 pb-3">
-        <img [src]="'../../../../../assets/image/challenge/' + challenge.image" class="w-14 h-14">
+        <img [src]="'assets/image/challenge/' + challenge.image" class="w-14 h-14">
         <div class="flex flex-col gap-2">
           <span class="text-lg font-bold">{{ challenge.title }}</span>
           <span class="text-sm text-gray-500">

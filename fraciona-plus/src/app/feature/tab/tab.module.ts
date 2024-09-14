@@ -7,7 +7,7 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TrailProgressComponent } from './pages/learn-page/components/trail-progress/trail-progress.component';
 import { LearnPageComponent } from './pages/learn-page/learn-page.component';
 import { ChangeNameComponent } from './pages/perfil-page/components/change-name/change-name.component';
-import { PerfilPageComponent } from './pages/perfil-page/perfil-page.component';
+import { ProfilePageComponent } from './pages/perfil-page/profile-page.component';
 import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
 import { TabRoutingModule } from './tab-routing.module';
 import { TabComponent } from './tab.component';
@@ -19,7 +19,7 @@ import { TabComponent } from './tab.component';
     LearnPageComponent,
     ChallengePageComponent,
     RankingPageComponent,
-    PerfilPageComponent,
+    ProfilePageComponent,
     UserInfoPanelComponent,
     TrailProgressComponent,
     ChangeNameComponent,
