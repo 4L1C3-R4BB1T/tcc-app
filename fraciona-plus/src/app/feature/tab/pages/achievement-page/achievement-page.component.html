@@ -11,7 +11,7 @@
       <div class="grid grid-cols-2 gap-4 mt-4 mb-16">
 
         <div *ngFor="let achievement of achievements"
-          class="flex flex-col items-center justify-between p-2 shadow-lg rounded-xl border-solid text-center h-56"
+          class="flex flex-col items-center justify-between py-2 px-1 shadow-lg rounded-xl border-solid text-center h-56"
           [ngStyle]="{'border-color': achievement.color}"
           [ngClass]="{ 'disabled': achievement.disabled }">
 
@@ -21,7 +21,7 @@
           <span class="text-sm text-gray-500">{{ achievement.description }}</span>
 
           @if (!achievement.disabled) {
-          <span class="text-[0.6rem] text-gray-500">Obtido em 14-09-2014</span>
+          <p-tag severity="info" value="Obtido em 14-09-2014" styleClass="text-[0.55rem]" />
           }
         </div>
 

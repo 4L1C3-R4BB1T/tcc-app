@@ -3,9 +3,27 @@ ion-button {
   --border-radius: 0.4rem;
 }
 
-.achievement {
-  width: 4rem;
-  height: 4rem;
-  border: solid 6px;
-  border-radius: 100%;
+.photo {
+  @apply relative w-32 h-32 rounded-full mx-auto border-solid border-gray-500 border-opacity-10 shadow-lg;
+}
+
+.info {
+  @apply py-4 px-5 rounded-xl border-solid border-gray-500 border-opacity-10 mt-6 shadow-lg;
+}
+
+.statistic {
+  @apply flex flex-1 min-w-32 p-3 items-center gap-5 rounded-xl border-solid border-gray-500 border-opacity-10 shadow-lg;
+}
+
+.achievements {
+  @apply border-solid border-gray-500 border-opacity-10 rounded-xl px-4 py-3 mt-4 grid grid-cols-4 gap-4 place-items-center shadow-lg;
+
+  .achievement {
+    @apply flex justify-center items-center scale-90;
+
+    width: 4rem;
+    height: 4rem;
+    border: solid 6px;
+    border-radius: 100%;
+  }
 }
