@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 export type Challenge = {
   title: string;
@@ -12,7 +13,7 @@ export type Challenge = {
   templateUrl: './challenge-page.component.html',
   styleUrls: ['./challenge-page.component.scss'],
 })
-export class ChallengePageComponent {
+export class ChallengePageComponent implements OnInit {
 
   challengers: Challenge[] = [
     {
@@ -52,5 +53,20 @@ export class ChallengePageComponent {
       image: 'stone.png'
     }
   ];
+
+  formGroup!: FormGroup;
+
+  stateOptions: any[] = [
+    { label: 'Todos', value: 'all' },
+    { label: 'Fácil', value: 'easy' },
+    { label: 'Médio', value: 'medium' },
+    { label: 'Difícil', value: 'hard' }
+  ];
+
+  ngOnInit() {
+    this.formGroup = new FormGroup({
+      value: new FormControl('on')
+    });
+  }
 
 }

@@ -1,3 +1,31 @@
 .difficulty {
   @apply rounded-lg py-1 px-2 text-white;
 }
+
+::ng-deep {
+  .p-selectbutton {
+    width: 100%;
+    display: flex;
+    border-color: #CDE4DA;
+
+    .p-button {
+      flex: 1;
+      padding: 0.5rem;
+      font-size: 0.8rem;
+      border-color: #CDE4DA;
+
+      &.p-highlight {
+        color: #FFF;
+        outline: none;
+        border-color: #CDE4DA;
+        background-color: #FFA500;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: none;
+        border-color: #CDE4DA;
+      }
+    }
+  }
+}

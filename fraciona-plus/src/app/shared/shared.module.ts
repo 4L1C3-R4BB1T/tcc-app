@@ -26,6 +26,7 @@ import { MenuModule } from 'primeng/menu';
 import { MessagesModule } from 'primeng/messages';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RippleModule } from 'primeng/ripple';
+import { SelectButtonModule } from 'primeng/selectbutton';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TabViewModule } from 'primeng/tabview';
 import { TagModule } from 'primeng/tag';
@@ -75,6 +76,7 @@ import { ClickedDirective } from './directives/clicked.directive';
     CarouselModule,
     BadgeModule,
     ClickedDirective,
+    SelectButtonModule,
   ]
 })
 export class SharedModule { }
