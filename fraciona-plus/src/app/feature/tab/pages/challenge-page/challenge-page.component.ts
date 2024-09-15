@@ -65,7 +65,7 @@ export class ChallengePageComponent implements OnInit {
 
   ngOnInit() {
     this.formGroup = new FormGroup({
-      value: new FormControl('on')
+      value: new FormControl('all')
     });
   }
 
