@@ -16,7 +16,8 @@
 
     <div *ngFor="let challenge of challengers"
       class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid"
-      [ngClass]="{ 'border-lime-500': challenge.difficulty === 1, 'border-yellow-400': challenge.difficulty === 2, 'border-red-500': challenge.difficulty === 3 }">
+      [ngClass]="{ 'border-lime-500': challenge.difficulty === 1, 'border-yellow-400': challenge.difficulty === 2, 'border-red-500': challenge.difficulty === 3 }"
+      matRipple routerLink="/quiz/challenge">
       <div class="flex justify-end">
         <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs h-5">
           @if (challenge.difficulty === 1) {

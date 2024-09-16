@@ -31,6 +31,4 @@ import { TabComponent } from './tab.component';
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export default class TabModule {
-
-}
+export default class TabModule { }

@@ -9,15 +9,19 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./feature/welcome/welcome.module'),
+    loadChildren: () => import('./feature/welcome/welcome.module')
   },
   {
     path: 'account',
-    loadChildren: () => import('./feature/login/login.module'),
+    loadChildren: () => import('./feature/login/login.module')
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./feature/tab/tab.module'),
+    loadChildren: () => import('./feature/tab/tab.module')
+  },
+  {
+    path: 'quiz',
+    loadChildren: () => import('./feature/quiz/quiz.module')
   }
 ];
 

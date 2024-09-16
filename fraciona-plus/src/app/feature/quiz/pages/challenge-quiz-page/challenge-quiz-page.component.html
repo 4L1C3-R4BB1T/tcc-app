@@ -1,0 +1,23 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-item lines="none" slot="start" class="w-full">
+      <i class="fa-solid fa-xmark fa-2xl text-gray-500 mr-5 py-4 px-1 bg-transparent" routerLink="/tabs/challenge"></i>
+      <span class="flex items-center" slot="end">
+        <img src="assets/image/quiz/heart.png" class="w-8">
+        <img src="assets/image/quiz/heart.png" class="w-8">
+        <img src="assets/image/quiz/heart.png" class="w-8">
+        <img src="assets/image/quiz/heart.png" class="w-8">
+        <img src="assets/image/quiz/heart.png" class="w-8">
+      </span>
+    </ion-item>
+  </ion-toolbar>
+  <div class="px-5 ">
+    <ion-progress-bar [value]="currentPercentage()" slot="start"></ion-progress-bar>
+  </div>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <app-activity></app-activity>
+
+</ion-content>
