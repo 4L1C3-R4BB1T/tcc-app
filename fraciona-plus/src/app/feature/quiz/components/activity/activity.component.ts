@@ -28,14 +28,13 @@ export class ActivityComponent {
   @Input({ required: true })
   data!: Question;
 
+  parent = inject(ChallengeQuizPageComponent);
   selectedAlternativeId = signal<number | null>(null);
 
   isCorrect = computed(() => this.selectedAlternativeId() === this.data.correctId);
 
   isAnswered = signal(false);
   selectedAnswerId: number | null = null;
-
-  parent = inject(ChallengeQuizPageComponent);
 
   getOrder(index: number) {
     if (index < 0 || index >= ALTERNATIVE.length) {
@@ -50,6 +49,10 @@ export class ActivityComponent {
       this.isAnswered.set(true);
       this.selectedAnswerId = id;
       this.parent.canGo.set(true);
+
+      if (this.isCorrect()) {
+        this.parent.totalCorrectAnswers++;
+      }
     }
   }
 

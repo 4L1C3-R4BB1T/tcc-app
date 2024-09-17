@@ -48,6 +48,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   canGo = signal(false);
 
+  totalCorrectAnswers: number = 0;
+
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
   ionViewDidEnter() {
@@ -73,7 +75,14 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
       this.currentQuestionIndex.set(currentQuestionIndex);
     } else {
       // criar pagina de resultados
-      this.router.navigate(['/tabs/challenge']);
+      this.router.navigate(['/quiz/result'], {
+        queryParams: {
+          state: JSON.stringify({
+            totalQuestions: this.questions.length,
+            totalCorrectAnswers: this.totalCorrectAnswers
+          })
+        }
+      });
     }
   }
 
