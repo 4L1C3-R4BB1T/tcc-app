@@ -98,6 +98,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
           })
         }
       });
+      // resetando quantidade de respostas corretas
+      this.totalCorrectAnswers = 0;
     }
   }
 

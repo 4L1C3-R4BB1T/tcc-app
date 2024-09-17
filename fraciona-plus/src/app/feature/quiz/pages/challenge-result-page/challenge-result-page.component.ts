@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
 
 interface ChallengeResultState {
   totalQuestions: number;
@@ -12,7 +11,7 @@ interface ChallengeResultState {
   templateUrl: './challenge-result-page.component.html',
   styleUrls: ['./challenge-result-page.component.scss'],
 })
-export class ChallengeResultPageComponent implements ViewDidEnter {
+export class ChallengeResultPageComponent implements OnInit {
 
   totalCorrectAnswers = signal<number>(0);
   totalQuestions = signal<number>(0);
@@ -21,7 +20,7 @@ export class ChallengeResultPageComponent implements ViewDidEnter {
 
   constructor(readonly route: ActivatedRoute, readonly router: Router) { }
 
-  ionViewDidEnter() {
+  ngOnInit() {
     const state = JSON.parse(this.route.snapshot.queryParams['state']) as ChallengeResultState;
 
     const { totalQuestions, totalCorrectAnswers } = state;
