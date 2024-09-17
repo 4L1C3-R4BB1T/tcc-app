@@ -46,16 +46,29 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   questions = questions;
 
-  canGo = signal(false);
+  isAnswered = signal(false);
 
   totalCorrectAnswers: number = 0;
+
+  disableButton = signal(false);
 
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
   ionViewDidEnter() {
+    this.disableButton.set(true);
+
     if (this.questions.length > 0) {
       this.currentQuestion.set(this.questions[0]);
       this.currentQuestionIndex.set(0);
+    }
+  }
+
+  checkAnswered() {
+    this.isAnswered.set(true);
+    this.activityComponent.canMark.set(true);
+
+    if (this.activityComponent.isCorrect()) {
+      this.totalCorrectAnswers++;
     }
   }
 
@@ -63,7 +76,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     // resetando variaveis
     this.activityComponent.selectedAnswerId = null;
     this.activityComponent.isAnswered.set(false);
-    this.canGo.set(false);
+    this.activityComponent.canMark.set(false);
+    this.isAnswered.set(false);
 
     const currentQuestionIndex = this.currentQuestionIndex()! + 1;
     this.currentPercentage.update(oldPercentage => oldPercentage + (currentQuestionIndex / this.questions.length));
@@ -73,6 +87,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     if (currentQuestionIndex < this.questions.length) {
       this.currentQuestion.set(this.questions[currentQuestionIndex]);
       this.currentQuestionIndex.set(currentQuestionIndex);
+      this.disableButton.set(true);
     } else {
       // criar pagina de resultados
       this.router.navigate(['/quiz/result'], {

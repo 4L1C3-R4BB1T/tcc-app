@@ -13,10 +13,13 @@
       matRipple
       (click)="markAnswer(a.id)"
       [ngClass]="{
-        'correct': selectedAnswerId === a.id && a.id === data.correctId,
-        'wrong': selectedAnswerId === a.id && a.id !== data.correctId
+        'selected': selectedAnswerId === a.id,
+        'correct': (selectedAnswerId === a.id && a.id === data.correctId && canMark())
+          || (a.id === data.correctId && selectedAnswerId !== data.correctId && canMark()),
+        'wrong': selectedAnswerId === a.id && a.id !== data.correctId && canMark()
       }"
-      [ngStyle]="{ 'pointer-events': isAnswered() ? 'none' : 'auto' }">
+      [ngStyle]="{ 'pointer-events': isAnswered() && canMark() ? 'none' : 'auto' }"
+      >
       <div
         class="bg-gray-500 w-full relative h-full max-w-6 max-h-6 rounded-full text-white flex items-center justify-center">
         <strong>{{ getOrder(index) }}</strong>

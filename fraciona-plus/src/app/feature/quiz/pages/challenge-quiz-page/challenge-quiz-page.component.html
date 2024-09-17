@@ -24,10 +24,17 @@
       <app-activity [data]="currentQuestion()!" />
       }
 
-      @if (canGo()) {
+      @if (isAnswered()) {
       <p-button
         label="Continuar"
         (click)="goToNext()"
+        styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+      </p-button>
+      } @else {
+      <p-button
+        label="Responder"
+        (click)="checkAnswered()"
+        [disabled]="disableButton()"
         styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
       </p-button>
       }

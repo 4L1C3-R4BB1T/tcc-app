@@ -36,6 +36,8 @@ export class ActivityComponent {
   isAnswered = signal(false);
   selectedAnswerId: number | null = null;
 
+  canMark = signal(false);
+
   getOrder(index: number) {
     if (index < 0 || index >= ALTERNATIVE.length) {
       throw new Error('O índice deve estar entre 0 e o comprimento das alternativas menos 1.');
@@ -44,21 +46,17 @@ export class ActivityComponent {
   }
 
   markAnswer(id: number) {
-    if (!this.isAnswered()) {
+    // if (!this.isAnswered()) {
       this.selectedAlternativeId.set(id);
       this.isAnswered.set(true);
       this.selectedAnswerId = id;
-      this.parent.canGo.set(true);
-
-      if (this.isCorrect()) {
-        this.parent.totalCorrectAnswers++;
-      }
-    }
+      this.parent.disableButton.set(false);
+    // }
   }
 
   getAlternativeStatusClass(alternativeId: number) {
     return {
-      selected: this.selectedAlternativeId() === alternativeId,
+      selected: this.selectedAlternativeId() === alternativeId
     };
   }
 
