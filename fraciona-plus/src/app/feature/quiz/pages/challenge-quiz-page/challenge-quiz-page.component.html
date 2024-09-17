@@ -18,6 +18,20 @@
 
 <ion-content class="ion-padding">
 
-  <app-activity></app-activity>
+  <div class="bg-[#fbac3a] h-full rounded-xl p-3 shadow-lg">
+    <div class="bg-white h-full rounded-xl p-4 flex flex-col justify-between">
+      @defer (when currentQuestion() !== null) {
+      <app-activity [data]="currentQuestion()!" />
+      }
+
+      @if (canGo()) {
+      <p-button
+        label="Continuar"
+        (click)="goToNext()"
+        styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+      </p-button>
+      }
+    </div>
+  </div>
 
 </ion-content>

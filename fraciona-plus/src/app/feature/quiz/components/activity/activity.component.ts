@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, computed, inject, Input, signal } from '@angular/core';
+import { ChallengeQuizPageComponent } from '../../pages/challenge-quiz-page/challenge-quiz-page.component';
 
 export type Alternative = {
-  id: string;
+  id: number;
   label: string;
 };
 
@@ -10,8 +11,12 @@ export type Question = {
   content: string;
   image?: string;
   alternatives: Alternative[];
-  correct: string;
+  correctId: number;
 };
+
+const ALTERNATIVE = [
+  'A', 'B', 'C', 'D'
+];
 
 @Component({
   selector: 'app-activity',
@@ -20,19 +25,38 @@ export type Question = {
 })
 export class ActivityComponent {
 
-  questions: Question[] = [
-    {
-      id: 1,
-      content: 'Que fração representa 1 parte da pizza?',
-      image: 'pizza.png',
-      alternatives: [
-        { id: 'A', label: '1/1' },
-        { id: 'B', label: '1/8' },
-        { id: 'C', label: '1/2' },
-        { id: 'D', label: '1/4' }
-      ],
-      correct: 'B'
+  @Input({ required: true })
+  data!: Question;
+
+  selectedAlternativeId = signal<number | null>(null);
+
+  isCorrect = computed(() => this.selectedAlternativeId() === this.data.correctId);
+
+  isAnswered = signal(false);
+  selectedAnswerId: number | null = null;
+
+  parent = inject(ChallengeQuizPageComponent);
+
+  getOrder(index: number) {
+    if (index < 0 || index >= ALTERNATIVE.length) {
+      throw new Error('O índice deve estar entre 0 e o comprimento das alternativas menos 1.');
     }
-  ];
+    return ALTERNATIVE[index];
+  }
+
+  markAnswer(id: number) {
+    if (!this.isAnswered()) {
+      this.selectedAlternativeId.set(id);
+      this.isAnswered.set(true);
+      this.selectedAnswerId = id;
+      this.parent.canGo.set(true);
+    }
+  }
+
+  getAlternativeStatusClass(alternativeId: number) {
+    return {
+      selected: this.selectedAlternativeId() === alternativeId,
+    };
+  }
 
 }
