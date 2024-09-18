@@ -53,6 +53,12 @@ export class AchievementPageComponent {
       color: '#8A2BE2'
     },
     {
+      title: 'Grande Amigo',
+      description: 'Participou do perído de testes do aplicativo',
+      image: 'graduation.png',
+      color: '#FF4500'
+    },
+    {
       title: 'Estrela da Festa',
       description: 'Complete 100 atividades sem erros',
       image: 'party.png',

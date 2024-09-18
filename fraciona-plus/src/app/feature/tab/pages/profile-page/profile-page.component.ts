@@ -41,6 +41,10 @@ export class ProfilePageComponent {
     {
       image: 'party.png',
       color: '#8A2BE2'
+    },
+    {
+      image: 'graduation.png',
+      color: '#FF4500'
     }
   ];
 
