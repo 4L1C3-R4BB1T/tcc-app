@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, effect, ElementRef, inject, OnInit, QueryList, signal, ViewChildren } from '@angular/core';
-import { TrailProgressComponent } from './components/trail-progress/trail-progress.component';
+import { Component, QueryList, signal, ViewChildren } from '@angular/core';
 import { ScrollCustomEvent } from '@ionic/angular';
+import { TrailProgressComponent } from './components/trail-progress/trail-progress.component';
 
 @Component({
   selector: 'app-learn-page',
@@ -29,4 +29,5 @@ export class LearnPageComponent  {
       }
     });
   }
+  
 }

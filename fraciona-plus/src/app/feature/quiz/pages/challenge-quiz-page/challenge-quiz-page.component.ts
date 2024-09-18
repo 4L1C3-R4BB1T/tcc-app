@@ -1,6 +1,7 @@
 import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ActivityComponent, Question } from '../../components/activity/activity.component';
+import { Question } from 'src/app/models/question';
+import { ActivityComponent } from '../../components/activity/activity.component';
 
 const questions: Question[] = [
   {
@@ -17,7 +18,7 @@ const questions: Question[] = [
   },
   {
     id: 2,
-    content: 'Que fração representa o mesmo que 1/3?',
+    content: 'Qual fração é equivalente a 1/3?',
     alternatives: [
       { id: 1, label: '2/3' },
       { id: 2, label: '3/3' },
@@ -47,7 +48,7 @@ export class ChallengeQuizPageComponent implements OnInit {
 
   isAnswered = signal(false);
 
-  totalCorrectAnswers: number = 0;
+  totalCorrectAnswers = signal<number>(0);
 
   disableButton = signal(false);
 
@@ -67,7 +68,7 @@ export class ChallengeQuizPageComponent implements OnInit {
     this.activityComponent.canMark.set(true);
 
     if (this.activityComponent.isCorrect()) {
-      this.totalCorrectAnswers++;
+      this.totalCorrectAnswers.set(this.totalCorrectAnswers() + 1);
     }
   }
 
@@ -93,12 +94,12 @@ export class ChallengeQuizPageComponent implements OnInit {
         queryParams: {
           state: JSON.stringify({
             totalQuestions: this.questions.length,
-            totalCorrectAnswers: this.totalCorrectAnswers
+            totalCorrectAnswers: this.totalCorrectAnswers()
           })
         }
       });
       // resetando quantidade de respostas corretas
-      this.totalCorrectAnswers = 0;
+      this.totalCorrectAnswers.set(0);
     }
   }
 

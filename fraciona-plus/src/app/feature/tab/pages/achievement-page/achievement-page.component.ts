@@ -1,12 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-
-export type Achievement = {
-  title: string;
-  description: string;
-  image: string;
-  color: string;
-  disabled?: boolean;
-}
+import { Component } from '@angular/core';
+import { Achievement } from 'src/app/models/achievement';
 
 @Component({
   selector: 'app-achievement-page',

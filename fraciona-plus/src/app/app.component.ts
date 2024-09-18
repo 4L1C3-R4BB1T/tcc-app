@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import { register } from 'swiper/element';
-
-register();
 
 @Component({
   selector: 'app-root',
@@ -11,6 +8,4 @@ register();
     </ion-app>
   `,
 })
-export class AppComponent {
-  constructor() { }
-}
+export class AppComponent { }

@@ -1,22 +1,6 @@
 import { Component, computed, inject, Input, signal } from '@angular/core';
+import { ALTERNATIVE, Question } from 'src/app/models/question';
 import { ChallengeQuizPageComponent } from '../../pages/challenge-quiz-page/challenge-quiz-page.component';
-
-export type Alternative = {
-  id: number;
-  label: string;
-};
-
-export type Question = {
-  id: number;
-  content: string;
-  image?: string;
-  alternatives: Alternative[];
-  correctId: number;
-};
-
-const ALTERNATIVE = [
-  'A', 'B', 'C', 'D'
-];
 
 @Component({
   selector: 'app-activity',
@@ -46,12 +30,10 @@ export class ActivityComponent {
   }
 
   markAnswer(id: number) {
-    // if (!this.isAnswered()) {
-      this.selectedAlternativeId.set(id);
-      this.isAnswered.set(true);
-      this.selectedAnswerId = id;
-      this.parent.disableButton.set(false);
-    // }
+    this.selectedAlternativeId.set(id);
+    this.isAnswered.set(true);
+    this.selectedAnswerId = id;
+    this.parent.disableButton.set(false);
   }
 
   getAlternativeStatusClass(alternativeId: number) {

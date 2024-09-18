@@ -1,10 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-
-interface ChallengeResultState {
-  totalQuestions: number;
-  totalCorrectAnswers: number;
-}
+import { ChallengeResult } from 'src/app/models/challenge-result';
 
 @Component({
   selector: 'app-challenge-result-page',
@@ -21,7 +17,7 @@ export class ChallengeResultPageComponent implements OnInit {
   constructor(readonly route: ActivatedRoute, readonly router: Router) { }
 
   ngOnInit() {
-    const state = JSON.parse(this.route.snapshot.queryParams['state']) as ChallengeResultState;
+    const state = JSON.parse(this.route.snapshot.queryParams['state']) as ChallengeResult;
 
     const { totalQuestions, totalCorrectAnswers } = state;
 

@@ -2,13 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, inject, input, OnChanges, OnI
 import { NavigationEnd, Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { map } from 'rxjs';
-
-export type TrailItem = {
-  id: number;
-  disabled?: boolean;
-  action: () => void;
-  icon?: string;
-}
+import { TrailItem } from 'src/app/models/trail-item';
 
 @Component({
   selector: 'app-trail-progress',

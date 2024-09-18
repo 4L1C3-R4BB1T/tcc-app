@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-
-export type User = {
-  name: string;
-  exp: number;
-}
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-ranking',

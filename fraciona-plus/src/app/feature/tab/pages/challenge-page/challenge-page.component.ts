@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-
-export type Challenge = {
-  title: string;
-  difficulty: number;
-  exp: number;
-  image: string;
-}
+import { Challenge } from 'src/app/models/challenge';
 
 @Component({
   selector: 'app-challenge-page',

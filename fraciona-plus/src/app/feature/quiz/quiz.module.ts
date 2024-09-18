@@ -7,8 +7,8 @@ import { QuizRoutingModule } from './quiz-routing.module';
 
 @NgModule({
   declarations: [
-    ChallengeQuizPageComponent,
     ActivityComponent,
+    ChallengeQuizPageComponent,
     ChallengeResultPageComponent
   ],
   imports: [

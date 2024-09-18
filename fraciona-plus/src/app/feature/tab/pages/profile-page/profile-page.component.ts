@@ -2,12 +2,8 @@ import { Component } from '@angular/core';
 import { AlertButton } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { AchievementIcon } from 'src/app/models/achievement';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
-
-export type Achievement = {
-  image: string;
-  color: string;
-}
 
 @Component({
   selector: 'app-profile-page',
@@ -17,7 +13,7 @@ export type Achievement = {
 })
 export class ProfilePageComponent {
 
-  achievements: Achievement[] = [
+  achievements: AchievementIcon[] = [
     {
       image: 'baby.png',
       color: '#39FF14'
@@ -86,10 +82,7 @@ export class ProfilePageComponent {
     },
   ];
 
-  constructor(
-    readonly dialogService: DialogService,
-    readonly messageService: MessageService
-  ) { }
+  constructor(readonly dialogService: DialogService, readonly messageService: MessageService) { }
 
   public showDialog() {
     const ref = this.dialogService.open(ChangeNameComponent, {
