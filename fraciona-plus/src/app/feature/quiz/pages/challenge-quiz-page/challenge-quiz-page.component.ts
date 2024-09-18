@@ -1,6 +1,5 @@
-import { Component, signal, ViewChild } from '@angular/core';
+import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ViewDidEnter } from '@ionic/angular';
 import { ActivityComponent, Question } from '../../components/activity/activity.component';
 
 const questions: Question[] = [
@@ -34,7 +33,7 @@ const questions: Question[] = [
   templateUrl: './challenge-quiz-page.component.html',
   styleUrls: ['./challenge-quiz-page.component.scss'],
 })
-export class ChallengeQuizPageComponent implements ViewDidEnter {
+export class ChallengeQuizPageComponent implements OnInit {
 
   @ViewChild(ActivityComponent)
   activityComponent!: ActivityComponent;
@@ -54,7 +53,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
-  ionViewDidEnter() {
+  ngOnInit() {
     this.disableButton.set(true);
 
     if (this.questions.length > 0) {
