@@ -4,7 +4,7 @@
     <li #trailItem *ngFor="let item of items" class="relative">
 
       <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }"
-        class="float-animation absolute border-none w-32 rounded-lg text-lg h-12 left-1/2 -translate-x-1/2 -top-10 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform transition-transform duration-300 ease-in-out hover:scale-105 {{ item.disabled ? 'hidden' : '' }}">
+        class="float-animation absolute border-none w-32 rounded-lg text-lg h-12 left-1/2 -translate-x-1/2 -top-10 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform transition-transform duration-300 ease-in-out hover:scale-105 {{ item.disabled || item.completed ? 'hidden' : '' }}">
         Começar
         <div class="h-[1rem] left-0 absolute -bottom-3 w-full flex justify-center overflow-hidden">
           <div
@@ -26,7 +26,7 @@
             <button
               pButton
               matRipple
-              (click)="item.action()"
+              (click)="startLesson(overlayPanel, item.id)"
               class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] rounded-xl shadow-lg">
               Começar + 10xp
             </button>

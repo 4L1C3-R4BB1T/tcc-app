@@ -1,6 +1,6 @@
 export interface TrailItem {
   id: number;
+  completed?: boolean;
   disabled?: boolean;
-  action: () => void;
   icon?: string;
 }

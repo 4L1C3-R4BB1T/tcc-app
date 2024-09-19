@@ -26,28 +26,22 @@ export class TrailProgressComponent implements OnInit, OnChanges {
   items: TrailItem[] = [
     {
       id: 1,
-      action() {
-        window.alert('Clicked');
-      }
+      completed: true,
+      icon: 'fa-solid fa-book'
     },
     {
       id: 2,
-      action() { },
-      disabled: true,
     },
     {
       id: 3,
-      action() { },
-      disabled: true,
+      disabled: true
     },
     {
       id: 4,
-      action() { },
-      disabled: true,
+      disabled: true
     },
     {
       id: 5,
-      action() { },
       disabled: true,
       icon: 'fa-solid fa-trophy'
     }
@@ -76,6 +70,11 @@ export class TrailProgressComponent implements OnInit, OnChanges {
     return {
       'progress__item--disabled': item?.disabled ?? false
     }
+  }
+
+  startLesson(overlayPanel: OverlayPanel, itemId: number) {
+    this.router.navigate([`/learning/trail/${itemId}`]);
+    overlayPanel.hide();
   }
 
 }

@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'quiz',
     loadChildren: () => import('./feature/quiz/quiz.module')
+  },
+  {
+    path: 'learning/trail/:id',
+    loadChildren: () => import('./feature/learning-trail/learning-trail.module')
   }
 ];
 
