@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, inject, input, OnChanges, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, inject, Input, input, OnChanges, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { OverlayPanel } from 'primeng/overlaypanel';
 import { map } from 'rxjs';
@@ -23,13 +23,8 @@ export class TrailProgressComponent implements OnInit, OnChanges {
 
   inverse = input(false);
 
-  items: TrailItem[] = [
-    { id: 1, completed: true, icon: 'fa-solid fa-book' },
-    { id: 2, completed: true },
-    { id: 3 },
-    { id: 4, disabled: true },
-    { id: 5, disabled: true, icon: 'fa-solid fa-trophy' }
-  ];
+  @Input()
+  items?: TrailItem[];
 
   itemsIverse: TrailItem[] = [
     { id: 6, disabled: true, icon: 'fa-solid fa-book' },

@@ -1,6 +1,14 @@
 import { Component, QueryList, signal, ViewChildren } from '@angular/core';
 import { ScrollCustomEvent } from '@ionic/angular';
 import { TrailProgressComponent } from './components/trail-progress/trail-progress.component';
+import { TrailItem } from 'src/app/models/trail-item';
+
+
+interface Secao {
+  id: number;
+  title: string;
+  items: TrailItem[];
+}
 
 @Component({
   selector: 'app-learn-page',
@@ -16,7 +24,33 @@ export class LearnPageComponent  {
 
   scrollStart = signal(true);
 
-  currentTitle = signal('Aprenda o básico sobre frações');
+
+  secoes: Secao[] = [
+    {
+      id: 1,
+      title: "Secao 1",
+      items: [
+        { id: 1, completed: true, icon: 'fa-solid fa-book' },
+        { id: 2, completed: true },
+        { id: 3 },
+        { id: 4, disabled: true },
+        { id: 5, disabled: true, icon: 'fa-solid fa-trophy' }
+      ],
+    },
+    {
+      id: 2,
+      title: "Secao 2",
+      items: [
+        { id: 1, completed: true, icon: 'fa-solid fa-book' },
+        { id: 2, completed: true },
+        { id: 3 },
+        { id: 4, disabled: true },
+        { id: 5, disabled: true, icon: 'fa-solid fa-trophy' }
+      ],
+    }
+  ];
+
+  currentTitle = signal(this.secoes[0].title);
 
   onScroll(event: ScrollCustomEvent) {
     this.scrollStart.set(event.detail.scrollTop === 0);
