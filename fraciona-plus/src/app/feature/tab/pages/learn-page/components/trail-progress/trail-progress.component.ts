@@ -17,7 +17,7 @@ export class TrailProgressComponent implements OnInit, OnChanges {
   title = input('Aprenda sobre operações básicas');
 
   @ViewChildren('tailItem')
-  listTailItems: QueryList<ElementRef<HTMLLIElement>> = new QueryList();
+  listTrailItems: QueryList<ElementRef<HTMLLIElement>> = new QueryList();
 
   listOverlayPanel!: QueryList<OverlayPanel>;
 

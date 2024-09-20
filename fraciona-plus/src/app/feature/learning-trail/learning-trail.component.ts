@@ -13,7 +13,8 @@ export class LearningTrailComponent implements OnInit {
     {
       id: 1,
       type: 'content',
-      content: '<span>Frações são uma forma de representar partes de um todo ou divisões de uma quantidade. Elas são compostas por dois números separados por uma linha: o numerador (parte superior) e o denominador (parte inferior).</span><span><strong>Numerador:</strong> indica quantas partes estamos considerando.</span><span><strong>Denominador:</strong> indica em quantas partes o todo foi dividido.</span><span>Por exemplo, na fração 1/2, o numerador é 1 e o denominador é 2.</span>',
+      title: 'O que são frações?',
+      content: '<span>Frações são uma forma de representar partes de um todo ou divisões de uma quantidade. Elas são compostas por dois números separados por uma linha: o numerador (parte superior) e o denominador (parte inferior).</span><span><strong>Numerador:</strong> indica quantas partes estamos considerando.</span><span><strong>Denominador:</strong> indica em quantas partes o todo foi dividido.</span><span>Por exemplo, na fração 2/3, o numerador é 2 e o denominador é 3.</span>',
       image: 'fraction.png'
     },
     {
