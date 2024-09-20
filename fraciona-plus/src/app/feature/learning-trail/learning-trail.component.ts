@@ -29,6 +29,18 @@ export class LearningTrailComponent implements OnInit {
         { id: 4, label: '1/4' }
       ],
       correctId: 2
+    },
+    {
+      id: 3,
+      type: 'activity',
+      content: 'Qual fração é equivalente a 1/3?',
+      alternatives: [
+        { id: 1, label: '2/3' },
+        { id: 2, label: '3/3' },
+        { id: 3, label: '2/6' },
+        { id: 4, label: '3/6' }
+      ],
+      correctId: 3
     }
   ];
 

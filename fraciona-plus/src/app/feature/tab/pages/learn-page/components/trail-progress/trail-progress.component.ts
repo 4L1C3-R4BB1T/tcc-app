@@ -24,52 +24,19 @@ export class TrailProgressComponent implements OnInit, OnChanges {
   inverse = input(false);
 
   items: TrailItem[] = [
-    {
-      id: 1,
-      completed: true,
-      icon: 'fa-solid fa-book'
-    },
-    {
-      id: 2,
-    },
-    {
-      id: 3,
-      disabled: true
-    },
-    {
-      id: 4,
-      disabled: true
-    },
-    {
-      id: 5,
-      disabled: true,
-      icon: 'fa-solid fa-trophy'
-    }
+    { id: 1, completed: true, icon: 'fa-solid fa-book' },
+    { id: 2, completed: true },
+    { id: 3 },
+    { id: 4, disabled: true },
+    { id: 5, disabled: true, icon: 'fa-solid fa-trophy' }
   ];
 
   itemsIverse: TrailItem[] = [
-    {
-      id: 6,
-      disabled: true,
-      icon: 'fa-solid fa-book'
-    },
-    {
-      id: 7,
-      disabled: true
-    },
-    {
-      id: 8,
-      disabled: true
-    },
-    {
-      id: 9,
-      disabled: true
-    },
-    {
-      id: 10,
-      disabled: true,
-      icon: 'fa-solid fa-trophy'
-    }
+    { id: 6, disabled: true, icon: 'fa-solid fa-book' },
+    { id: 7, disabled: true },
+    { id: 8, disabled: true },
+    { id: 9, disabled: true },
+    { id: 10, disabled: true, icon: 'fa-solid fa-trophy' }
   ];
 
   router = inject(Router);
