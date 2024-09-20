@@ -14,7 +14,7 @@ import { TrailItem } from 'src/app/models/trail-item';
 })
 export class TrailProgressComponent implements OnInit, OnChanges {
 
-  title = input('Aprenda sobre operações básicas');
+  title = input('Aprenda o básico sobre frações');
 
   @ViewChildren('trailItem')
   listTrailItems: QueryList<ElementRef<HTMLLIElement>> = new QueryList();

@@ -16,7 +16,7 @@ export class LearnPageComponent  {
 
   scrollStart = signal(true);
 
-  currentTitle = signal('Aprenda sobre operações básicas');
+  currentTitle = signal('Aprenda o básico sobre frações');
 
   onScroll(event: ScrollCustomEvent) {
     this.scrollStart.set(event.detail.scrollTop === 0);

@@ -32,7 +32,7 @@ export class LearningTrailComponent implements OnInit {
     }
   ];
 
-  itemId: any;
+  itemId: number = 0;
   itemContent: any;
 
   @ViewChild(ItemActivityComponent)
@@ -45,7 +45,7 @@ export class LearningTrailComponent implements OnInit {
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.itemId = this.route.snapshot.params['id'] as any;
+    this.itemId = this.route.snapshot.params['id'] as number;
     this.itemContent = this.trailItemContent[this.itemId - 1];
     this.disableButton.set(true);
   }
