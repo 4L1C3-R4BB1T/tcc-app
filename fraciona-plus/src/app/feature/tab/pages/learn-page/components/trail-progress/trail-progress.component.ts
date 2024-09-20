@@ -47,6 +47,31 @@ export class TrailProgressComponent implements OnInit, OnChanges {
     }
   ];
 
+  itemsIverse: TrailItem[] = [
+    {
+      id: 6,
+      disabled: true,
+      icon: 'fa-solid fa-book'
+    },
+    {
+      id: 7,
+      disabled: true
+    },
+    {
+      id: 8,
+      disabled: true
+    },
+    {
+      id: 9,
+      disabled: true
+    },
+    {
+      id: 10,
+      disabled: true,
+      icon: 'fa-solid fa-trophy'
+    }
+  ];
+
   router = inject(Router);
 
   changeDetectorRef = inject(ChangeDetectorRef);
@@ -58,6 +83,10 @@ export class TrailProgressComponent implements OnInit, OnChanges {
   ngOnInit(): void {
     this.router.events.pipe(map(project => project instanceof NavigationEnd))
       .subscribe(() => this.changeDetectorRef.detectChanges());
+
+    if (this.inverse()) {
+      this.items = this.itemsIverse;
+    }
   }
 
   ngOnChanges(): void {

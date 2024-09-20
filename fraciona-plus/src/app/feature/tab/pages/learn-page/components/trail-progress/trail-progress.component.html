@@ -13,7 +13,7 @@
         </div>
       </button>
 
-      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item" (click)="overlayPanel.toggle($event)">
+      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}" (click)="overlayPanel.toggle($event)">
         <p-overlayPanel #overlayPanel
           styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
           <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">

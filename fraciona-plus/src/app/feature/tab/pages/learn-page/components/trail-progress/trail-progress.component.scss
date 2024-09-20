@@ -4,8 +4,10 @@
   &__item {
     @apply w-[100px] h-[100px] rounded-full relative cursor-pointer flex items-center justify-center;
     border: 0.6rem solid #eee;
-    border-top: 0.6rem solid rgb(47, 199, 47);
-    border-right: 0.6rem solid rgb(47, 199, 47);
+
+    &.completed {
+      border: 0.6rem solid rgb(47, 199, 47);
+    }
 
     &-content {
       @apply bg-[#58CC02] flex p-5 items-center justify-center rounded-full w-[80%] h-[75%];

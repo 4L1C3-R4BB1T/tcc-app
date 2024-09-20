@@ -3,14 +3,16 @@
     <app-user-info-panel slot="start" class="w-full"></app-user-info-panel>
   </ion-toolbar>
   <ion-toolbar>
-    <div slot="start" style="border-bottom: 0.3rem solid #cf8216" class="w-full mt-4 mx-4 rounded-xl bg-[var(--ion-color-primary)] text-white flex gap-1 text-sm">
-     <div class="flex flex-col gap-1 py-4 ps-4 flex-1">
+    <div id="section" slot="start" style="border-bottom: 0.3rem solid #cf8216"
+      class="w-full mt-4 mx-4 rounded-xl bg-[var(--ion-color-primary)] text-white flex gap-1 text-sm">
+      <div class="flex flex-col gap-1 py-4 ps-4 flex-1">
         <ion-text class="uppercase font-bold text-base">Seção 1</ion-text>
         <ion-text class="text-sm font-medium">{{ currentTitle() }}</ion-text>
-     </div>
-     <div class="min-w-14 flex items-center justify-center" style="border-left: 0.1rem solid #ebeaead3">
+      </div>
+      <div class="min-w-14 flex items-center justify-center"
+        style="border-left: 0.1rem solid #ebeaead3">
         <i class="fa-solid fa-graduation-cap text-2xl"></i>
-     </div>
+      </div>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -18,7 +20,7 @@
 <ion-content #ionContent class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div class="pb-14 flex flex-col gap-2">
     <ng-container>
-     <div class="mt-12">
+      <div class="mt-12">
         <app-trail-progress [scrollChanged]="scrollChanged()" />
         <div class="mt-5">
           <div class="divider">
@@ -29,26 +31,29 @@
     </ng-container>
     <ng-container>
       <div class="mt-12">
-         <app-trail-progress [scrollChanged]="scrollChanged()" title="Coisa 2" [inverse]="true"/>
-       </div>
-      </ng-container>
-      <div class="bg-white mt-5 shadow-lg flex flex-col justify-center items-center p-5 rounded-xl" style="border: 0.1rem solid #33333330">
-        <p-tag styleClass="bg-[#eee] text-black" value="A seguir" />
-        <div class="flex flex-col items-center gap-2">
-          <div class="flex gap-2 items-center mt-4">
-            <i class="fa-solid fa-lock"></i>
-            <span class="text-xl font-semibold">Seção 2</span>
-          </div>
-          <p class="text-center opacity-80">
-            Aprenda as operações básicas com frações
-          </p>
-          <p-button styleClass="text-[var(--ion-color-primary)] rounded-xl" severity="secondary" [outlined]="true" label="Bloqueado"></p-button>
-        </div>
+        <app-trail-progress [scrollChanged]="scrollChanged()" title="Coisa 2" [inverse]="true" />
       </div>
+    </ng-container>
+    <div class="bg-white mt-5 shadow-lg flex flex-col justify-center items-center p-5 rounded-xl"
+      style="border: 0.1rem solid #33333330">
+      <p-tag styleClass="bg-[#eee] text-black" value="A seguir" />
+      <div class="flex flex-col items-center gap-2">
+        <div class="flex gap-2 items-center mt-4">
+          <i class="fa-solid fa-lock"></i>
+          <span class="text-xl font-semibold">Seção 2</span>
+        </div>
+        <p class="text-center opacity-80">
+          Aprenda as operações básicas com frações
+        </p>
+        <p-button styleClass="text-[var(--ion-color-primary)] rounded-xl" severity="secondary" [outlined]="true"
+          label="Bloqueado"></p-button>
+      </div>
+    </div>
   </div>
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" class="mb-14 me-2" *ngIf="!scrollStart()" (click)="ionContent.scrollToTop(200)">
+<ion-fab vertical="bottom" horizontal="end" class="mb-14 me-2" *ngIf="!scrollStart()"
+  (click)="ionContent.scrollToTop(200)">
   <ion-fab-button>
     <i class="fa-solid fa-arrow-up text-2xl"></i>
   </ion-fab-button>
