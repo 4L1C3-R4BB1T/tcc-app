@@ -1,6 +1,6 @@
 import { Component, computed, inject, Input, signal } from '@angular/core';
-import { LearningTrailComponent } from '../../learning-trail.component';
 import { ALTERNATIVE } from 'src/app/models/question';
+import { LearningTrailComponent } from '../../learning-trail.component';
 
 @Component({
   selector: 'app-item-activity',
