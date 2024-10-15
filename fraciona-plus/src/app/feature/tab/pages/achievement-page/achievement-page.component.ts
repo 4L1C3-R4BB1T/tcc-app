@@ -41,7 +41,7 @@ export class AchievementPageComponent {
     },
     {
       title: 'Caixinha de Surpresas',
-      description: 'Complete 1 desafio difícil',
+      description: 'Complete 10 desafios',
       image: 'box.png',
       color: '#8A2BE2'
     },
