@@ -63,13 +63,9 @@ export class TrailProgressComponent implements OnInit, OnChanges {
     }
   }
 
-  startLesson(itemId: number) {
+  startLesson(overlayPanel: OverlayPanel, itemId: number) {
     this.router.navigate([`/learning/trail/${itemId}`]);
+    overlayPanel.hide();
   }
-
-  // startLesson(overlayPanel: OverlayPanel, itemId: number) {
-  //   this.router.navigate([`/learning/trail/${itemId}`]);
-  //   overlayPanel.hide();
-  // }
 
 }

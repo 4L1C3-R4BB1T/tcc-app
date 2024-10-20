@@ -11,7 +11,7 @@ export class ChallengePageComponent implements OnInit {
 
   challengers: Challenge[] = [
     {
-      title: 'Rachando a Cuca',
+      title: 'Quebra-Fração',
       difficulty: 3,
       exp: 30,
       image: 'puzzle.png'

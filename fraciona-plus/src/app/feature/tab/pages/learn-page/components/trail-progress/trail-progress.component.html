@@ -3,7 +3,7 @@
   <ul class="progress" [ngClass]="{ 'inverse': inverse() }">
     <li #trailItem *ngFor="let item of items" class="relative">
 
-      <!-- <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }"
+      <button (click)="overlayPanel.toggle($event, target)" [ngClass]="{ 'no-visible': overlayPanel.overlayVisible }"
         class="float-animation absolute border-none w-32 rounded-lg text-lg h-12 left-1/2 -translate-x-1/2 -top-10 z-50 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold shadow-lg hover:shadow-xl transform transition-transform duration-300 ease-in-out hover:scale-105 {{ item.disabled || item.completed ? 'hidden' : '' }}">
         Começar
         <div class="h-[1rem] left-0 absolute -bottom-3 w-full flex justify-center overflow-hidden">
@@ -11,12 +11,10 @@
             class="triangle absolute -top-2 w-0 h-0 border-l-4 border-l-transparent border-r-4 border-r-transparent border-b-4 border-b-white">
           </div>
         </div>
-      </button> -->
+      </button>
 
-      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}" (click)="startLesson(item.id)">
-
-      <!-- <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}" (click)="overlayPanel.toggle($event)"> -->
-        <!-- <p-overlayPanel #overlayPanel
+      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}" (click)="overlayPanel.toggle($event)">
+        <p-overlayPanel #overlayPanel
           styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
           <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
             <div class="flex flex-col">
@@ -33,20 +31,22 @@
               Começar + 10xp
             </button>
           </div>
-        </p-overlayPanel> -->
+        </p-overlayPanel>
 
         <div class="progress__item-content" appClicked [effectDisabled]="item.disabled!">
           <i class="{{ item.icon ? item.icon : 'fa-solid fa-star' }} text-3xl text-white"></i>
         </div>
       </div>
+
     </li>
   </ul>
-  <div class="absolute top-1/2 {{ inverse() ? 'right-1/2  -translate-x-5' : 'left-1/2 translate-x-3' }}">
 
+  <div class="absolute top-1/2 {{ inverse() ? 'right-1/2  -translate-x-5' : 'left-1/2 translate-x-3' }}">
     @if (inverse()) {
     <img src="assets/image/trail-progress/abacus.gif" class="w-24">
     } @else {
-    <img src="assets/image/trail-progress/book.gif"  class="w-24">
+    <img src="assets/image/trail-progress/book.gif" class="w-24">
     }
   </div>
+
 </div>

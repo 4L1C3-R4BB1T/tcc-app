@@ -1,11 +1,13 @@
-import { Component, OnInit, signal, ViewChild } from '@angular/core';
+import { Component, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ViewDidEnter } from '@ionic/angular';
 import { Question } from 'src/app/models/question';
 import { ActivityComponent } from '../../components/activity/activity.component';
 
 const questions: Question[] = [
   {
     id: 1,
+    type: 'objective',
     content: 'Que fração representa 1 parte da pizza?',
     image: 'pizza.png',
     alternatives: [
@@ -18,6 +20,7 @@ const questions: Question[] = [
   },
   {
     id: 2,
+    type: 'objective',
     content: 'Qual fração é equivalente a 1/3?',
     alternatives: [
       { id: 1, label: '2/3' },
@@ -34,7 +37,7 @@ const questions: Question[] = [
   templateUrl: './challenge-quiz-page.component.html',
   styleUrls: ['./challenge-quiz-page.component.scss'],
 })
-export class ChallengeQuizPageComponent implements OnInit {
+export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   @ViewChild(ActivityComponent)
   activityComponent!: ActivityComponent;
@@ -54,8 +57,9 @@ export class ChallengeQuizPageComponent implements OnInit {
 
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
-  ngOnInit() {
+  ionViewDidEnter(): void {
     this.disableButton.set(true);
+    this.currentPercentage.set(0.1);
 
     if (this.questions.length > 0) {
       this.currentQuestion.set(this.questions[0]);

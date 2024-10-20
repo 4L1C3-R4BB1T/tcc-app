@@ -1,0 +1,14 @@
+<div
+  *ngFor="let a of data.alternatives; let index = index"
+  class="text-justify items-center flex gap-3 border-solid border-gray-500 border-opacity-10 rounded-xl shadow-lg p-2 my-4 {{ parent.isCorrect() ? 'correct' : 'wrong' }}"
+  matRipple
+  (click)="parent.markAnswer(a.id)"
+  [ngClass]="checkState(a)"
+  [ngStyle]="{ 'pointer-events': parent.isAnswered() && parent.canMark() ? 'none' : 'auto' }"
+>
+  <div
+    class="bg-gray-500 w-full relative h-full max-w-6 max-h-6 rounded-full text-white flex items-center justify-center">
+    <strong>{{ parent.getOrder(index) }}</strong>
+  </div>
+  <span class="text-base">{{ a.label }}</span>
+</div>

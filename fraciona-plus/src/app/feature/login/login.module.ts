@@ -6,6 +6,7 @@ import { LoginComponent } from './login.component';
 import { AccountCreatedPageComponent } from './pages/account-created-page/account-created-page.component';
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RecoveryPageComponent } from './pages/recovery-page/recovery-page.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoginPageComponent } from './pages/login-page/login-page.component';
     LoginPageComponent,
     LoginFormComponent,
     CreateAccountPageComponent,
-    AccountCreatedPageComponent
+    AccountCreatedPageComponent,
+    RecoveryPageComponent
   ],
   imports: [
     SharedModule,

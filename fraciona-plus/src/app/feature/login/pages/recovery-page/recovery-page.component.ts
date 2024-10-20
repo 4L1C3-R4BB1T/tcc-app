@@ -4,12 +4,12 @@ import { LoadingController } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss'],
+  selector: 'app-recovery-page',
+  templateUrl: './recovery-page.component.html',
+  styleUrls: ['./recovery-page.component.scss'],
   providers: [MessageService]
 })
-export class LoginPageComponent {
+export class RecoveryPageComponent {
 
   loading = signal(false);
 
@@ -19,21 +19,21 @@ export class LoginPageComponent {
     readonly router: Router
   ) { }
 
-  signIn(email: string, password: string) {
-    if (!email || !password) {
+  recovery(email: string) {
+    if (!email) {
       this.messageService.add({
         severity: 'error',
         summary: 'Erro',
-        detail: 'Preencha todos os campos!',
+        detail: 'Informe o email!',
       });
       return;
     }
 
-    this.loading.set(true);
-    setTimeout(() => {
-      this.loading.set(false);
-      this.router.navigate(['tabs']);
-    }, 2000);
+    this.messageService.add({
+        severity: 'success',
+        summary: 'Recuperação de Senha',
+        detail: 'Email enviado!',
+      });
   }
 
 }

@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { AccountCreatedPageComponent } from './pages/account-created-page/account-created-page.component';
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
+import { RecoveryPageComponent } from './pages/recovery-page/recovery-page.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path: 'register',
         component: CreateAccountPageComponent
+      },
+      {
+        path: 'recovery',
+        component: RecoveryPageComponent
       }
     ],
   },

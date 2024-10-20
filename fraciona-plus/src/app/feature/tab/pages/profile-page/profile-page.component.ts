@@ -97,7 +97,8 @@ export class ProfilePageComponent {
       if (result) {
         this.messageService.add({
           severity: 'success',
-          summary: 'Atualização', detail: 'Nome atualizado!',
+          summary: 'Atualização',
+          detail: 'Nome atualizado!',
           styleClass: 'left-0'
         });
       }

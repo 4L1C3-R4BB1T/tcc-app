@@ -13,7 +13,6 @@ export class ItemActivityComponent {
   data!: any;
 
   parent = inject(LearningTrailComponent);
-
   selectedAlternativeId = signal<number | null>(null);
 
   isCorrect = computed(() => this.selectedAlternativeId() === this.data.correctId);
