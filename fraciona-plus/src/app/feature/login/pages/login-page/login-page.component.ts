@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -11,10 +10,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LoginPageComponent {
 
-  loading = signal(false);
-
   constructor(
-    readonly loadingController: LoadingController,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
@@ -29,11 +25,7 @@ export class LoginPageComponent {
       return;
     }
 
-    this.loading.set(true);
-    setTimeout(() => {
-      this.loading.set(false);
-      this.router.navigate(['tabs']);
-    }, 2000);
+    this.router.navigate(['tabs']);
   }
 
 }
