@@ -1,6 +1,5 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoadingController } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -11,10 +10,7 @@ import { MessageService } from 'primeng/api';
 })
 export class RecoveryPageComponent {
 
-  loading = signal(false);
-
   constructor(
-    readonly loadingController: LoadingController,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
@@ -30,10 +26,10 @@ export class RecoveryPageComponent {
     }
 
     this.messageService.add({
-        severity: 'success',
-        summary: 'Recuperação de Senha',
-        detail: 'Email enviado!',
-      });
+      severity: 'success',
+      summary: 'Recuperação de Senha',
+      detail: 'Link enviado!',
+    });
   }
 
 }

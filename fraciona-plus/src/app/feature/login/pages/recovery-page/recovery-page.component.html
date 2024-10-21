@@ -10,7 +10,7 @@
     <div class="flex flex-col gap-3">
       <input #email pInputText placeholder="E-mail" class="w-full" />
 
-      <p-button [loading]="loading()" (onClick)="recovery(email.value)" label="Enviar link de recuperação"
+      <p-button (onClick)="recovery(email.value)" label="Enviar link de recuperação"
         styleClass="w-full mt-3 bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md"></p-button>
     </div>
 
