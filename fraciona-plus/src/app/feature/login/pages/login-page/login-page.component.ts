@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/services/auth.service';
+import { isValidEmail } from 'src/utils/validators';
 
 @Component({
   selector: 'app-login-page',
@@ -11,11 +13,12 @@ import { MessageService } from 'primeng/api';
 export class LoginPageComponent {
 
   constructor(
+    private authService: AuthService,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
 
-  signIn(email: string, password: string) {
+  async signIn(email: string, password: string) {
     if (!email || !password) {
       this.messageService.add({
         severity: 'error',
@@ -25,7 +28,33 @@ export class LoginPageComponent {
       return;
     }
 
-    this.router.navigate(['tabs']);
+    if (!isValidEmail(email)) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Email inválido!',
+      });
+      return;
+    }
+
+    try {
+      await this.authService.signIn(email, password);
+      this.router.navigate(['tabs']);
+    } catch (error: any) {
+      if (error.code === 'auth/invalid-credential') {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Credenciais inválidas!',
+        });
+      } else {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Erro',
+          detail: 'Erro ao fazer login.',
+        });
+      }
+    }
   }
 
 }

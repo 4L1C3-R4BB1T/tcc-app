@@ -1,6 +1,8 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
+import { AuthService } from 'src/services/auth.service';
+import { isValidEmail } from 'src/utils/validators';
 
 @Component({
   selector: 'app-recovery-page',
@@ -11,11 +13,12 @@ import { MessageService } from 'primeng/api';
 export class RecoveryPageComponent {
 
   constructor(
+    private authService: AuthService,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
 
-  recovery(email: string) {
+  async recovery(email: string) {
     if (!email) {
       this.messageService.add({
         severity: 'error',
@@ -25,11 +28,29 @@ export class RecoveryPageComponent {
       return;
     }
 
-    this.messageService.add({
-      severity: 'success',
-      summary: 'Recuperação de Senha',
-      detail: 'Link enviado!',
-    });
+    if (!isValidEmail(email)) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Email inválido!',
+      });
+      return;
+    }
+
+    try {
+      await this.authService.resetPassword(email);
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Sucesso',
+        detail: 'Verifique seu e-mail para redefinir sua senha!',
+      });
+    } catch (error) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Erro',
+        detail: 'Não foi possível enviar o e-mail de redefinição de senha.',
+      });
+    }
   }
 
 }
