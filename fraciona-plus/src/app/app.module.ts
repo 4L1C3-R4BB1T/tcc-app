@@ -12,7 +12,6 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,8 +26,7 @@ import { AuthGuard } from './auth.guard';
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     ScreenTrackingService,
-    UserTrackingService,
-    AuthGuard
+    UserTrackingService
   ],
   bootstrap: [AppComponent],
 })

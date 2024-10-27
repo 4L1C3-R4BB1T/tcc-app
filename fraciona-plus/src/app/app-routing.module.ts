@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './auth.guard';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -18,15 +18,18 @@ const routes: Routes = [
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./feature/tab/tab.module')
+    loadChildren: () => import('./feature/tab/tab.module'),
+    canActivate: [authGuard]
   },
   {
     path: 'quiz',
-    loadChildren: () => import('./feature/quiz/quiz.module')
+    loadChildren: () => import('./feature/quiz/quiz.module'),
+    canActivate: [authGuard]
   },
   {
     path: 'learning/trail/:id',
-    loadChildren: () => import('./feature/learning-trail/learning-trail.module')
+    loadChildren: () => import('./feature/learning-trail/learning-trail.module'),
+    canActivate: [authGuard]
   }
 ];
 

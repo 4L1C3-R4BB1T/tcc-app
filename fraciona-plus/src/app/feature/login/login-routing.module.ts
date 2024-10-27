@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from 'src/app/guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { AccountCreatedPageComponent } from './pages/account-created-page/account-created-page.component';
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RecoveryPageComponent } from './pages/recovery-page/recovery-page.component';
-import { AuthGuard } from 'src/app/auth.guard';
 
 const routes: Routes = [
   {
@@ -33,7 +33,8 @@ const routes: Routes = [
   },
   {
     path: 'created',
-    component: AccountCreatedPageComponent
+    component: AccountCreatedPageComponent,
+    canActivate: [authGuard]
   }
 ];
 
