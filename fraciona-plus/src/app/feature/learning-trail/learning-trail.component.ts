@@ -12,14 +12,15 @@ export class LearningTrailComponent implements OnInit {
   trailItemContent: any = [
     {
       id: 1,
-      type: 'content',
+      item: 'content',
       title: 'O que são frações?',
       content: '<span>Frações são uma forma de representar partes de um todo ou divisões de uma quantidade. Elas são compostas por dois números separados por uma linha: o numerador (parte superior) e o denominador (parte inferior).</span><span><strong>Numerador:</strong> indica quantas partes estamos considerando.</span><span><strong>Denominador:</strong> indica em quantas partes o todo foi dividido.</span><span>Por exemplo, na fração 2/3, o numerador é 2 e o denominador é 3.</span>',
       image: 'fraction.png'
     },
     {
       id: 2,
-      type: 'activity',
+      item: 'activity',
+      type: 'objective',
       content: 'Que fração representa 1 parte da pizza?',
       image: 'pizza.png',
       alternatives: [
@@ -32,7 +33,8 @@ export class LearningTrailComponent implements OnInit {
     },
     {
       id: 3,
-      type: 'activity',
+      item: 'activity',
+      type: 'objective',
       content: 'Qual fração é equivalente a 1/3?',
       alternatives: [
         { id: 1, label: '2/3' },

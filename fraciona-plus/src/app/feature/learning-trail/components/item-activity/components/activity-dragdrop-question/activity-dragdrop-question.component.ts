@@ -3,11 +3,11 @@ import { ItemActivityComponent } from '../../item-activity.component';
 import { Question } from 'src/app/models/question';
 
 @Component({
-  selector: 'app-dragdrop-question',
-  templateUrl: './dragdrop-question.component.html',
-  styleUrls: ['./dragdrop-question.component.scss'],
+  selector: 'app-activity-dragdrop-question',
+  templateUrl: './activity-dragdrop-question.component.html',
+  styleUrls: ['./activity-dragdrop-question.component.scss'],
 })
-export class DragdropQuestionComponent {
+export class ActivityDragdropQuestionComponent {
 
   @Input({ required: true })
   data!: Question;

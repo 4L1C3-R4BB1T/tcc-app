@@ -8,10 +8,10 @@
 
   <div>
     @if (data.type === 'objective') {
-    <app-objective-question [data]="data" />
+    <app-activity-objective-question [data]="data" />
     }
     @else if (data.type === 'dragdrop') {
-    <app-dragdrop-question [data]="data" />
+    <app-activity-dragdrop-question [data]="data" />
     }
   </div>
 </div>

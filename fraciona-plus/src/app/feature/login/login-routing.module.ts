@@ -5,6 +5,7 @@ import { AccountCreatedPageComponent } from './pages/account-created-page/accoun
 import { CreateAccountPageComponent } from './pages/create-account-page/create-account-page.component';
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { RecoveryPageComponent } from './pages/recovery-page/recovery-page.component';
+import { AuthGuard } from 'src/app/auth.guard';
 
 const routes: Routes = [
   {

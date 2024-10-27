@@ -3,10 +3,10 @@
   <div class="bg-[#fbac3a] h-full rounded-xl p-3 shadow-lg">
     <div class="bg-white h-full rounded-xl p-4">
 
-      @if (itemContent.type === 'content') {
+      @if (itemContent.item === 'content') {
       <app-item-content [data]="itemContent"></app-item-content>
 
-      } @else if (itemContent.type === 'activity') {
+      } @else if (itemContent.item === 'activity') {
       <div class="flex flex-col justify-between h-full">
         <app-item-activity [data]="itemContent"></app-item-activity>
         @if (isAnswered()) {

@@ -3,11 +3,11 @@ import { Alternative, Question } from 'src/app/models/question';
 import { ItemActivityComponent } from '../../item-activity.component';
 
 @Component({
-  selector: 'app-objective-question',
-  templateUrl: './objective-question.component.html',
-  styleUrls: ['./objective-question.component.scss'],
+  selector: 'app-activity-objective-question',
+  templateUrl: './activity-objective-question.component.html',
+  styleUrls: ['./activity-objective-question.component.scss'],
 })
-export class ObjectiveQuestionComponent {
+export class ActivityObjectiveQuestionComponent {
 
   @Input({ required: true })
   data!: Question;
