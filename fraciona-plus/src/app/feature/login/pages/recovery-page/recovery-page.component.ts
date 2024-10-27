@@ -13,7 +13,7 @@ import { isValidEmail } from 'src/utils/validators';
 export class RecoveryPageComponent {
 
   constructor(
-    private authService: AuthService,
+    readonly authService: AuthService,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
