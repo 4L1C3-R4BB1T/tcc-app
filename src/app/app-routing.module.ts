@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { authLoggedGuard } from './guards/auth-logged.guard';
 import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    loadChildren: () => import('./feature/welcome/welcome.module')
+    loadChildren: () => import('./feature/welcome/welcome.module'),
+    canActivate: [authLoggedGuard]
   },
   {
     path: 'account',

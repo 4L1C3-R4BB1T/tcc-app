@@ -3,18 +3,14 @@
   <div class="mb-16">
     <div class="p-5">
 
-      <div class="photo">
-        <img class="w-full h-full rounded-full" src="assets/image/user/student.png">
-        <span class="absolute right-0 -bottom-2 scale-90">
-          <p-fileUpload
-            mode="basic"
-            chooseIcon="pi pi-image"
-            name="demo[]"
-            url="https://www.primefaces.org/cdn/api/upload.php"
-            accept="image/*"
-            maxFileSize="1000000"
-            styleClass="rounded-full w-8 h-8 bg-[#a8a5a5] border-none"
-          ></p-fileUpload>
+      <div class="relative w-24 h-24 rounded-full mx-auto">
+        <img class="w-full h-full rounded-full"
+          src="{{ user()?.photoURL ? user()?.photoURL : 'assets/image/user/student.png' }}" />
+        <span
+          class="flex items-center justify-center absolute right-0 -bottom-2 shadow-lg scale-90 w-10 h-10 rounded-full bg-[var(--ion-color-secondary)] transition-transform duration-200 hover:scale-105 cursor-pointer">
+          <input (change)="onUpload($event)" type="file"
+            class="opacity-0 absolute top-0 left-0 w-full h-full rounded-full cursor-pointer" accept="image/*">
+          <i class="fa-solid fa-camera text-white text-xl"></i>
         </span>
       </div>
 

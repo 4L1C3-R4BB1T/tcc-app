@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authLoggedGuard } from 'src/app/guards/auth-logged.guard';
 import { authGuard } from 'src/app/guards/auth.guard';
 import { LoginComponent } from './login.component';
 import { AccountCreatedPageComponent } from './pages/account-created-page/account-created-page.component';
@@ -19,15 +20,18 @@ const routes: Routes = [
       },
       {
         path: 'login',
-        component: LoginPageComponent
+        component: LoginPageComponent,
+        canActivate: [authLoggedGuard]
       },
       {
         path: 'register',
-        component: CreateAccountPageComponent
+        component: CreateAccountPageComponent,
+        canActivate: [authLoggedGuard]
       },
       {
         path: 'recovery',
-        component: RecoveryPageComponent
+        component: RecoveryPageComponent,
+        canActivate: [authLoggedGuard]
       }
     ],
   },
