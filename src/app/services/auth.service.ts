@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, deleteUser, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, deleteUser, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword, updateProfile } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,10 @@ export class AuthService {
     }
   }
 
-  async signUp(email: string, password: string) {
+  async signUp(email: string, password: string, name: string) {
     try {
-      await createUserWithEmailAndPassword(this.auth, email, password);
+      const { user } = await createUserWithEmailAndPassword(this.auth, email, password);
+      await updateProfile(user, { displayName: name });
       return true;
     } catch (error) {
       console.error(error);

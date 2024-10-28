@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { Auth, User } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { AlertButton } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AchievementIcon } from 'src/app/models/achievement';
 import { AuthService } from 'src/app/services/auth.service';
-import { ChangeNameComponent } from './components/change-name/change-name.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -13,7 +13,9 @@ import { ChangeNameComponent } from './components/change-name/change-name.compon
   styleUrls: ['./profile-page.component.scss'],
   providers: [DialogService, MessageService]
 })
-export class ProfilePageComponent {
+export class ProfilePageComponent implements OnInit {
+
+  user = signal<User | null>(null);
 
   achievements: AchievementIcon[] = [
     {
@@ -78,33 +80,15 @@ export class ProfilePageComponent {
 
   constructor(
     readonly authService: AuthService,
+    readonly auth: Auth,
     readonly dialogService: DialogService,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
 
-  public showDialog() {
-    const ref = this.dialogService.open(ChangeNameComponent, {
-      header: 'Atualizar nome',
-      modal: true,
-      width: '90vw',
-      styleClass: 'bg-red-500',
-      position: 'center',
-    });
-
-    ref.onClose.subscribe(result => {
-      if (result) {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Atualização',
-          detail: 'Nome atualizado!',
-          styleClass: 'left-0'
-        });
-      }
-    });
+  ngOnInit(): void {
+    this.user.set(this.auth.currentUser);
   }
-
-  values = ['Livia']
 
   async signOut() {
     try {

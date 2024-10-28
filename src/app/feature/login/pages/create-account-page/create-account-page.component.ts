@@ -62,7 +62,7 @@ export class CreateAccountPageComponent {
     this.loading.set(true);
 
     try {
-      await this.authService.signUp(email, password);
+      await this.authService.signUp(email, password, name);
       this.router.navigate(['account/created']);
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
