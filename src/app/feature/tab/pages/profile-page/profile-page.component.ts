@@ -1,12 +1,15 @@
 import { Component, OnInit, signal } from '@angular/core';
-import { Auth, updateProfile, User } from '@angular/fire/auth';
+import { FirebaseError } from '@angular/fire/app';
+import { Auth, deleteUser, EmailAuthProvider, reauthenticateWithCredential, updateProfile, User } from '@angular/fire/auth';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { AlertButton } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
+import { first } from 'rxjs';
 import { AchievementIcon } from 'src/app/models/achievement';
 import { AuthService } from 'src/app/services/auth.service';
+import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -75,7 +78,7 @@ export class ProfilePageComponent implements OnInit {
       text: 'Sim, deletar minha conta.',
       role: 'no',
       cssClass: '!text-black',
-      handler: () => this.removeAccount()
+      handler: async () => this.removeAccount()
     },
   ];
 
@@ -144,24 +147,39 @@ export class ProfilePageComponent implements OnInit {
   }
 
   async removeAccount() {
-    try {
-      await this.deleteUserFiles(this.user()?.uid!);
-      await this.authService.removeUser();
-      this.messageService.add({
-        severity: 'success',
-        summary: 'Sucesso',
-        detail: 'Sua conta foi removida com sucesso!',
+    const dialog = this.dialogService.open(ConfirmPasswordComponent, {
+      header: 'Confirmar Identidade',
+      modal: true,
+      width: '90vw',
+      position: 'center',
+    });
+
+    dialog.onClose.pipe(first())
+      .subscribe(async password => {
+        try {
+          const credential = EmailAuthProvider.credential(this.user()?.email!, password);
+          await reauthenticateWithCredential(this.user()!, credential);
+          await this.deleteUserFiles(this.user()?.uid!);
+
+          this.messageService.add({
+            severity: 'success',
+            detail: 'Conta excluída!',
+          });
+
+          setTimeout(async () => {
+            await deleteUser(this.user()!);
+          }, 1000);
+
+        } catch (error) {
+          console.error(error);
+          if (error instanceof FirebaseError && error.code === 'auth/invalid-credential') {
+            this.messageService.add({
+              severity: 'error',
+              detail: 'Credenciais inválidas!',
+            });
+          }
+        }
       });
-      setTimeout(() => {
-        this.router.navigate(['/']);
-      }, 2000);
-    } catch (error) {
-      this.messageService.add({
-        severity: 'error',
-        summary: 'Erro',
-        detail: 'Não foi possível remover sua conta. Tente novamente mais tarde.',
-      });
-    }
   }
 
 }

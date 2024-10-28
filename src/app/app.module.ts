@@ -16,7 +16,11 @@ import { authInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule],
+  imports: [
+    BrowserModule,
+    IonicModule.forRoot(),
+    AppRoutingModule
+  ],
   providers: [
     {
       provide: RouteReuseStrategy,

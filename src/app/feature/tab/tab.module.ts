@@ -6,6 +6,7 @@ import { ChallengePageComponent } from './pages/challenge-page/challenge-page.co
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { TrailProgressComponent } from './pages/learn-page/components/trail-progress/trail-progress.component';
 import { LearnPageComponent } from './pages/learn-page/learn-page.component';
+import ConfirmPasswordComponent from './pages/profile-page/components/confirm-password/confirm-password.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component';
 import { RankingPageComponent } from './pages/ranking-page/ranking-page.component';
 import { TabRoutingModule } from './tab-routing.module';
@@ -21,7 +22,8 @@ import { TabComponent } from './tab.component';
     ProfilePageComponent,
     UserInfoPanelComponent,
     TrailProgressComponent,
-    AchievementPageComponent
+    AchievementPageComponent,
+    ConfirmPasswordComponent
   ],
   imports: [
     TabRoutingModule,
