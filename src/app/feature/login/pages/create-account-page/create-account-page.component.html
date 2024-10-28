@@ -7,7 +7,7 @@
     <input #email pInputText type="email" placeholder="E-mail" class="w-full mt-5" />
     <input #password pInputText type="password" placeholder="Senha" class="w-full mt-5" />
     <input #repassword pInputText type="password" placeholder="Confirmar a Senha" class="w-full mt-5" />
-    <p-button (onClick)="signUp(name.value, email.value, password.value, repassword.value)"
+    <p-button [loading]="loading()" (onClick)="signUp(name.value, email.value, password.value, repassword.value)"
       label="Cadastrar" styleClass="w-full bg-[#F99007] border-[#F99007] hover:bg-[#F56B07] shadow-md mt-5"></p-button>
   </div>
   <div footer-content class="text-sm" routerLink="/account/login" matRipple>

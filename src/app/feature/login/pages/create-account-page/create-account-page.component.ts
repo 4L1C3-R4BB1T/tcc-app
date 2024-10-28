@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 import { isValidEmail } from 'src/app/utils/validators';
@@ -12,8 +13,11 @@ import { isValidEmail } from 'src/app/utils/validators';
 })
 export class CreateAccountPageComponent {
 
+  loading = signal(false);
+
   constructor(
     readonly authService: AuthService,
+    readonly loadingController: LoadingController,
     readonly messageService: MessageService,
     readonly router: Router
   ) { }
@@ -55,6 +59,8 @@ export class CreateAccountPageComponent {
       return;
     }
 
+    this.loading.set(true);
+
     try {
       await this.authService.signUp(email, password);
       this.router.navigate(['account/created']);
@@ -72,6 +78,8 @@ export class CreateAccountPageComponent {
           detail: 'Não foi possível realizar o cadastro.',
         });
       }
+    } finally {
+      this.loading.set(false);
     }
   }
 

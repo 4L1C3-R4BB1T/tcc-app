@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Auth, createUserWithEmailAndPassword, deleteUser, sendPasswordResetEmail, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { Auth, browserLocalPersistence, createUserWithEmailAndPassword, deleteUser, sendPasswordResetEmail, setPersistence, signInWithEmailAndPassword } from '@angular/fire/auth';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-  constructor(private auth: Auth) { }
+  constructor(private auth: Auth) {
+    setPersistence(this.auth, browserLocalPersistence);
+  }
 
   async signIn(email: string, password: string) {
     try {
-      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
-      return userCredential.user;
+      await signInWithEmailAndPassword(this.auth, email, password);
+      return true;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
 
   async signUp(email: string, password: string) {
     try {
-      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
-      return userCredential.user;
+      await createUserWithEmailAndPassword(this.auth, email, password);
+      return true;
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
@@ -34,6 +38,7 @@ export class AuthService {
     try {
       await sendPasswordResetEmail(this.auth, email);
     } catch (error) {
+      console.error(error);
       throw error;
     }
   }
