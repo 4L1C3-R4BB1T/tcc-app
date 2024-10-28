@@ -4,7 +4,7 @@ import { AlertButton } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { AchievementIcon } from 'src/app/models/achievement';
-import { AuthService } from 'src/services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { ChangeNameComponent } from './components/change-name/change-name.component';
 
 @Component({
