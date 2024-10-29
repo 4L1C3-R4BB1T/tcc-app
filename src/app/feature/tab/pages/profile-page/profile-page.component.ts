@@ -10,6 +10,7 @@ import { first } from 'rxjs';
 import { AchievementIcon } from 'src/app/models/achievement';
 import { AuthService } from 'src/app/services/auth.service';
 import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
+import { UserStatistics } from 'src/app/models/user';
 
 @Component({
   selector: 'app-profile-page',
@@ -20,6 +21,13 @@ import ConfirmPasswordComponent from './components/confirm-password/confirm-pass
 export class ProfilePageComponent implements OnInit {
 
   user = signal<User | null>(null);
+
+  statistics: UserStatistics = {
+    correct: 34,
+    wrong: 23,
+    achievement: 8,
+    exp: 1538
+  }
 
   achievements: AchievementIcon[] = [
     {

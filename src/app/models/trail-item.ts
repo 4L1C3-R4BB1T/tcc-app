@@ -3,4 +3,5 @@ export interface TrailItem {
   completed?: boolean;
   disabled?: boolean;
   icon?: string;
+  description?: string;
 }

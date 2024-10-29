@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from 'src/app/models/user';
+import { UserRanking } from 'src/app/models/user';
 
 @Component({
   selector: 'app-ranking',
@@ -8,7 +8,7 @@ import { User } from 'src/app/models/user';
 })
 export class RankingPageComponent {
 
-  users: User[] = [
+  users: UserRanking[] = [
     {
       name: 'Livia',
       exp: 1538

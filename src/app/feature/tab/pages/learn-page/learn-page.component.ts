@@ -17,32 +17,36 @@ export class LearnPageComponent  {
 
   scrollStart = signal(true);
 
-  sections: Section[] = [
-    {
-      id: 1,
-      title: "Aprenda o básico sobre frações - parte 1",
-      items: [
-        { id: 1, completed: true, icon: 'fa-solid fa-book' },
-        { id: 2, completed: true },
-        { id: 3 },
-        { id: 4, disabled: true },
-        { id: 5, disabled: true, icon: 'fa-solid fa-trophy' }
-      ],
-    },
-    {
-      id: 2,
-      title: "Aprenda o básico sobre frações - parte 2",
-      items: [
-        { id: 6, disabled: true, icon: 'fa-solid fa-book' },
-        { id: 7, disabled: true },
-        { id: 8, disabled: true },
-        { id: 9, disabled: true },
-        { id: 10, disabled: true, icon: 'fa-solid fa-trophy' }
-      ],
-    }
-  ];
+  section: Section = {
+    id: 1,
+    divider: "Fundamentos",
+    units: [
+      {
+        id: 1,
+        title: "Aprenda o básico sobre frações - parte 1",
+        items: [
+          { id: 1, completed: true, icon: 'fa-solid fa-book', description: 'Atividade 1' },
+          { id: 2, completed: true, description: 'Atividade 2' },
+          { id: 3, description: 'Atividade 3' },
+          { id: 4, disabled: true, description: 'Atividade 4' },
+          { id: 5, disabled: true, icon: 'fa-solid fa-trophy', description: 'Atividade 5' }
+        ],
+      },
+      {
+        id: 2,
+        title: "Aprenda o básico sobre frações - parte 2",
+        items: [
+          { id: 6, disabled: true, icon: 'fa-solid fa-book', description: 'Atividade 6' },
+          { id: 7, disabled: true, description: 'Atividade 7' },
+          { id: 8, disabled: true, description: 'Atividade 8' },
+          { id: 9, disabled: true, description: 'Atividade 9' },
+          { id: 10, disabled: true, icon: 'fa-solid fa-trophy', description: 'Atividade 10' }
+        ],
+      }
+    ]
+  };
 
-  currentTitle = signal(this.sections[0].title);
+  currentTitle = signal(this.section.units[0].title);
 
   onScroll(event: ScrollCustomEvent) {
     this.scrollStart.set(event.detail.scrollTop === 0);
