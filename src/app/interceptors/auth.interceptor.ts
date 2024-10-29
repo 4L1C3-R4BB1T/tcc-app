@@ -4,6 +4,7 @@ import { Auth } from '@angular/fire/auth';
 import { from, switchMap } from 'rxjs';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
+
   const auth = inject(Auth);
   auth.currentUser?.getIdToken()
 
@@ -17,9 +18,10 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     .pipe(switchMap(idToken => {
       const clone = req.clone({
         setHeaders: {
-          Authorization: `Berear ${idToken}`,
+          Authorization: `Bearer ${idToken}`.trim(),
         },
       });
       return next(clone);
     }));
+
 };

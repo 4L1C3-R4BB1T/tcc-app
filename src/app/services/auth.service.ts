@@ -24,6 +24,7 @@ export class AuthService {
     try {
       const { user } = await createUserWithEmailAndPassword(this.auth, email, password);
       await updateProfile(user, { displayName: name });
+      await signInWithEmailAndPassword(this.auth, email, password);
       return true;
     } catch (error) {
       console.error(error);
@@ -41,22 +42,6 @@ export class AuthService {
     } catch (error) {
       console.error(error);
       throw error;
-    }
-  }
-
-  async removeUser(): Promise<void> {
-    const user = this.auth.currentUser;
-    if (user) {
-      try {
-        await deleteUser(user);
-        console.log('Usuário removido com sucesso!');
-      } catch (error) {
-        console.error('Erro ao remover usuário:', error);
-        throw error;
-      }
-    } else {
-      console.error('Nenhum usuário autenticado.');
-      throw new Error('Nenhum usuário autenticado.');
     }
   }
 
