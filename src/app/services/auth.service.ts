@@ -12,7 +12,8 @@ export class AuthService {
 
   async signIn(email: string, password: string) {
     try {
-      await signInWithEmailAndPassword(this.auth, email, password);
+      const userCredential = await signInWithEmailAndPassword(this.auth, email, password);
+      console.log(await userCredential.user.getIdToken()); // token q vc vai ter enviar pro backend. JWT <<<
       return true;
     } catch (error) {
       console.error(error);

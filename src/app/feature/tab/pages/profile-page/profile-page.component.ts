@@ -23,10 +23,10 @@ export class ProfilePageComponent implements OnInit {
   user = signal<User | null>(null);
 
   statistics: UserStatistics = {
-    correct: 34,
-    wrong: 23,
-    achievement: 8,
-    exp: 1538
+    correctAnswers: 34,
+    wrongAnswers: 23,
+    qttAchievements: 8,
+    totalExp: 1538
   }
 
   achievements: AchievementIcon[] = [
