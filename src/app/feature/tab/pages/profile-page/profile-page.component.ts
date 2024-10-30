@@ -3,14 +3,15 @@ import { FirebaseError } from '@angular/fire/app';
 import { Auth, deleteUser, EmailAuthProvider, reauthenticateWithCredential, updateProfile, User } from '@angular/fire/auth';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { AlertButton } from '@ionic/angular';
+import { AlertButton, ViewDidEnter } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs';
 import { AchievementIcon } from 'src/app/models/achievement';
+import { UserStatistics } from 'src/app/models/user';
+import { AchievementService } from 'src/app/services/achievement.service';
 import { AuthService } from 'src/app/services/auth.service';
 import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
-import { UserStatistics } from 'src/app/models/user';
 
 @Component({
   selector: 'app-profile-page',
@@ -18,7 +19,7 @@ import { UserStatistics } from 'src/app/models/user';
   styleUrls: ['./profile-page.component.scss'],
   providers: [DialogService, MessageService]
 })
-export class ProfilePageComponent implements OnInit {
+export class ProfilePageComponent implements ViewDidEnter {
 
   user = signal<User | null>(null);
 
@@ -29,36 +30,7 @@ export class ProfilePageComponent implements OnInit {
     totalExp: 1538
   }
 
-  achievements: AchievementIcon[] = [
-    {
-      image: 'baby.png',
-      color: '#39FF14'
-    },
-    {
-      image: 'puzzle.png',
-      color: '#39FF14'
-    },
-    {
-      image: 'brain.png',
-      color: '#00BFFF'
-    },
-    {
-      image: 'explorer.png',
-      color: '#00BFFF'
-    },
-    {
-      image: 'marathon.png',
-      color: '#00BFFF'
-    },
-    {
-      image: 'party.png',
-      color: '#8A2BE2'
-    },
-    {
-      image: 'graduation.png',
-      color: '#FF4500'
-    }
-  ];
+  achievements: AchievementIcon[] = [];
 
   public closeAlertButtons: AlertButton[] = [
     {
@@ -96,11 +68,17 @@ export class ProfilePageComponent implements OnInit {
     readonly dialogService: DialogService,
     readonly messageService: MessageService,
     readonly router: Router,
-    readonly storage: Storage
+    readonly storage: Storage,
+    readonly achievementService: AchievementService
   ) { }
 
-  ngOnInit(): void {
+  ionViewDidEnter(): void {
     this.user.set(this.auth.currentUser);
+
+    this.achievementService.findByUser().subscribe({
+      next: (data) => this.achievements = data,
+      error: (error) => console.error("Erro ao carregar conquistas:", error)
+    });
   }
 
   async onUpload(event: Event) {

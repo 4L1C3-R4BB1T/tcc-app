@@ -86,11 +86,18 @@
         </p-button>
       </div>
       <div class="achievements">
-
-        <div *ngFor="let a of achievements" class="achievement" [ngStyle]="{'border-color': a.color}">
-          <img [src]="'assets/image/achievements/' + a.image" class="w-8 h-8">
+        <div *ngIf="achievements && achievements.length > 0; else noAchievements" class="achievements-grid">
+          <div *ngFor="let a of achievements" class="achievement" [ngStyle]="{'border-color': a.color}">
+            <img src="{{ a.image }}" class="w-8 h-8">
+          </div>
         </div>
 
+        <ng-template #noAchievements>
+          <div class="flex flex-col items-center justify-center gap-4 text-center">
+            Você ainda está em busca de suas primeiras conquistas!
+            <img src="assets/image/profile/sad.png" class="w-14 h-14">
+          </div>
+        </ng-template>
       </div>
     </div>
 

@@ -4,6 +4,7 @@ export interface Achievement {
   image: string;
   color: string;
   disabled?: boolean;
+  obtainedAt?: string;
 }
 
 export interface AchievementIcon {

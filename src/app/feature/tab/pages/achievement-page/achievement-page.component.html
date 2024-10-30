@@ -15,13 +15,13 @@
           [ngStyle]="{'border-color': achievement.color}"
           [ngClass]="{ 'disabled': achievement.disabled }">
 
-          <img [src]="'assets/image/achievements/' + achievement.image" class="w-14 h-14">
+          <img src="{{ achievement.image }}" class="w-14 h-14">
 
           <span class="text-lg font-bold">{{ achievement.title }}</span>
           <span class="text-sm text-gray-500">{{ achievement.description }}</span>
 
           @if (!achievement.disabled) {
-          <p-tag severity="info" value="Obtido em 14-09-2014" styleClass="text-[0.55rem]" />
+          <p-tag severity="info" value="Obtido em {{ achievement.obtainedAt }}" styleClass="text-[0.55rem]" />
           }
         </div>
       </div>

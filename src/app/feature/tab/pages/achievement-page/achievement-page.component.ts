@@ -1,70 +1,24 @@
 import { Component } from '@angular/core';
+import { ViewDidEnter } from '@ionic/angular';
 import { Achievement } from 'src/app/models/achievement';
+import { AchievementService } from 'src/app/services/achievement.service';
 
 @Component({
   selector: 'app-achievement-page',
   templateUrl: './achievement-page.component.html',
   styleUrls: ['./achievement-page.component.scss'],
 })
-export class AchievementPageComponent {
+export class AchievementPageComponent implements ViewDidEnter {
 
-  achievements: Achievement[] = [
-    {
-      title: 'Primeiros Passos',
-      description: 'Complete uma atividade',
-      image: 'baby.png',
-      color: '#39FF14'
-    },
-    {
-      title: 'Racha Cuca',
-      description: 'Complete um desafio',
-      image: 'puzzle.png',
-      color: '#39FF14'
-    },
-    {
-      title: 'Genial',
-      description: 'Complete uma atividade sem erros',
-      image: 'brain.png',
-      color: '#00BFFF'
-    },
-    {
-      title: 'Desbravador',
-      description: 'Complete 10 atividades',
-      image: 'explorer.png',
-      color: '#00BFFF'
-    },
-    {
-      title: 'Focado',
-      description: 'Estude por 7 dias consecutivos',
-      image: 'marathon.png',
-      color: '#00BFFF'
-    },
-    {
-      title: 'Caixinha de Surpresas',
-      description: 'Complete 10 desafios',
-      image: 'box.png',
-      color: '#8A2BE2'
-    },
-    {
-      title: 'Grande Amigo',
-      description: 'Participou do perído de testes do aplicativo',
-      image: 'graduation.png',
-      color: '#FF4500'
-    },
-    {
-      title: 'Estrela da Festa',
-      description: 'Complete 100 atividades sem erros',
-      image: 'party.png',
-      color: '#8A2BE2',
-      disabled: true
-    },
-    {
-      title: 'Mestre das Frações',
-      description: 'Complete 200 atividades sem erros',
-      image: 'wizard.png',
-      color: '#8A2BE2',
-      disabled: true
-    },
-  ];
+  achievements: Achievement[] = [];
+
+  constructor(readonly achievementService: AchievementService,) { }
+
+  ionViewDidEnter(): void {
+    this.achievementService.findAll().subscribe({
+      next: (data) => this.achievements = data,
+      error: (error) => console.error("Erro ao carregar conquistas:", error)
+    });
+  }
 
 }
