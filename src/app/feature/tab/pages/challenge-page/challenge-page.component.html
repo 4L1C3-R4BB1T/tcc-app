@@ -8,7 +8,7 @@
         styleClass="mb-3" />
     </form>
 
-    <div *ngIf="challenges() && challenges().length > 0; else noChallenges">
+    <div *ngIf="challenges() && challenges().length > 0; else noChallenges" class="flex flex-col gap-5">
       <div *ngFor="let challenge of challenges()"
         class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid" [ngClass]="{
              'border-lime-500': challenge.difficulty === 1,

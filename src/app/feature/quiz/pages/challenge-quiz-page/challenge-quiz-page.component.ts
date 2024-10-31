@@ -73,7 +73,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     this.isAnswered.set(false);
 
     const currentQuestionIndex = this.currentQuestionIndex()! + 1;
-    this.currentPercentage.update(oldPercentage => oldPercentage + (currentQuestionIndex / this.questions().length));
+    this.currentPercentage.set(currentQuestionIndex / this.questions().length);
 
     this.activityComponent.selectedAlternativeId.set(null);
 
