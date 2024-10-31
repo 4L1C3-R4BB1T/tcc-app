@@ -25,8 +25,8 @@ export class ProfilePageComponent implements ViewDidEnter {
 
   user = signal<User | null>(null);
 
-  statistics: UserStatistics | null = null;
-  achievements: AchievementIcon[] = [];
+  statistics = signal<UserStatistics | null>(null);
+  achievements = signal<AchievementIcon[]>([]);
 
   public closeAlertButtons: AlertButton[] = [
     {
@@ -74,12 +74,12 @@ export class ProfilePageComponent implements ViewDidEnter {
     this.user.set(this.auth.currentUser);
 
     this.statisticService.findByUser().subscribe({
-      next: (data) => this.statistics = data,
+      next: (data) => this.statistics.set(data),
       error: (error) => console.error('Erro ao buscar estatísticas:', error)
     });
 
     this.achievementService.findByUser().subscribe({
-      next: (data) => this.achievements = data,
+      next: (data) => this.achievements.set(data),
       error: (error) => console.error("Erro ao carregar conquistas:", error)
     });
   }

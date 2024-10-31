@@ -7,10 +7,9 @@
     </div>
 
     <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 w-full">
-
       <div class="grid grid-cols-2 gap-4 mt-4 mb-16">
 
-        <div *ngFor="let achievement of achievements"
+        <div *ngFor="let achievement of achievements()"
           class="flex flex-col items-center justify-between py-2 px-1 shadow-lg rounded-xl border-solid text-center h-56"
           [ngStyle]="{'border-color': achievement.color}"
           [ngClass]="{ 'disabled': achievement.disabled }">
@@ -24,6 +23,7 @@
           <p-tag severity="info" value="Obtido em {{ achievement.obtainedAt }}" styleClass="text-[0.55rem]" />
           }
         </div>
+
       </div>
     </div>
 

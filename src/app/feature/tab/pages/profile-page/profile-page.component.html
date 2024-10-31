@@ -41,7 +41,7 @@
           <i class="fa-solid fa-circle-check fa-xl text-green-500"></i>
 
           <span class="flex flex-col">
-            <ion-text class="text-lg font-bold">{{ statistics?.correctAnswers }}</ion-text>
+            <ion-text class="text-lg font-bold">{{ statistics()?.correctAnswers }}</ion-text>
             <ion-text class="text-xs">Acertos</ion-text>
           </span>
         </span>
@@ -49,7 +49,7 @@
         <span class="statistic">
           <i class="fa-solid fa-circle-xmark fa-xl text-red-500"></i>
           <span class="flex flex-col">
-            <ion-text class="text-lg font-bold">{{ statistics?.wrongAnswers }}</ion-text>
+            <ion-text class="text-lg font-bold">{{ statistics()?.wrongAnswers }}</ion-text>
             <ion-text class="text-xs">Erros</ion-text>
           </span>
         </span>
@@ -59,7 +59,7 @@
         <span class="statistic">
           <i class="fa-solid fa-trophy fa-xl text-yellow-400"></i>
           <span class="flex flex-col">
-            <ion-text class="text-lg font-bold">{{ statistics?.qttAchievements }}</ion-text>
+            <ion-text class="text-lg font-bold">{{ statistics()?.qttAchievements }}</ion-text>
             <ion-text class="text-xs">Conquistas</ion-text>
           </span>
         </span>
@@ -67,7 +67,7 @@
         <span class="statistic">
           <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
           <span class="flex flex-col">
-            <ion-text class="text-lg font-bold">{{ statistics?.totalExp }}</ion-text>
+            <ion-text class="text-lg font-bold">{{ statistics()?.totalExp }}</ion-text>
             <ion-text class="text-xs">Total de XP</ion-text>
           </span>
         </span>
@@ -86,8 +86,8 @@
         </p-button>
       </div>
       <div class="achievements">
-        <div *ngIf="achievements && achievements.length > 0; else noAchievements" class="achievements-grid">
-          <div *ngFor="let a of achievements" class="achievement" [ngStyle]="{'border-color': a.color}">
+        <div *ngIf="achievements() && achievements.length > 0; else noAchievements" class="achievements-grid">
+          <div *ngFor="let a of achievements()" class="achievement" [ngStyle]="{'border-color': a.color}">
             <img src="{{ a.image }}" class="w-8 h-8">
           </div>
         </div>

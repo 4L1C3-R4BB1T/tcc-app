@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ViewDidEnter } from '@ionic/angular';
 import { Achievement } from 'src/app/models/achievement';
 import { AchievementService } from 'src/app/services/achievement.service';
@@ -10,13 +10,13 @@ import { AchievementService } from 'src/app/services/achievement.service';
 })
 export class AchievementPageComponent implements ViewDidEnter {
 
-  achievements: Achievement[] = [];
+  achievements = signal<Achievement[]>([]);
 
   constructor(readonly achievementService: AchievementService) { }
 
   ionViewDidEnter(): void {
     this.achievementService.findAll().subscribe({
-      next: (data) => this.achievements = data,
+      next: (data) => this.achievements.set(data),
       error: (error) => console.error("Erro ao carregar conquistas:", error)
     });
   }

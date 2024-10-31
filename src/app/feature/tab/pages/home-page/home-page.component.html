@@ -72,12 +72,12 @@
       <div class="flex justify-between items-center border-solid border-[#58CC02] rounded-xl p-4 h-16 shadow-lg"
         matRipple routerLink="/tabs/ranking">
         <div class="flex gap-3 items-center">
-          <span class="flex justify-center w-8 font-bold">{{ userRanking?.position }}º</span>
-          <span>{{ userRanking?.name }}</span>
+          <span class="flex justify-center w-8 font-bold">{{ userRanking()?.position }}º</span>
+          <span>{{ userRanking()?.name }}</span>
         </div>
         <div class="flex gap-2 items-center">
           <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
-          <span class="font-bold">{{ userRanking?.totalExp }}xp</span>
+          <span class="font-bold">{{ userRanking()?.totalExp }}xp</span>
         </div>
       </div>
     </div>

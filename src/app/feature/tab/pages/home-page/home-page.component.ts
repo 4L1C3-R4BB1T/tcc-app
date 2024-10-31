@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { ViewDidEnter } from '@ionic/angular';
 import { UserRanking } from 'src/app/models/user';
 import { RankingService } from 'src/app/services/ranking.service';
@@ -10,13 +10,13 @@ import { RankingService } from 'src/app/services/ranking.service';
 })
 export class HomePageComponent implements ViewDidEnter {
 
-  userRanking: UserRanking | null = null;
+  userRanking = signal<UserRanking | null>(null);
 
   constructor(readonly rankingService: RankingService) { }
 
   ionViewDidEnter(): void {
     this.rankingService.findByUser().subscribe({
-      next: (data) => this.userRanking = data,
+      next: (data) => this.userRanking.set(data),
       error: (error) => console.error("Erro ao carregar ranking do usuário:", error)
     });
   }

@@ -11,14 +11,14 @@
         <div class="flex flex-col flex-1 ml-5 mr-3">
           <span class="text-lg mb-1">{{ user()?.displayName }}</span>
           <div class="flex flex-col items-end">
-            <ion-progress-bar color="light" [value]="0.38" />
-            <span class="text-[0.8rem] opacity-90">38/100 - Nível 15</span>
+            <ion-progress-bar color="light" [value]="progress" />
+            <span class="text-[0.8rem] opacity-90">{{ currentExp }}/{{ nextLevelExp }} - Nível {{ level }}</span>
           </div>
         </div>
       </div>
 
       <div class="bg-white w-10 h-10 rounded-full flex items-center justify-center">
-        <img src="assets/image/level/1.png" class="w-10">
+        <img [src]="levelIcon" class="w-10">
       </div>
 
     </div>
