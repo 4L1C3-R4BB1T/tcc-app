@@ -20,7 +20,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
   currentQuestion = signal<Question | null>(null);
   currentQuestionIndex = signal<number | null>(null);
 
-  questions: Question[] = [];
+  questions = signal<Question[]>([]);
 
   isAnswered = signal(false);
 
@@ -37,20 +37,23 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
   ) { }
 
   ionViewDidEnter(): void {
-    this.disableButton.set(true);
-    this.currentPercentage.set(0.1);
-
-    if (this.questions.length > 0) {
-      this.currentQuestion.set(this.questions[0]);
-      this.currentQuestionIndex.set(0);
-    }
-
-    // pra pegar o id na rota
     this.challengeId.set(this.route.snapshot.params['id'] as string);
+
     this.challengeService.findById(this.challengeId()).subscribe({
-      next: (data) => this.questions = data.questions as Question[],
+      next: (data) => {
+        this.questions.set(data.questions as Question[]);
+        console.log(this.questions());
+
+        if (this.questions().length > 0) {
+          this.currentQuestion.set(this.questions()[0]);
+          this.currentQuestionIndex.set(0);
+        }
+      },
       error: (error) => console.error("Erro ao carregar conquistas:", error)
     });
+
+    this.disableButton.set(true);
+    this.currentPercentage.set(0.1);
   }
 
   checkAnswered() {
@@ -70,12 +73,12 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     this.isAnswered.set(false);
 
     const currentQuestionIndex = this.currentQuestionIndex()! + 1;
-    this.currentPercentage.update(oldPercentage => oldPercentage + (currentQuestionIndex / this.questions.length));
+    this.currentPercentage.update(oldPercentage => oldPercentage + (currentQuestionIndex / this.questions().length));
 
     this.activityComponent.selectedAlternativeId.set(null);
 
-    if (currentQuestionIndex < this.questions.length) {
-      this.currentQuestion.set(this.questions[currentQuestionIndex]);
+    if (currentQuestionIndex < this.questions().length) {
+      this.currentQuestion.set(this.questions()[currentQuestionIndex]);
       this.currentQuestionIndex.set(currentQuestionIndex);
       this.disableButton.set(true);
     } else {
@@ -83,7 +86,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
       this.router.navigate(['/quiz/result'], {
         queryParams: {
           state: JSON.stringify({
-            totalQuestions: this.questions.length,
+            totalQuestions: this.questions().length,
             totalCorrectAnswers: this.totalCorrectAnswers()
           })
         }
