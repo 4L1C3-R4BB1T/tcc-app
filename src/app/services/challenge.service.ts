@@ -16,7 +16,7 @@ export class ChallengeService {
   }
 
   findById(id: string): Observable<Challenge> {
-    return this.http.get<Challenge>(`${environment.apiUrl}/${id}`).pipe(first());
+    return this.http.get<Challenge>(`${environment.apiUrl}/challenges/${id}`).pipe(first());
   }
 
 }

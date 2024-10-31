@@ -2,33 +2,8 @@ import { Component, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewDidEnter } from '@ionic/angular';
 import { Question } from 'src/app/models/question';
+import { ChallengeService } from 'src/app/services/challenge.service';
 import { ActivityComponent } from '../../components/activity/activity.component';
-
-const questions: Question[] = [
-  {
-    type: 'objective',
-    content: 'Que fração representa 1 parte da pizza?',
-    image: 'pizza.png',
-    alternatives: [
-      { id: 1, label: '1/1' },
-      { id: 2, label: '1/8' },
-      { id: 3, label: '1/2' },
-      { id: 4, label: '1/4' }
-    ],
-    correctId: 2
-  },
-  {
-    type: 'objective',
-    content: 'Qual fração é equivalente a 1/3?',
-    alternatives: [
-      { id: 1, label: '2/3' },
-      { id: 2, label: '3/3' },
-      { id: 3, label: '2/6' },
-      { id: 4, label: '3/6' }
-    ],
-    correctId: 3
-  }
-];
 
 @Component({
   selector: 'app-challenge-quiz-page',
@@ -45,7 +20,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
   currentQuestion = signal<Question | null>(null);
   currentQuestionIndex = signal<number | null>(null);
 
-  questions = questions;
+  questions: Question[] = [];
 
   isAnswered = signal(false);
 
@@ -53,9 +28,13 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   disableButton = signal(false);
 
-  // challengeId = signal<number>(0);
+  challengeId = signal<string>("");
 
-  constructor(readonly router: Router, readonly route: ActivatedRoute) { }
+  constructor(
+    readonly router: Router,
+    readonly route: ActivatedRoute,
+    readonly challengeService: ChallengeService
+  ) { }
 
   ionViewDidEnter(): void {
     this.disableButton.set(true);
@@ -67,8 +46,11 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     }
 
     // pra pegar o id na rota
-    // this.challengeId.set(this.route.snapshot.params['id'] as number);
-
+    this.challengeId.set(this.route.snapshot.params['id'] as string);
+    this.challengeService.findById(this.challengeId()).subscribe({
+      next: (data) => this.questions = data.questions as Question[],
+      error: (error) => console.error("Erro ao carregar conquistas:", error)
+    });
   }
 
   checkAnswered() {
