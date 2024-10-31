@@ -12,4 +12,8 @@ ion-content {
   .bronze {
     @apply border-[#DCA16A];
   }
+
+  .user {
+    @apply bg-green-100 border-green-500 shadow-xl;
+  }
 }

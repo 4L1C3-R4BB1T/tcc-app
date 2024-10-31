@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { FirebaseError } from '@angular/fire/app';
 import { Auth, deleteUser, EmailAuthProvider, reauthenticateWithCredential, updateProfile, User } from '@angular/fire/auth';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytes } from '@angular/fire/storage';
@@ -11,8 +11,9 @@ import { AchievementIcon } from 'src/app/models/achievement';
 import { UserStatistics } from 'src/app/models/user';
 import { AchievementService } from 'src/app/services/achievement.service';
 import { AuthService } from 'src/app/services/auth.service';
-import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
 import { StatisticService } from 'src/app/services/statistic.service';
+import { UserService } from 'src/app/services/user.service';
+import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
 
 @Component({
   selector: 'app-profile-page',
@@ -65,7 +66,8 @@ export class ProfilePageComponent implements ViewDidEnter {
     readonly router: Router,
     readonly storage: Storage,
     readonly achievementService: AchievementService,
-    readonly statisticService: StatisticService
+    readonly statisticService: StatisticService,
+    readonly userService: UserService
   ) { }
 
   ionViewDidEnter(): void {
@@ -152,6 +154,11 @@ export class ProfilePageComponent implements ViewDidEnter {
             severity: 'success',
             detail: 'Conta excluída!',
           });
+
+          this.userService.delete().subscribe({
+            next: (response) => console.log('Usuário e dados relacionados excluídos com sucesso', response),
+            error: (error) => console.error('Erro ao excluir usuário e dados relacionados', error)
+          }); // deletar dados do banco
 
           setTimeout(async () => {
             await deleteUser(this.user()!);

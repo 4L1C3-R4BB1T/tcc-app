@@ -2,16 +2,22 @@ import { inject } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
 import { CanActivateFn, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from '../services/auth.service';
 
 export const authLoggedGuard: CanActivateFn = () => {
   const auth = inject(Auth);
   const router = inject(Router);
+  const authService = inject(AuthService);
 
   return new Observable(observer => {
-    auth.onAuthStateChanged(async user => {
+    auth.onAuthStateChanged(user => {
       if (user) {
-        observer.next(false);
-        router.navigate(['tabs']);
+        if (authService.isCreatingAccount) {
+          router.navigate(['account', 'created']);
+        } else {
+          router.navigate(['tabs']);
+        }
+        observer.next(false)
       } else {
         observer.next(true);
       }

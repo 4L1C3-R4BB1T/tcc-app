@@ -58,32 +58,26 @@
 
     <div
       class="border-solid border-gray-500 border-opacity-10 rounded-xl mt-10 shadow-lg flex flex-col gap-4 items-center text-center pt-4 pb-6 px-4">
-
       <img src="assets/image/home/books.png" class="w-24">
-
       <span class="text-xl font-semibold">Cada desafio é uma oportunidade para brilhar!</span>
-
       <p class="text-sm text-gray-500">
         Complete desafios para acumular pontos e desbloquear novas conquistas.
       </p>
-
       <p-button label="Vamos lá!" styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg"
         routerLink="/tabs/challenge" matRipple></p-button>
-
     </div>
 
     <div class=" flex flex-col gap-4 mt-10">
       <span class="text-xl font-bold">Seu ranking</span>
-
       <div class="flex justify-between items-center border-solid border-[#58CC02] rounded-xl p-4 h-16 shadow-lg"
         matRipple routerLink="/tabs/ranking">
         <div class="flex gap-3 items-center">
-          <span class="flex justify-center w-8 font-bold">3436</span>
-          <span>Livia</span>
+          <span class="flex justify-center w-8 font-bold">{{ userRanking?.position }}º</span>
+          <span>{{ userRanking?.name }}</span>
         </div>
         <div class="flex gap-2 items-center">
           <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
-          <span class="font-bold">38xp</span>
+          <span class="font-bold">{{ userRanking?.totalExp }}xp</span>
         </div>
       </div>
     </div>

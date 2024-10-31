@@ -20,7 +20,7 @@ export class StatisticService {
   }
 
   findByUser(): Observable<UserStatistics> {
-    return this.http.get<UserStatistics>(`${environment.apiUrl}/statistics`);
+    return this.http.get<UserStatistics>(`${environment.apiUrl}/statistics/user`);
   }
 
 }

@@ -1,6 +1,8 @@
 export interface UserRanking {
   name: string;
-  exp: number;
+  totalExp: number;
+  isCurrentUser?: boolean;
+  position?: number;
 }
 
 export interface UserStatistics {

@@ -12,7 +12,7 @@ export class AchievementPageComponent implements ViewDidEnter {
 
   achievements: Achievement[] = [];
 
-  constructor(readonly achievementService: AchievementService,) { }
+  constructor(readonly achievementService: AchievementService) { }
 
   ionViewDidEnter(): void {
     this.achievementService.findAll().subscribe({
