@@ -12,6 +12,7 @@ import { UserStatistics } from 'src/app/models/user';
 import { AchievementService } from 'src/app/services/achievement.service';
 import { AuthService } from 'src/app/services/auth.service';
 import ConfirmPasswordComponent from './components/confirm-password/confirm-password.component';
+import { StatisticService } from 'src/app/services/statistic.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -23,13 +24,7 @@ export class ProfilePageComponent implements ViewDidEnter {
 
   user = signal<User | null>(null);
 
-  statistics: UserStatistics = {
-    correctAnswers: 34,
-    wrongAnswers: 23,
-    qttAchievements: 8,
-    totalExp: 1538
-  }
-
+  statistics: UserStatistics | null = null;
   achievements: AchievementIcon[] = [];
 
   public closeAlertButtons: AlertButton[] = [
@@ -69,11 +64,17 @@ export class ProfilePageComponent implements ViewDidEnter {
     readonly messageService: MessageService,
     readonly router: Router,
     readonly storage: Storage,
-    readonly achievementService: AchievementService
+    readonly achievementService: AchievementService,
+    readonly statisticService: StatisticService
   ) { }
 
   ionViewDidEnter(): void {
     this.user.set(this.auth.currentUser);
+
+    this.statisticService.findByUser().subscribe({
+      next: (data) => this.statistics = data,
+      error: (error) => console.error('Erro ao buscar estatísticas:', error)
+    });
 
     this.achievementService.findByUser().subscribe({
       next: (data) => this.achievements = data,
@@ -122,7 +123,7 @@ export class ProfilePageComponent implements ViewDidEnter {
   async signOut() {
     try {
       await this.authService.signOut();
-      this.router.navigate(['/']);
+      this.router.navigate(['/account/login']);
     } catch (error) {
       this.messageService.add({
         severity: 'error',

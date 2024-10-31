@@ -1,3 +1,4 @@
+import { StatisticService } from './../../../../services/statistic.service';
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
@@ -19,7 +20,8 @@ export class CreateAccountPageComponent {
     readonly authService: AuthService,
     readonly loadingController: LoadingController,
     readonly messageService: MessageService,
-    readonly router: Router
+    readonly router: Router,
+    readonly statisticService: StatisticService
   ) { }
 
   async signUp(name: string, email: string, password: string, repassword: string) {
@@ -63,6 +65,12 @@ export class CreateAccountPageComponent {
 
     try {
       await this.authService.signUp(email, password, name);
+
+      this.statisticService.create().subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.error("Erro ao criar estatisticas:", error)
+      }); // criar estatisticas para o usuario
+
       this.router.navigate(['account/created']);
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
