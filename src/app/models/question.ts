@@ -8,7 +8,6 @@ export interface Alternative {
 };
 
 export interface Question {
-  id: number;
   type: 'dragdrop' | 'objective';
   content: string;
   image?: string;

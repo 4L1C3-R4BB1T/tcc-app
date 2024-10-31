@@ -5,7 +5,7 @@ import { ChallengeResultPageComponent } from './pages/challenge-result-page/chal
 
 const routes: Routes = [
   {
-    path: 'started',
+    path: 'started/:id',
     component: ChallengeQuizPageComponent
   },
   {

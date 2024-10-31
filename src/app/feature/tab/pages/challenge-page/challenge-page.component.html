@@ -3,52 +3,46 @@
 <ion-content class="ion-padding">
 
   <div class="flex flex-col gap-5 mt-4 mb-16">
-
     <form [formGroup]="formGroup">
-      <p-selectButton
-        [options]="stateOptions"
-        formControlName="value"
-        optionLabel="label"
-        optionValue="value"
-        styleClass="mb-3"
-      />
+      <p-selectButton [options]="stateOptions" formControlName="value" optionLabel="label" optionValue="value"
+        styleClass="mb-3" />
     </form>
 
-    <div *ngFor="let challenge of challengers"
-      class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid"
-      [ngClass]="{ 'border-lime-500': challenge.difficulty === 1, 'border-yellow-400': challenge.difficulty === 2, 'border-red-500': challenge.difficulty === 3 }"
-      matRipple routerLink="/quiz/started">
-      <div class="flex justify-end">
-        <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs h-5">
-          @if (challenge.difficulty === 1) {
-          <span class="difficulty bg-lime-500">
-            Fácil
+    <div *ngIf="challenges() && challenges().length > 0; else noChallenges">
+      <div *ngFor="let challenge of challenges()"
+        class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid" [ngClass]="{
+             'border-lime-500': challenge.difficulty === 1,
+             'border-yellow-400': challenge.difficulty === 2,
+             'border-red-500': challenge.difficulty === 3
+           }" matRipple [routerLink]="['/quiz/started', challenge._id]">
+
+        <div class="flex justify-end">
+          <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs h-5">
+            <span *ngIf="challenge.difficulty === 1" class="difficulty bg-lime-500">Fácil</span>
+            <span *ngIf="challenge.difficulty === 2" class="difficulty bg-yellow-400">Médio</span>
+            <span *ngIf="challenge.difficulty === 3" class="difficulty bg-red-500">Difícil</span>
           </span>
-          }
-          @else if (challenge.difficulty === 2) {
-          <span class="difficulty bg-yellow-400">
-            Médio
-          </span>
-          }
-          @else if (challenge.difficulty === 3) {
-          <span class="difficulty bg-red-500">
-            Difícil
-          </span>
-          }
-        </span>
-      </div>
-      <div class="flex gap-5 px-2 pb-3">
-        <img [src]="'assets/image/challenge/' + challenge.image" class="w-14 h-14">
-        <div class="flex flex-col gap-2">
-          <span class="text-lg font-bold">{{ challenge.title }}</span>
-          <span class="text-sm text-gray-500">
-            Pontos:
-            <span class="font-bold text-lime-500">{{ challenge.exp }}xp</span>
-          </span>
+        </div>
+
+        <div class="flex gap-5 px-2 pb-3">
+          <img [src]="challenge.image" class="w-14 h-14">
+          <div class="flex flex-col gap-2">
+            <span class="text-lg font-bold">{{ challenge.title }}</span>
+            <span class="text-sm text-gray-500">
+              Pontos:
+              <span class="font-bold text-lime-500">{{ challenge.exp }}xp</span>
+            </span>
+          </div>
         </div>
       </div>
     </div>
 
+    <ng-template #noChallenges>
+      <div class="flex flex-col items-center justify-center gap-4 text-center">
+        <span class="text-lg">Ainda não há desafios cadastrados!</span>
+        <img src="assets/image/challenge/sad.png" class="w-16 h-16">
+      </div>
+    </ng-template>
   </div>
 
 </ion-content>

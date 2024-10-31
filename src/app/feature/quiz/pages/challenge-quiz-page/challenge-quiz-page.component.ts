@@ -6,7 +6,6 @@ import { ActivityComponent } from '../../components/activity/activity.component'
 
 const questions: Question[] = [
   {
-    id: 1,
     type: 'objective',
     content: 'Que fração representa 1 parte da pizza?',
     image: 'pizza.png',
@@ -19,7 +18,6 @@ const questions: Question[] = [
     correctId: 2
   },
   {
-    id: 2,
     type: 'objective',
     content: 'Qual fração é equivalente a 1/3?',
     alternatives: [
@@ -55,6 +53,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   disableButton = signal(false);
 
+  // challengeId = signal<number>(0);
+
   constructor(readonly router: Router, readonly route: ActivatedRoute) { }
 
   ionViewDidEnter(): void {
@@ -65,6 +65,10 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
       this.currentQuestion.set(this.questions[0]);
       this.currentQuestionIndex.set(0);
     }
+
+    // pra pegar o id na rota
+    // this.challengeId.set(this.route.snapshot.params['id'] as number);
+
   }
 
   checkAnswered() {

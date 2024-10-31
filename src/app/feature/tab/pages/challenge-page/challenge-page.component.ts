@@ -1,52 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ViewDidEnter } from '@ionic/angular';
 import { Challenge } from 'src/app/models/challenge';
+import { ChallengeService } from './../../../../services/challenge.service';
 
 @Component({
   selector: 'app-challenge-page',
   templateUrl: './challenge-page.component.html',
   styleUrls: ['./challenge-page.component.scss'],
 })
-export class ChallengePageComponent implements OnInit {
+export class ChallengePageComponent implements ViewDidEnter, OnInit {
 
-  challengers: Challenge[] = [
-    {
-      title: 'Quebra-Fração',
-      difficulty: 3,
-      exp: 30,
-      image: 'puzzle.png'
-    },
-    {
-      title: 'Primeiros Passos',
-      difficulty: 1,
-      exp: 10,
-      image: 'baby.png'
-    },
-    {
-      title: 'Mestre das Frações',
-      difficulty: 2,
-      exp: 40,
-      image: 'wizard.png'
-    },
-    {
-      title: 'Calculadora Humana',
-      difficulty: 2,
-      exp: 45,
-      image: 'calculator.png'
-    },
-    {
-      title: 'A Grande Fração',
-      difficulty: 3,
-      exp: 35,
-      image: 'number.png'
-    },
-    {
-      title: 'Conhecimento Sólido',
-      difficulty: 1,
-      exp: 10,
-      image: 'stone.png'
-    }
-  ];
+  challenges = signal<Challenge[]>([]);
 
   formGroup!: FormGroup;
 
@@ -57,9 +22,18 @@ export class ChallengePageComponent implements OnInit {
     { label: 'Difícil', value: 'hard' }
   ];
 
-  ngOnInit() {
+  constructor(readonly challengeService: ChallengeService) { }
+
+  ngOnInit(): void {
     this.formGroup = new FormGroup({
       value: new FormControl('all')
+    });
+  }
+
+  ionViewDidEnter(): void {
+    this.challengeService.findAll().subscribe({
+      next: (data) => this.challenges.set(data),
+      error: (error) => console.error("Erro ao carregar conquistas:", error)
     });
   }
 
