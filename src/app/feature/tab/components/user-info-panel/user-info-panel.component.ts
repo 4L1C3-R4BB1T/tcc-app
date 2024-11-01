@@ -32,20 +32,20 @@ export class UserInfoPanelComponent implements OnInit {
         error: (error) => console.error("Erro ao carregar estatísticas:", error)
       });
       console.log("Atualizando estatísticas do usuário...");
-    }, 30000);
+    }, 1000);
   }
 
   calculateLevelAndProgress(totalExp: number): { level: number, progress: number, currentExp: number, nextLevelExp: number } {
-    let level = 1; // Iniciar o nível em 1
-    let expForNextLevel = 100 * (level) + 50; // A primeira experiência necessária para o nível 1
+    let level = 1; // iniciar o nível em 1
+    let expForNextLevel = 100 * (level) + 50; // a primeira experiência necessária para o nível 1
 
     while (totalExp >= expForNextLevel) {
       totalExp -= expForNextLevel;
       level++;
-      expForNextLevel = 100 * (level) + 50; // Atualiza a experiência necessária para o próximo nível
+      expForNextLevel = 100 * (level) + 50; // atualiza a experiência necessária para o próximo nível
     }
 
-    // Calcule o progresso como uma porcentagem do total necessário para o próximo nível.
+    // calcula o progresso como uma porcentagem do total necessário para o próximo nível
     const progress = totalExp / expForNextLevel;
 
     return {

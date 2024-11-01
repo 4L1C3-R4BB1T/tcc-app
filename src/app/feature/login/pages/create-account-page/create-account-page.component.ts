@@ -71,7 +71,7 @@ export class CreateAccountPageComponent {
         error: (error) => console.error("Erro ao criar estatisticas:", error)
       }); // criar estatisticas para o usuario
 
-      this.router.navigate(['account/created']);
+      this.router.navigate(['account', 'created']);
     } catch (error: any) {
       if (error.code === 'auth/email-already-in-use') {
         this.messageService.add({

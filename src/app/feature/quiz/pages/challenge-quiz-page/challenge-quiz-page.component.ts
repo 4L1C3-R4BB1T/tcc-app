@@ -72,7 +72,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
     if (this.lifes() === 0) {
       this.totalCorrectAnswers.set(0);
-      this.router.navigate(['/quiz/fail']);
+      this.router.navigate(['quiz', 'fail']);
     }
   }
 
@@ -94,11 +94,12 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
       this.disableButton.set(true);
     } else {
       // criar pagina de resultados
-      this.router.navigate(['/quiz/result'], {
+      this.router.navigate(['quiz', 'result'], {
         queryParams: {
           state: JSON.stringify({
             totalQuestions: this.questions().length,
-            totalCorrectAnswers: this.totalCorrectAnswers()
+            totalCorrectAnswers: this.totalCorrectAnswers(),
+            gainedExp: this.totalCorrectAnswers() * 5
           })
         }
       });

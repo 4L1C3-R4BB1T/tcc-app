@@ -19,13 +19,14 @@
         <img [src]="'assets/image/challenge/result/' + challengeResult() + '.gif'" class="w-40">
 
         <span class="text-center text-lg">
-          Você acertou {{ totalCorrectAnswers() }} atividade(s) de um total de {{ totalQuestions() }}!
+          Você acertou {{ totalCorrectAnswers() }} atividade(s) de um total de {{ totalQuestions() }}!<br>
+          Você ganhou <span class="font-bold text-lime-500">{{ gainedExp() }}</span> pontos!
         </span>
       </div>
 
       <p-button
         label="Voltar"
-        routerLink="/tabs/challenge"
+        (click)="updateStatistics()"
         styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
       </p-button>
 

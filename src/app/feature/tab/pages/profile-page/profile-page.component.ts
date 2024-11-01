@@ -125,7 +125,7 @@ export class ProfilePageComponent implements ViewDidEnter {
   async signOut() {
     try {
       await this.authService.signOut();
-      this.router.navigate(['/account/login']);
+      this.router.navigate(['account', 'login']);
     } catch (error) {
       this.messageService.add({
         severity: 'error',

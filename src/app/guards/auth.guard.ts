@@ -13,7 +13,7 @@ export const authGuard: CanActivateFn = () => {
         observer.next(true);
       } else {
         observer.next(false);
-        router.navigate(['/account']);
+        router.navigate(['account']);
       }
       observer.complete();
     });
