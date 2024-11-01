@@ -6,12 +6,14 @@ import { ObjectiveQuestionComponent } from './components/activity/components/obj
 import { ChallengeQuizPageComponent } from './pages/challenge-quiz-page/challenge-quiz-page.component';
 import { ChallengeResultPageComponent } from './pages/challenge-result-page/challenge-result-page.component';
 import { QuizRoutingModule } from './quiz-routing.module';
+import { ChallengeFailPageComponent } from './pages/challenge-fail-page/challenge-fail-page.component';
 
 @NgModule({
   declarations: [
     ActivityComponent,
     ChallengeQuizPageComponent,
     ChallengeResultPageComponent,
+    ChallengeFailPageComponent,
     ObjectiveQuestionComponent,
     DragdropQuestionComponent
   ],

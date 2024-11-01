@@ -30,6 +30,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   challengeId = signal<string>("");
 
+  lifes = signal(5);
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -62,6 +64,15 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
     if (this.activityComponent.isCorrect()) {
       this.totalCorrectAnswers.set(this.totalCorrectAnswers() + 1);
+    } else {
+      this.lifes.set(this.lifes() - 1); // perder vidas
+    }
+
+    console.log("qtd vidas:", this.lifes())
+
+    if (this.lifes() === 0) {
+      this.totalCorrectAnswers.set(0);
+      this.router.navigate(['/quiz/fail']);
     }
   }
 

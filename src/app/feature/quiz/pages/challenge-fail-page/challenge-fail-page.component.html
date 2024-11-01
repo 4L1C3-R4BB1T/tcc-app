@@ -7,25 +7,17 @@
 
       <div class="flex flex-col justify-center items-center gap-4">
         <span class="text-center text-2xl font-bold">
-          @if (challengeResult() === 1) {
-          Lição perfeita!
-          } @else if (challengeResult() === 2) {
-          Quase lá!
-          } @else if (challengeResult() === 3) {
-          Não foi dessa vez...
-          }
+          Não fique triste, você deu o seu melhor!
         </span>
 
-        <img [src]="'assets/image/challenge/result/' + challengeResult() + '.gif'" class="w-40">
+        <img src="assets/image/challenge/fail/sad.gif" class="w-40">
 
         <span class="text-center text-lg">
-          Você acertou {{ totalCorrectAnswers() }} atividade(s) de um total de {{ totalQuestions() }}!
+          Continue praticando para avançar ainda mais. Volte quando estiver pronto para novos desafios!
         </span>
       </div>
 
-      <p-button
-        label="Voltar"
-        routerLink="/tabs/challenge"
+      <p-button label="Voltar" routerLink="/tabs/challenge"
         styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
       </p-button>
 
