@@ -16,21 +16,37 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
   formGroup!: FormGroup;
 
   stateOptions: any[] = [
-    { label: 'Todos', value: 'all' },
-    { label: 'Fácil', value: 'easy' },
-    { label: 'Médio', value: 'medium' },
-    { label: 'Difícil', value: 'hard' }
+    { label: 'Todos', value: '0' },
+    { label: 'Fácil', value: '1' },
+    { label: 'Médio', value: '2' },
+    { label: 'Difícil', value: '3' }
   ];
 
   constructor(readonly challengeService: ChallengeService) { }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      value: new FormControl('all')
+      value: new FormControl('0')
     });
   }
 
   ionViewDidEnter(): void {
+    this.formGroup.get('value')?.setValue('0');
+
+    this.formGroup.get('value')?.valueChanges.subscribe((difficulty) => {
+      if (difficulty === '0') {
+        this.challengeService.findAll().subscribe({
+          next: (data) => this.challenges.set(data),
+          error: (error) => console.error("Erro ao carregar desafios:", error)
+        });
+      } else {
+        this.challengeService.findByDifficulty(difficulty).subscribe({
+          next: (data) => this.challenges.set(data),
+          error: (error) => console.error("Erro ao carregar desafios:", error)
+        });
+      }
+    });
+
     this.challengeService.findAll().subscribe({
       next: (data) => this.challenges.set(data),
       error: (error) => console.error("Erro ao carregar conquistas:", error)

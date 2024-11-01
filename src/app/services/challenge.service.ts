@@ -19,4 +19,8 @@ export class ChallengeService {
     return this.http.get<Challenge>(`${environment.apiUrl}/challenges/${id}`).pipe(first());
   }
 
+  findByDifficulty(difficulty: number): Observable<Challenge[]> {
+    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges/difficulty/${difficulty}`);
+  }
+
 }
