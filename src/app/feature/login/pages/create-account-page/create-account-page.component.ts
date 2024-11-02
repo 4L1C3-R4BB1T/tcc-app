@@ -1,10 +1,11 @@
-import { StatisticService } from './../../../../services/statistic.service';
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
+import { AchievementService } from 'src/app/services/achievement.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { isValidEmail } from 'src/app/utils/validators';
+import { StatisticService } from './../../../../services/statistic.service';
 
 @Component({
   selector: 'app-create-account-page',
@@ -21,7 +22,8 @@ export class CreateAccountPageComponent {
     readonly loadingController: LoadingController,
     readonly messageService: MessageService,
     readonly router: Router,
-    readonly statisticService: StatisticService
+    readonly statisticService: StatisticService,
+    readonly achievementService: AchievementService
   ) { }
 
   async signUp(name: string, email: string, password: string, repassword: string) {
@@ -70,6 +72,11 @@ export class CreateAccountPageComponent {
         next: (data) => console.log(data),
         error: (error) => console.error("Erro ao criar estatisticas:", error)
       }); // criar estatisticas para o usuario
+
+      this.achievementService.checkAchievements().subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.error("Erro ao checar conquistas:", error)
+      });
 
       this.router.navigate(['account', 'created']);
     } catch (error: any) {

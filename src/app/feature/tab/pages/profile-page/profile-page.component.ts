@@ -78,6 +78,11 @@ export class ProfilePageComponent implements ViewDidEnter {
       error: (error) => console.error('Erro ao buscar estatísticas:', error)
     });
 
+    this.achievementService.checkAchievements().subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.error("Erro ao checar conquistas:", error)
+    });
+
     this.achievementService.findByUser().subscribe({
       next: (data) => this.achievements.set(data),
       error: (error) => console.error("Erro ao carregar conquistas:", error)

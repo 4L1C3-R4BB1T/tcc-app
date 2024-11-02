@@ -86,7 +86,7 @@
         </p-button>
       </div>
       <div class="achievements">
-        <div *ngIf="achievements() && achievements().length > 0; else noAchievements" class="achievements-grid">
+        <div *ngIf="achievements() && achievements().length > 0; else noAchievements" class="grid grid-cols-4 gap-4 place-items-center">
           <div *ngFor="let a of achievements()" class="achievement" [ngStyle]="{'border-color': a.color}">
             <img src="{{ a.image }}" class="w-8 h-8">
           </div>

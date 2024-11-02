@@ -8,6 +8,7 @@ export interface UserRanking {
 export interface UserStatistics {
   correctAnswers: number;
   wrongAnswers: number;
+  challengesCompleted: number;
   qttAchievements: number;
   totalExp: number;
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { Auth } from '@angular/fire/auth';
+import { NavigationEnd, Router } from '@angular/router';
 import { User } from 'firebase/auth';
+import { filter } from 'rxjs';
 import { UserStatistics } from 'src/app/models/user';
 import { StatisticService } from 'src/app/services/statistic.service';
 
@@ -14,28 +16,30 @@ export class UserInfoPanelComponent implements OnInit {
   user = signal<User | null>(null);
   statistics = signal<UserStatistics | null>(null);
 
-  constructor(readonly statisticService: StatisticService, readonly auth: Auth) { }
+  constructor(
+    readonly statisticService: StatisticService,
+    readonly auth: Auth,
+    readonly router: Router,
+  ) { }
 
   ngOnInit(): void {
     this.user.set(this.auth.currentUser);
-
-    // executa na primeira vez
-    this.statisticService.findByUser().subscribe({
-      next: (data) => this.statistics.set(data),
-      error: (error) => console.error("Erro ao carregar estatísticas:", error)
+    // Monitora mudanças de rota e executa a atualização nas rotas especificadas
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      const currentRoute = this.router.url;
+      if (['/tabs/home', '/tabs/challenge', '/tabs/learn'].includes(currentRoute)) {
+        this.statisticService.findByUser().subscribe({
+          next: (data) => {
+            this.statistics.set(data)
+            console.log("Atualizando estatísticas do usuário...");
+          },
+          error: (error) => console.error("Erro ao carregar estatísticas:", error)
+        });
+      }
     });
-
-    // mantem executando a cada 1 segundo
-    setInterval(() => {
-      this.statisticService.findByUser().subscribe({
-        next: (data) => this.statistics.set(data),
-        error: (error) => console.error("Erro ao carregar estatísticas:", error)
-      });
-      console.log("Atualizando estatísticas do usuário...");
-    }, 1000);
   }
 
-  calculateLevelAndProgress(totalExp: number): { level: number, progress: number, currentExp: number, nextLevelExp: number } {
+  calculateLevelAndProgress(totalExp: number) {
     let level = 1; // iniciar o nível em 1
     let expForNextLevel = 100 * (level) + 50; // a primeira experiência necessária para o nível 1
 
@@ -56,27 +60,27 @@ export class UserInfoPanelComponent implements OnInit {
     };
   }
 
-  get currentExp(): number {
+  get currentExp() {
     const totalExp = this.statistics()?.totalExp ?? 0;
     return this.calculateLevelAndProgress(totalExp).currentExp;
   }
 
-  get nextLevelExp(): number {
+  get nextLevelExp() {
     const totalExp = this.statistics()?.totalExp ?? 0;
     return this.calculateLevelAndProgress(totalExp).nextLevelExp;
   }
 
-  get level(): number {
+  get level() {
     const totalExp = this.statistics()?.totalExp ?? 0;
     return this.calculateLevelAndProgress(totalExp).level;
   }
 
-  get progress(): number {
+  get progress() {
     const totalExp = this.statistics()?.totalExp ?? 0;
     return this.calculateLevelAndProgress(totalExp).progress;
   }
 
-  get levelIcon(): string {
+  get levelIcon() {
     const iconIndex = Math.floor((this.level - 1) / 5);
     return `assets/image/level/${Math.min(iconIndex + 1, 8)}.png`;
   }

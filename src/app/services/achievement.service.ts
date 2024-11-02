@@ -19,4 +19,8 @@ export class AchievementService {
     return this.http.get<AchievementIcon[]>(`${environment.apiUrl}/achievements/user`).pipe(first());
   }
 
+  checkAchievements(): Observable<any> {
+    return this.http.get(`${environment.apiUrl}/achievements/check-achievements`);
+  }
+
 }

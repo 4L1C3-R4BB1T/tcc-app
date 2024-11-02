@@ -1,8 +1,9 @@
-import { StatisticService } from './../../../../services/statistic.service';
 import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ChallengeResult } from 'src/app/models/challenge-result';
 import { UserStatistics } from 'src/app/models/user';
+import { AchievementService } from 'src/app/services/achievement.service';
+import { StatisticService } from './../../../../services/statistic.service';
 
 @Component({
   selector: 'app-challenge-result-page',
@@ -20,7 +21,8 @@ export class ChallengeResultPageComponent implements OnInit {
   constructor(
     readonly route: ActivatedRoute,
     readonly router: Router,
-    readonly statisticService: StatisticService
+    readonly statisticService: StatisticService,
+    readonly achievementService: AchievementService
   ) { }
 
   ngOnInit() {
@@ -45,12 +47,18 @@ export class ChallengeResultPageComponent implements OnInit {
     const update: Partial<UserStatistics> = {
       correctAnswers: this.totalCorrectAnswers(),
       wrongAnswers: this.totalQuestions() - this.totalCorrectAnswers(),
+      challengesCompleted: 1,
       totalExp: this.gainedExp()
     };
 
     this.statisticService.updateStatistics(update).subscribe({
       next: (response) => console.log('Estatísticas atualizadas:', response),
       error: (error) => console.error('Erro ao atualizar estatísticas:', error),
+    });
+
+    this.achievementService.checkAchievements().subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.error("Erro ao checar conquistas:", error)
     });
 
     this.router.navigate(['tabs', 'challenge']);
