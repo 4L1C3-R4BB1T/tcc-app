@@ -33,23 +33,17 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
   ionViewDidEnter(): void {
     this.formGroup.get('value')?.setValue('0');
 
-    this.formGroup.get('value')?.valueChanges.subscribe((difficulty) => {
-      if (difficulty === '0') {
-        this.challengeService.findAll().subscribe({
-          next: (data) => this.challenges.set(data),
-          error: (error) => console.error("Erro ao carregar desafios:", error)
-        });
-      } else {
-        this.challengeService.findByDifficulty(difficulty).subscribe({
-          next: (data) => this.challenges.set(data),
-          error: (error) => console.error("Erro ao carregar desafios:", error)
-        });
-      }
-    });
+    this.loadChallenges(this.formGroup.get('value')?.value);
 
-    this.challengeService.findAll().subscribe({
+    this.formGroup.get('value')?.valueChanges.subscribe((difficulty) => {
+      this.loadChallenges(difficulty);
+    });
+  }
+
+  private loadChallenges(difficulty: number): void {
+    this.challengeService.findAll(difficulty).subscribe({
       next: (data) => this.challenges.set(data),
-      error: (error) => console.error("Erro ao carregar conquistas:", error)
+      error: (error) => console.error("Erro ao carregar desafios:", error)
     });
   }
 

@@ -11,7 +11,7 @@ export class UserService {
   constructor(readonly http: HttpClient) { }
 
   delete(): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/user/delete`);
+    return this.http.delete(`${environment.apiUrl}/user`);
   }
 
 }

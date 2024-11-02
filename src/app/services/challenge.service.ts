@@ -11,16 +11,13 @@ export class ChallengeService {
 
   constructor(readonly http: HttpClient) { }
 
-  findAll(): Observable<Challenge[]> {
-    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges`).pipe(first());
+  findAll(difficulty: number): Observable<Challenge[]> {
+    const params = { difficulty: difficulty as number };
+    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges`, { params }).pipe(first());
   }
 
   findById(id: string): Observable<Challenge> {
     return this.http.get<Challenge>(`${environment.apiUrl}/challenges/${id}`).pipe(first());
-  }
-
-  findByDifficulty(difficulty: number): Observable<Challenge[]> {
-    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges/difficulty/${difficulty}`);
   }
 
 }
