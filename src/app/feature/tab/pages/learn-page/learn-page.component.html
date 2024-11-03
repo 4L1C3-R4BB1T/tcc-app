@@ -6,7 +6,7 @@
     <div id="section" slot="start" style="border-bottom: 0.3rem solid #cf8216"
       class="w-full mt-4 mx-4 rounded-xl bg-[var(--ion-color-primary)] text-white flex gap-1 text-sm">
       <div class="flex flex-col gap-1 py-4 ps-4 flex-1">
-        <ion-text class="uppercase font-bold text-base">Seção 1</ion-text>
+        <ion-text class="uppercase font-bold text-base">Seção {{ section()?.id }}</ion-text>
         <ion-text class="text-sm font-medium">{{ currentTitle() }}</ion-text>
       </div>
       <div class="min-w-14 flex items-center justify-center" style="border-left: 0.1rem solid #ebeaead3">
@@ -18,13 +18,14 @@
 
 <ion-content #ionContent class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
   <div class="pb-14 flex flex-col gap-2">
-    <ng-container *ngFor="let s of section.units; let impar = odd">
+    <ng-container *ngFor="let s of section()?.units; let impar = odd">
       <div class="mt-12">
-        <app-trail-progress [title]="s.title" [scrollChanged]="scrollChanged()" [items]="s.items" [inverse]="impar"/>
+        <app-trail-progress [sectionId]="section()?.id" [title]="s.title" [scrollChanged]="scrollChanged()" [items]="s.items"
+          [inverse]="impar" />
         @if (!impar) {
         <div class="mt-5">
           <div class="divider">
-            <span class="font-semibold text-gray-500">{{ section.divider }}</span>
+            <span class="font-semibold text-gray-500">{{ section()?.divider }}</span>
           </div>
         </div>
         }

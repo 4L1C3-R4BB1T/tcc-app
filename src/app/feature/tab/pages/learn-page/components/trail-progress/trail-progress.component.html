@@ -13,28 +13,31 @@
         </div>
       </button>
 
-      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}" (click)="overlayPanel.toggle($event)">
+      <div #target [ngClass]="disabledStyleClass(item)" class="progress__item {{ item.completed ? 'completed' : '' }}"
+        (click)="overlayPanel.toggle($event)">
         <p-overlayPanel #overlayPanel
           styleClass="pb-3 bg-[var(--ion-color-primary)] rounded-xl w-[70vw] !left-1/2 !-translate-x-1/2 {{ item.disabled ? 'hidden' : '' }}">
           <div class="flex flex-col bg-[var(--ion-color-primary)] text-white">
             <div class="flex flex-col">
               <ion-text class="font-bold text-lg">{{ item.description }}</ion-text>
               <div>
-                Lição <span>1</span> de <span>4</span>
+                Lição <span class="font-bold">{{ item.id }}</span> de <span class="font-bold">10</span>
               </div>
             </div>
-            <button
-              pButton
-              matRipple
-              (click)="startLesson(overlayPanel, item.id)"
+            <button pButton matRipple (click)="startLesson(overlayPanel, sectionId, item.id)"
               class="bg-white border-none font-bold mt-4 flex justify-center text-[#58CC02] rounded-xl shadow-lg">
-              Começar + 10xp
+              Começar + 5xp
             </button>
           </div>
         </p-overlayPanel>
 
         <div class="progress__item-content" appClicked [effectDisabled]="item.disabled!">
-          <i class="{{ item.icon ? item.icon : 'fa-solid fa-star' }} text-3xl text-white"></i>
+          <i [ngClass]="{
+              'fa-book': item.item === 'content',
+              'fa-star': item.item === 'activity' && item.id % 5 !== 0,
+              'fa-trophy': item.id % 5 === 0
+            }" class="text-3xl text-white fa-solid">
+          </i>
         </div>
       </div>
 

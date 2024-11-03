@@ -2,7 +2,7 @@
   <div class="flex flex-col items-center gap-4">
     <span class="text-xl text-justify">{{ data.content }}</span>
     @if (data.image) {
-    <img [src]="'assets/image/questions/' + data.image" class="w-36">
+    <img [src]="data.image" class="w-36">
     }
   </div>
 

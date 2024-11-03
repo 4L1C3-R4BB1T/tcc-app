@@ -29,7 +29,7 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'learning/trail/:id',
+    path: 'learning/section/:sectionId/item/:itemId',
     loadChildren: () => import('./feature/learning-trail/learning-trail.module'),
     canActivate: [authGuard]
   }

@@ -30,7 +30,7 @@ export class ProfilePageComponent implements ViewDidEnter {
 
   public closeAlertButtons: AlertButton[] = [
     {
-      text: 'Não',
+      text: 'Cancelar',
       role: 'no',
       cssClass: '!text-black',
       handler: () => console.log("Não")
@@ -51,7 +51,7 @@ export class ProfilePageComponent implements ViewDidEnter {
       handler: () => console.log("Cancelar")
     },
     {
-      text: 'Sim, deletar minha conta.',
+      text: 'Sim',
       role: 'no',
       cssClass: '!text-black',
       handler: async () => this.removeAccount()
@@ -142,7 +142,7 @@ export class ProfilePageComponent implements ViewDidEnter {
 
   async removeAccount() {
     const dialog = this.dialogService.open(ConfirmPasswordComponent, {
-      header: 'Confirmar Identidade',
+      header: 'Digite sua senha',
       modal: true,
       width: '90vw',
       position: 'center',

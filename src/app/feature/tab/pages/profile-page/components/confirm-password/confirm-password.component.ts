@@ -6,7 +6,7 @@ import { DynamicDialogRef } from "primeng/dynamicdialog";
   template: `
     <div class="space-y-5">
       <input type="password" [(ngModel)]="password" variant="filled" pInputText placeholder="Confirme sua Senha" class="w-full"/>
-      <button (click)="confirm()" pButton class="w-full p-3 flex justify-center rounded-md font-medium">Confirmar</button>
+      <button (click)="confirm()" pButton class="w-full p-3 flex justify-center rounded-md font-medium bg-orange-500 border-orange-500">Confirmar</button>
     </div>
     `,
 })
