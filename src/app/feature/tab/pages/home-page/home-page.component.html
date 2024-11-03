@@ -11,53 +11,22 @@
 
     <div class="bg-white rounded-2xl mat-elevation-z4 mt-2">
       <ul class="flex p-2 [&_li]:flex [&_li]:flex-1 [&_li]:items-center [&_li]:justify-center">
-        <li>
-          <ion-button size="small" class="checked">
-            <span slot="icon-only" class="text-xs text-black">D</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small" class="checked">
-            <span slot="icon-only" class="text-xs text-black">S</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small" class="checked">
-            <span slot="icon-only" class="text-xs text-black">T</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small">
-            <span slot="icon-only" class="text-xs text-black">Q</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small">
-            <span slot="icon-only" class="text-xs text-black">Q</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small">
-            <span slot="icon-only" class="text-xs text-black">S</span>
-            <ion-icon slot="icon-only" name="checkmark"></ion-icon>
-          </ion-button>
-        </li>
-        <li>
-          <ion-button size="small">
-            <span slot="icon-only" class="text-xs text-black">S</span>
+        <li *ngFor="let day of ['D', 'S', 'T', 'Q', 'Q', 'S', 'S']; let i = index">
+          <ion-button size="small" [ngClass]="{ 'checked': daysWithActivity[i] }">
+            <span slot="icon-only" class="text-xs text-black">{{ day }}</span>
             <ion-icon slot="icon-only" name="checkmark"></ion-icon>
           </ion-button>
         </li>
       </ul>
     </div>
 
+    <div class="flex items-center justify-center gap-2 mt-4">
+      <i class="fa-solid fa-fire text-orange-500"></i>
+      <span class="text-md text-gray-500">Dias de ofensiva: <span class="font-bold">{{ offensive() }}</span></span>
+    </div>
+
     <div
-      class="border-solid border-gray-500 border-opacity-10 rounded-xl mt-10 shadow-lg flex flex-col gap-4 items-center text-center pt-4 pb-6 px-4">
+      class="border-solid border-gray-500 border-opacity-10 rounded-xl mt-8 shadow-lg flex flex-col gap-4 items-center text-center pt-4 pb-6 px-4">
       <img src="assets/image/home/books.png" class="w-24">
       <span class="text-xl font-semibold">Cada desafio é uma oportunidade para brilhar!</span>
       <p class="text-sm text-gray-500">

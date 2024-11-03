@@ -82,7 +82,6 @@ export class LearningTrailComponent implements OnInit {
     console.log("totalExp", update.totalExp)
 
     this.updateData(update);
-
     this.router.navigate(['/tabs/learn']);
   }
 

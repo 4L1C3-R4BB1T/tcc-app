@@ -11,4 +11,10 @@ export interface UserStatistics {
   challengesCompleted: number;
   qttAchievements: number;
   totalExp: number;
+  offensive: number;
+  activities: ActivityDate[];
+}
+
+interface ActivityDate {
+  date: Date;
 }
