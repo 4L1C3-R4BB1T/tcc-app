@@ -23,9 +23,12 @@ export class LearnPageComponent implements OnInit, ViewDidEnter  {
 
   currentTitle = signal(this.section()?.units[0].title);
 
+  loading = signal<boolean>(true);
+
   constructor(readonly sectionService: SectionService, readonly router: Router) { }
 
   ngOnInit(): void {
+    this.loading.set(true);
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const currentRoute = this.router.url;
       if (['/tabs/learn'].includes(currentRoute)) {
@@ -34,8 +37,12 @@ export class LearnPageComponent implements OnInit, ViewDidEnter  {
             this.section.set(data);
             this.currentTitle.set(this.section()?.units[0].title);
             console.log("Seção carregada...");
+            this.loading.set(false);
           },
-          error: (error) => console.error("Erro ao carregar seção:", error)
+          error: (error) => {
+            console.error("Erro ao carregar seção:", error);
+            this.loading.set(false);
+          }
         });
       }
     });
@@ -43,6 +50,7 @@ export class LearnPageComponent implements OnInit, ViewDidEnter  {
 
   // garantir que vai recarregar com os dados atualizados
   ionViewDidEnter(): void {
+    this.loading.set(true);
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const currentRoute = this.router.url;
       if (['/tabs/learn'].includes(currentRoute)) {
@@ -51,8 +59,12 @@ export class LearnPageComponent implements OnInit, ViewDidEnter  {
             this.section.set(data);
             this.currentTitle.set(this.section()?.units[0].title);
             console.log("Seção carregada...");
+            this.loading.set(false);
           },
-          error: (error) => console.error("Erro ao carregar seção:", error)
+          error: (error) => {
+            console.error("Erro ao carregar seção:", error);
+            this.loading.set(false);
+          }
         });
       }
     });

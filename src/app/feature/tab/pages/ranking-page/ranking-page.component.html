@@ -1,40 +1,3 @@
-<!-- <ion-content>
-  <div class="flex flex-col">
-
-    <div class="flex justify-center items-center py-5">
-      <img src="assets/image/ranking/ranking.png" class="w-28 bg-white rounded-full p-2 mat-elevation-z4">
-    </div>
-
-    <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 w-full">
-
-      <div class="flex flex-col gap-4 mt-4 mb-16">
-
-        <div *ngFor="let user of users; let i = index"
-          class="flex justify-between items-center border-solid border-gray-500 border-opacity-10 rounded-xl p-4 h-16 shadow-lg"
-          [ngClass]="{ 'gold': i === 0, 'silver': i === 1, 'bronze': i === 2 }"
-          class="{{ user.isCurrentUser ? 'user' : '' }}">
-          <div class="flex gap-3 items-center">
-            @if(i < 3) { <span class="flex items-center">
-              <img [src]="'assets/image/ranking/' + i + '.svg'" class="w-8 ">
-              </span>
-              } @else {
-              <span class="flex justify-center w-8 font-bold">{{ i + 1 }}</span>
-              }
-              <span>{{ user.isCurrentUser ? "Você" : user.name }}</span>
-          </div>
-          <div class="flex gap-2 items-center">
-            <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
-            <span class="font-bold">{{ user.totalExp }}xp</span>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</ion-content> -->
-
 <ion-content>
   <div class="flex flex-col h-full">
 
@@ -42,31 +5,40 @@
       <img src="assets/image/ranking/ranking.png" class="w-28 bg-white rounded-full p-2 mat-elevation-z4">
     </div>
 
-    <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 flex-grow w-full h-full">
-      <div class="flex flex-col gap-4 mt-4 mb-16">
+    <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 flex-grow w-full"
+      [ngClass]="{ 'h-auto': users().length > limit, 'h-full': users().length <= limit }">
 
-        <div *ngFor="let user of users(); let i = index"
-          class="flex justify-between items-center border-solid border-gray-500 border-opacity-10 rounded-xl p-4 h-16 shadow-lg"
-          [ngClass]="{ 'gold': i === 0, 'silver': i === 1, 'bronze': i === 2 }"
-          class="{{ user.isCurrentUser ? 'user' : '' }}">
-          <div class="flex gap-3 items-center">
-            <ng-container *ngIf="i < 3; else elseBlock">
-              <span class="flex items-center">
-                <img [src]="'assets/image/ranking/' + i + '.svg'" class="w-8 ">
-              </span>
-            </ng-container>
-            <ng-template #elseBlock>
-              <span class="flex justify-center w-8 font-bold">{{ i + 1 }}</span>
-            </ng-template>
-            <span>{{ user.isCurrentUser ? "Você" : user.name }}</span>
-          </div>
-          <div class="flex gap-2 items-center">
-            <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
-            <span class="font-bold">{{ user.totalExp }}xp</span>
+      <ng-container *ngIf="loading(); else rankingContent">
+        <div class="flex justify-center items-center h-full">
+          <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+        </div>
+      </ng-container>
+
+      <ng-template #rankingContent>
+        <div class="flex flex-col gap-4 mt-4 mb-16">
+          <div *ngFor="let user of users(); let i = index"
+            class="flex justify-between items-center border-solid border-gray-500 border-opacity-10 rounded-xl p-4 h-16 shadow-lg"
+            [ngClass]="{ 'gold': i === 0, 'silver': i === 1, 'bronze': i === 2 }"
+            class="{{ user.isCurrentUser ? 'user' : '' }}">
+            <div class="flex gap-3 items-center">
+              <ng-container *ngIf="i < 3; else elseBlock">
+                <span class="flex items-center">
+                  <img [src]="'assets/image/ranking/' + i + '.svg'" class="w-8 ">
+                </span>
+              </ng-container>
+              <ng-template #elseBlock>
+                <span class="flex justify-center w-8 font-bold">{{ i + 1 }}</span>
+              </ng-template>
+              <span>{{ user.isCurrentUser ? "Você" : user.name }}</span>
+            </div>
+            <div class="flex gap-2 items-center">
+              <i class="fa-solid fa-bolt fa-xl text-yellow-300"></i>
+              <span class="font-bold">{{ user.totalExp }}xp</span>
+            </div>
           </div>
         </div>
+      </ng-template>
 
-      </div>
     </div>
 
   </div>

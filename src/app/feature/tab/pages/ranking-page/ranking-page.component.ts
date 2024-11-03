@@ -12,12 +12,23 @@ export class RankingPageComponent implements ViewDidEnter {
 
   users = signal<UserRanking[]>([]);
 
+  loading = signal<boolean>(true);
+
+  limit = 5;
+
   constructor(readonly rankingService: RankingService) { }
 
   ionViewDidEnter(): void {
+    this.loading.set(true);
     this.rankingService.findAll().subscribe({
-      next: (data) => this.users.set(data),
-      error: (error) => console.error("Erro ao carregar ranking:", error)
+      next: (data) => {
+        this.users.set(data);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error("Erro ao carregar ranking:", error)
+        this.loading.set(false);
+      }
     });
   }
 

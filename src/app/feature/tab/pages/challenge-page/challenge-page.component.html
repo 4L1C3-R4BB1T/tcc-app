@@ -8,34 +8,42 @@
         styleClass="mb-3" />
     </form>
 
-    <div *ngIf="challenges() && challenges().length > 0; else noChallenges" class="flex flex-col gap-5">
-      <div *ngFor="let challenge of challenges()"
-        class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid" [ngClass]="{
-             'border-lime-500': challenge.difficulty === 1,
-             'border-yellow-400': challenge.difficulty === 2,
-             'border-red-500': challenge.difficulty === 3
-           }" matRipple [routerLink]="['/quiz/started', challenge._id]">
+    <ng-container *ngIf="loading(); else challengesContent">
+      <div class="flex justify-center items-center h-full">
+        <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+      </div>
+    </ng-container>
 
-        <div class="flex justify-end">
-          <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs h-5">
-            <span *ngIf="challenge.difficulty === 1" class="difficulty bg-lime-500">Fácil</span>
-            <span *ngIf="challenge.difficulty === 2" class="difficulty bg-yellow-400">Médio</span>
-            <span *ngIf="challenge.difficulty === 3" class="difficulty bg-red-500">Difícil</span>
-          </span>
-        </div>
+    <ng-template #challengesContent>
+      <div *ngIf="challenges() && challenges().length > 0; else noChallenges" class="flex flex-col gap-5">
+        <div *ngFor="let challenge of challenges()"
+          class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid" [ngClass]="{
+              'border-lime-500': challenge.difficulty === 1,
+              'border-yellow-400': challenge.difficulty === 2,
+              'border-red-500': challenge.difficulty === 3
+            }" matRipple [routerLink]="['/quiz/started', challenge._id]">
 
-        <div class="flex gap-5 px-2 pb-3">
-          <img [src]="challenge.image" class="w-14 h-14">
-          <div class="flex flex-col gap-2">
-            <span class="text-lg font-bold">{{ challenge.title }}</span>
-            <span class="text-sm text-gray-500">
-              Pontos:
-              <span class="font-bold text-lime-500">{{ challenge.exp }}xp</span>
+          <div class="flex justify-end">
+            <span class="bg-white w-14 rounded-lg flex justify-center items-center text-xs h-5">
+              <span *ngIf="challenge.difficulty === 1" class="difficulty bg-lime-500">Fácil</span>
+              <span *ngIf="challenge.difficulty === 2" class="difficulty bg-yellow-400">Médio</span>
+              <span *ngIf="challenge.difficulty === 3" class="difficulty bg-red-500">Difícil</span>
             </span>
+          </div>
+
+          <div class="flex gap-5 px-2 pb-3">
+            <img [src]="challenge.image" class="w-14 h-14">
+            <div class="flex flex-col gap-2">
+              <span class="text-lg font-bold">{{ challenge.title }}</span>
+              <span class="text-sm text-gray-500">
+                Pontos:
+                <span class="font-bold text-lime-500">{{ challenge.exp }}xp</span>
+              </span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-template>
 
     <ng-template #noChallenges>
       <div class="flex flex-col items-center justify-center gap-4 text-center">

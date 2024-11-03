@@ -22,6 +22,8 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
     { label: 'Difícil', value: '3' }
   ];
 
+  loading = signal<boolean>(true);
+
   constructor(readonly challengeService: ChallengeService) { }
 
   ngOnInit(): void {
@@ -41,9 +43,16 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
   }
 
   private loadChallenges(difficulty: number): void {
+    this.loading.set(true);
     this.challengeService.findAll(difficulty).subscribe({
-      next: (data) => this.challenges.set(data),
-      error: (error) => console.error("Erro ao carregar desafios:", error)
+      next: (data) => {
+        this.challenges.set(data);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error("Erro ao carregar desafios:", error);
+        this.loading.set(false);
+      }
     });
   }
 
