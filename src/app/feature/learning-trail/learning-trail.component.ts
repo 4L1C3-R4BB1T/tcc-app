@@ -28,6 +28,8 @@ export class LearningTrailComponent implements OnInit {
 
   disableButton = signal(false);
 
+  loading = signal<boolean>(true);
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -40,14 +42,19 @@ export class LearningTrailComponent implements OnInit {
     this.itemId = this.route.snapshot.params['itemId'] as number;
     this.sectionId = this.route.snapshot.params['sectionId'] as number;
 
+    this.loading.set(true);
     this.sectionService.getItens(this.sectionId).subscribe({
       next: (data) => {
         this.trailItemContent.set(data)
         this.itemContent.set(this.trailItemContent()[this.itemId - 1]);
         console.log('Conteúdo dos itens:', this.trailItemContent());
         console.log('Item atual:', this.itemContent());
+        this.loading.set(false);
       },
-      error: (error) => console.error("Erro ao carregar seção:", error)
+      error: (error) => {
+        console.error("Erro ao carregar seção:", error);
+        this.loading.set(false);
+      }
     });
 
     this.disableButton.set(true);
@@ -67,27 +74,37 @@ export class LearningTrailComponent implements OnInit {
     this.updateData(this.itemActivityComponent.isCorrect() ? 5 : 0);
 
     let update: Partial<UserStatistics> = {
-      correctAnswers: 0, wrongAnswers: 0, totalExp: 0
+      correctAnswers: 0, wrongAnswers: 0, totalExp: 5
     };
 
     if (this.itemActivityComponent.isCorrect()) {
       update.correctAnswers = 1;
-      update.totalExp = 5;
     } else {
       update.wrongAnswers = 1;
+      update.totalExp = 0;
     }
 
-    update.totalExp = !this.itemContent()?.completed ? 5 : 0;
+    if (this.itemContent()?.completed) {
+      update.totalExp = 0;
+    }
 
-    console.log("totalExp", update.totalExp)
+    console.log("completed", this.itemContent()?.completed)
+    console.log("totalExp", update.totalExp);
 
     this.updateData(update);
     this.router.navigate(['/tabs/learn']);
   }
 
   returnContent() {
-    let update: Partial<UserStatistics> = { totalExp: 0 };
-    update.totalExp = !this.itemContent()?.completed ? 5 : 0;
+    let update: Partial<UserStatistics> = { totalExp: 5 };
+
+    if (this.itemContent()?.completed) {
+      update.totalExp = 0;
+    }
+
+    console.log("completed", this.itemContent()?.completed)
+    console.log("totalExp", update.totalExp);
+
     this.updateData(update);
     this.router.navigate(['/tabs/learn']);
   }

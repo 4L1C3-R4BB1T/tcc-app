@@ -32,6 +32,8 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   lifes = signal(5);
 
+  loading = signal<boolean>(true);
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -41,6 +43,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
   ionViewDidEnter(): void {
     this.challengeId.set(this.route.snapshot.params['id'] as string);
 
+    this.loading.set(true);
     this.challengeService.findById(this.challengeId()).subscribe({
       next: (data) => {
         this.questions.set(data.questions as Question[]);
@@ -50,8 +53,13 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
           this.currentQuestion.set(this.questions()[0]);
           this.currentQuestionIndex.set(0);
         }
+
+        this.loading.set(false);
       },
-      error: (error) => console.error("Erro ao carregar conquistas:", error)
+      error: (error) => {
+        console.error("Erro ao carregar conquistas:", error);
+        this.loading.set(false);
+      }
     });
 
     this.disableButton.set(true);

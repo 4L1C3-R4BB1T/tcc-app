@@ -23,4 +23,8 @@ export class SectionService {
     return this.http.patch(`${environment.apiUrl}/sections/${sectionId}/questions/${itemId}`, data);
   }
 
+  create(): Observable<Section> {
+    return this.http.post<Section>(`${environment.apiUrl}/sections`, null);
+  }
+
 }

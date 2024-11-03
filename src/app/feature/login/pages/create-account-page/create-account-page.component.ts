@@ -5,6 +5,7 @@ import { MessageService } from 'primeng/api';
 import { AchievementService } from 'src/app/services/achievement.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { isValidEmail } from 'src/app/utils/validators';
+import { SectionService } from './../../../../services/section.service';
 import { StatisticService } from './../../../../services/statistic.service';
 
 @Component({
@@ -23,7 +24,8 @@ export class CreateAccountPageComponent {
     readonly messageService: MessageService,
     readonly router: Router,
     readonly statisticService: StatisticService,
-    readonly achievementService: AchievementService
+    readonly achievementService: AchievementService,
+    readonly sectionService: SectionService
   ) { }
 
   async signUp(name: string, email: string, password: string, repassword: string) {
@@ -72,6 +74,11 @@ export class CreateAccountPageComponent {
         next: (data) => console.log(data),
         error: (error) => console.error("Erro ao criar estatisticas:", error)
       }); // criar estatisticas para o usuario
+
+      this.sectionService.create().subscribe({
+        next: (data) => console.log(data),
+        error: (error) => console.error("Erro ao criar seções para o usuario:", error)
+      }); // criar seções para o usuario
 
       this.achievementService.checkAchievements().subscribe({
         next: (data) => console.log(data),

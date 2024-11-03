@@ -3,36 +3,44 @@
   <div class="bg-[#fbac3a] h-full rounded-xl p-3 shadow-lg">
     <div class="bg-white h-full rounded-xl p-4">
 
-      @if (itemContent()?.item === 'content') {
-      <div class="h-full flex flex-col justify-between gap-3 p-2">
-        <app-item-content [data]="itemContent()"></app-item-content>
-        <div>
+      <ng-container *ngIf="loading(); else trailContent">
+        <div class="flex justify-center items-center h-full">
+          <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+        </div>
+      </ng-container>
+
+      <ng-template #trailContent>
+        @if (itemContent()?.item === 'content') {
+        <div class="h-full flex flex-col justify-between gap-3 p-2">
+          <app-item-content [data]="itemContent()"></app-item-content>
+          <div>
+            <p-button
+              label="Continuar"
+              (click)="returnContent()"
+              styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+            </p-button>
+          </div>
+        </div>
+        } @else if (itemContent()?.item === 'activity') {
+        <div class="flex flex-col justify-between h-full">
+          <app-item-activity [data]="itemContent()"></app-item-activity>
+          @if (isAnswered()) {
           <p-button
             label="Continuar"
-            (click)="returnContent()"
+            (click)="returnActivity()"
             styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
           </p-button>
+          } @else {
+          <p-button
+            label="Responder"
+            (click)="checkAnswered()"
+            [disabled]="disableButton()"
+            styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+          </p-button>
+          }
         </div>
-      </div>
-      } @else if (itemContent()?.item === 'activity') {
-      <div class="flex flex-col justify-between h-full">
-        <app-item-activity [data]="itemContent()"></app-item-activity>
-        @if (isAnswered()) {
-        <p-button
-          label="Continuar"
-          (click)="returnActivity()"
-          styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
-        </p-button>
-        } @else {
-        <p-button
-          label="Responder"
-          (click)="checkAnswered()"
-          [disabled]="disableButton()"
-          styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
-        </p-button>
         }
-      </div>
-      }
+      </ng-template>
 
     </div>
   </div>

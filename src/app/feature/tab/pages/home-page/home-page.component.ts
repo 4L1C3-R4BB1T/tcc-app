@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ViewDidEnter } from '@ionic/angular';
-import { UserRanking, UserStatistics } from 'src/app/models/user';
+import { UserRanking } from 'src/app/models/user';
+import { AchievementService } from 'src/app/services/achievement.service';
 import { RankingService } from 'src/app/services/ranking.service';
 import { StatisticService } from './../../../../services/statistic.service';
 
@@ -20,7 +21,8 @@ export class HomePageComponent implements ViewDidEnter {
 
   constructor(
     readonly rankingService: RankingService,
-    readonly statisticService: StatisticService
+    readonly statisticService: StatisticService,
+    readonly achievementService: AchievementService
   ) { }
 
   ionViewDidEnter(): void {
@@ -36,6 +38,11 @@ export class HomePageComponent implements ViewDidEnter {
         this.markDaysWithActivity();
       },
       error: (error) => console.error('Erro ao buscar estatísticas:', error)
+    });
+
+    this.achievementService.checkAchievements().subscribe({
+      next: (data) => console.log(data),
+      error: (error) => console.error("Erro ao checar conquistas:", error)
     });
   }
 
