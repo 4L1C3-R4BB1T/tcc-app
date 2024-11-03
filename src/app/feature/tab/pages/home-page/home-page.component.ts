@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { ViewDidEnter } from '@ionic/angular';
 import { UserRanking } from 'src/app/models/user';
 import { AchievementService } from 'src/app/services/achievement.service';
@@ -10,14 +10,14 @@ import { StatisticService } from './../../../../services/statistic.service';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss'],
 })
-export class HomePageComponent implements ViewDidEnter {
+export class HomePageComponent implements OnInit, ViewDidEnter {
 
   userRanking = signal<UserRanking | null>(null);
 
   offensive = signal<number>(0);
 
-  activities: Date[] = []; // Para armazenar as datas das atividades
-  daysWithActivity: boolean[] = [false, false, false, false, false, false, false]; // Para marcar os dias
+  activities = signal<Date[]>([]);
+  daysWithActivity: boolean[] = [false, false, false, false, false, false, false];
 
   constructor(
     readonly rankingService: RankingService,
@@ -25,7 +25,15 @@ export class HomePageComponent implements ViewDidEnter {
     readonly achievementService: AchievementService
   ) { }
 
+  ngOnInit(): void {
+    this.loadingData();
+  }
+
   ionViewDidEnter(): void {
+    this.loadingData();
+  }
+
+  loadingData() {
     this.rankingService.findByUser().subscribe({
       next: (data) => this.userRanking.set(data),
       error: (error) => console.error("Erro ao carregar ranking do usuário:", error)
@@ -34,40 +42,36 @@ export class HomePageComponent implements ViewDidEnter {
     this.statisticService.findByUser().subscribe({
       next: (data) => {
         this.offensive.set(data.offensive),
-        this.activities = data.activities.map(activity => new Date(activity.date));
+          this.activities.set(data.activities.map(activity => {
+            let date = activity.date as unknown as string;
+            const [year, month, day] = date.split('T')[0].split('-').map(Number);
+            return new Date(year, month - 1, day);
+          }));
         this.markDaysWithActivity();
       },
       error: (error) => console.error('Erro ao buscar estatísticas:', error)
     });
 
     this.achievementService.checkAchievements().subscribe({
-      next: (data) => console.log(data),
+      next: () => console.log("Conquistas verificadas com sucesso"),
       error: (error) => console.error("Erro ao checar conquistas:", error)
     });
   }
 
   markDaysWithActivity() {
     const today = new Date();
-    today.setHours(0, 0, 0, 0); // Zera horas, minutos, segundos e milissegundos
-
-    // Para cada data de atividade, verifica qual dia da semana corresponde
-    this.activities.forEach(activity => {
-      const activityDate = new Date(activity);
-      activityDate.setHours(0, 0, 0, 0); // Zera horas, minutos, segundos e milissegundos
-      const dayOfWeek = activityDate.getDay(); // 0 = domingo, 1 = segunda, ..., 6 = sábado
-
-      // Marca o dia da semana correspondente como verdadeiro se a atividade é da semana atual
-      if (activityDate >= this.getStartOfWeek(today)) {
+    today.setHours(0, 0, 0, 0);
+    this.activities().forEach(activity => {
+      const dayOfWeek = activity.getDay();
+      if (activity >= this.getStartOfWeek(today)) {
         this.daysWithActivity[dayOfWeek] = true;
       }
     });
   }
 
-  // Função para obter o início da semana (domingo ou segunda, dependendo da sua lógica)
   getStartOfWeek(date: Date): Date {
     const startOfWeek = new Date(date);
-    startOfWeek.setDate(date.getDate() - date.getDay()); // Ajusta para o domingo
-    startOfWeek.setHours(0, 0, 0, 0); // Zera horas, minutos, segundos e milissegundos
+    startOfWeek.setDate(date.getDate() - date.getDay());
     return startOfWeek;
   }
 

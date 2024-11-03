@@ -52,12 +52,12 @@ export class ChallengeResultPageComponent implements OnInit {
     };
 
     this.statisticService.updateStatistics(update).subscribe({
-      next: (response) => console.log('Estatísticas atualizadas:', response),
-      error: (error) => console.error('Erro ao atualizar estatísticas:', error),
+      next: () => console.log("Estatísticas atualizadas"),
+      error: (error) => console.error("Erro ao atualizar estatísticas:", error),
     });
 
     this.achievementService.checkAchievements().subscribe({
-      next: (data) => console.log(data),
+      next: () => console.log("Conquistas verificadas com sucesso"),
       error: (error) => console.error("Erro ao checar conquistas:", error)
     });
 

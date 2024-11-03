@@ -1,10 +1,10 @@
 import { Component, OnInit, QueryList, signal, ViewChildren } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { ScrollCustomEvent, ViewDidEnter } from '@ionic/angular';
+import { filter } from 'rxjs';
 import { Section } from 'src/app/models/sections';
 import { SectionService } from './../../../../services/section.service';
 import { TrailProgressComponent } from './components/trail-progress/trail-progress.component';
-import { NavigationEnd, Router } from '@angular/router';
-import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-learn-page',
@@ -28,28 +28,15 @@ export class LearnPageComponent implements OnInit, ViewDidEnter  {
   constructor(readonly sectionService: SectionService, readonly router: Router) { }
 
   ngOnInit(): void {
-    this.loading.set(true);
-    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      const currentRoute = this.router.url;
-      if (['/tabs/learn'].includes(currentRoute)) {
-        this.sectionService.findById(1).subscribe({
-          next: (data) => {
-            this.section.set(data);
-            this.currentTitle.set(this.section()?.units[0].title);
-            console.log("Seção carregada...");
-            this.loading.set(false);
-          },
-          error: (error) => {
-            console.error("Erro ao carregar seção:", error);
-            this.loading.set(false);
-          }
-        });
-      }
-    });
+    this.loadingData();
+
   }
 
-  // garantir que vai recarregar com os dados atualizados
   ionViewDidEnter(): void {
+    this.loadingData();
+  }
+
+  loadingData() {
     this.loading.set(true);
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const currentRoute = this.router.url;

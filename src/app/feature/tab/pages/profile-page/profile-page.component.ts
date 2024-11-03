@@ -79,7 +79,7 @@ export class ProfilePageComponent implements ViewDidEnter {
     });
 
     this.achievementService.checkAchievements().subscribe({
-      next: (data) => console.log(data),
+      next: () => console.log("Conquistas verificadas com sucesso"),
       error: (error) => console.error("Erro ao checar conquistas:", error)
     });
 

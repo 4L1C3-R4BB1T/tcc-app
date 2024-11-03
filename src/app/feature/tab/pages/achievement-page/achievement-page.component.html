@@ -6,25 +6,34 @@
         class="w-28 bg-white rounded-full p-2 mat-elevation-z4">
     </div>
 
-    <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 w-full">
-      <div class="grid grid-cols-2 gap-4 mt-4 mb-16">
+    <div class="bg-white rounded-tl-[2rem] rounded-tr-[2rem] py-4 px-6 w-full"
+      [ngClass]="{ 'h-auto': !loading(), 'h-full': loading() }">
 
-        <div *ngFor="let achievement of achievements()"
-          class="flex flex-col items-center justify-between py-2 px-1 shadow-lg rounded-xl border-solid text-center h-56"
-          [ngStyle]="{'border-color': achievement.color}"
-          [ngClass]="{ 'disabled': achievement.disabled }">
-
-          <img src="{{ achievement.image }}" class="w-14 h-14">
-
-          <span class="text-lg font-bold">{{ achievement.title }}</span>
-          <span class="text-sm text-gray-500">{{ achievement.description }}</span>
-
-          @if (!achievement.disabled) {
-          <p-tag severity="info" value="Obtido em {{ achievement.obtainedAt }}" styleClass="text-[0.55rem]" />
-          }
+      <ng-container *ngIf="loading(); else anchievementContent">
+        <div class="flex justify-center items-center h-full">
+          <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
         </div>
+      </ng-container>
 
-      </div>
+      <ng-template #anchievementContent>
+        <div class="grid grid-cols-2 gap-4 mt-4 mb-16">
+          <div *ngFor="let achievement of achievements()"
+            class="flex flex-col items-center justify-between py-2 px-1 shadow-lg rounded-xl border-solid text-center h-56"
+            [ngStyle]="{'border-color': achievement.color}"
+            [ngClass]="{ 'disabled': achievement.disabled }">
+
+            <img src="{{ achievement.image }}" class="w-14 h-14">
+
+            <span class="text-lg font-bold">{{ achievement.title }}</span>
+            <span class="text-sm text-gray-500">{{ achievement.description }}</span>
+
+            @if (!achievement.disabled) {
+            <p-tag severity="info" value="Obtido em {{ achievement.obtainedAt }}" styleClass="text-[0.55rem]" />
+            }
+          </div>
+        </div>
+      </ng-template>
+
     </div>
 
   </div>

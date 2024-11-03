@@ -47,8 +47,6 @@ export class LearningTrailComponent implements OnInit {
       next: (data) => {
         this.trailItemContent.set(data)
         this.itemContent.set(this.trailItemContent()[this.itemId - 1]);
-        console.log('Conteúdo dos itens:', this.trailItemContent());
-        console.log('Item atual:', this.itemContent());
         this.loading.set(false);
       },
       error: (error) => {
@@ -71,70 +69,65 @@ export class LearningTrailComponent implements OnInit {
     this.itemActivityComponent.canMark.set(false);
     this.isAnswered.set(false);
 
-    this.updateData(this.itemActivityComponent.isCorrect() ? 5 : 0);
-
-    let update: Partial<UserStatistics> = {
-      correctAnswers: 0, wrongAnswers: 0, totalExp: 5
-    };
+    let updateExp = { correctAnswers: 0, wrongAnswers: 0, totalExp: 5 };
+    let updateItem = { completed: true, disabled: false };
 
     if (this.itemActivityComponent.isCorrect()) {
-      update.correctAnswers = 1;
+      updateExp.correctAnswers = 1;
     } else {
-      update.wrongAnswers = 1;
-      update.totalExp = 0;
+      updateExp.wrongAnswers = 1;
+      updateExp.totalExp = 0;
+      updateItem.completed = false;
     }
 
     if (this.itemContent()?.completed) {
-      update.totalExp = 0;
+      updateExp.totalExp = 0;
     }
 
-    console.log("completed", this.itemContent()?.completed)
-    console.log("totalExp", update.totalExp);
-
-    this.updateData(update);
+    this.updateData(updateExp, updateItem);
     this.router.navigate(['/tabs/learn']);
   }
 
   returnContent() {
-    let update: Partial<UserStatistics> = { totalExp: 5 };
+    let updateExp: Partial<UserStatistics> = { totalExp: 5 };
 
     if (this.itemContent()?.completed) {
-      update.totalExp = 0;
+      updateExp.totalExp = 0;
     }
 
-    console.log("completed", this.itemContent()?.completed)
-    console.log("totalExp", update.totalExp);
-
-    this.updateData(update);
+    this.updateData(updateExp, { completed: true, disabled: false });
     this.router.navigate(['/tabs/learn']);
   }
 
-  updateData(obj: any) {
+  updateData(updateExp: any, updateItem: any) {
     // setar item como completed
-    this.sectionService.updateItem(this.sectionId, this.itemId, { completed: true, disabled: false })
+    this.sectionService.updateItem(this.sectionId, this.itemId, updateItem)
       .subscribe({
         next: () => console.log("Item atualizado com sucesso"),
         error: (error) => console.error("Erro ao atualizar seção:", error)
       });
 
     // atualizar estatisticas do usuario
-    this.statisticService.updateStatistics(obj).subscribe({
+    this.statisticService.updateStatistics(updateExp).subscribe({
       next: (response) => console.log('Estatísticas atualizadas:', response),
       error: (error) => console.error('Erro ao atualizar estatísticas:', error),
     });
 
-    // setar next item como disable false
-    const nextItemIndex = Number(this.itemId) + 1;
+    // se o item atual foi completa, ou seja, se foi respondido corretamente
+    if (updateItem.completed) {
+      // setar next item como disable false
+      const nextItemIndex = Number(this.itemId) + 1;
 
-    // verificar se existe um próximo item
-    if (nextItemIndex <= this.trailItemContent().length) {
-      const nextItem = this.trailItemContent()[nextItemIndex - 1];
-      this.sectionService.updateItem(this.sectionId, nextItem.id, { disabled: false }).subscribe({
-        next: () => console.log(`Próximo item (ID: ${nextItem.id}) habilitado com sucesso!`),
-        error: (error) => console.error("Erro ao habilitar o próximo item:", error)
-      });
-    } else {
-      console.log("Não há próximo item.");
+      // verificar se existe um próximo item
+      if (nextItemIndex <= this.trailItemContent().length) {
+        const nextItem = this.trailItemContent()[nextItemIndex - 1];
+        this.sectionService.updateItem(this.sectionId, nextItem.id, { disabled: false }).subscribe({
+          next: () => console.log(`Próximo item (ID: ${nextItem.id}) habilitado com sucesso`),
+          error: (error) => console.error("Erro ao habilitar o próximo item:", error)
+        });
+      } else {
+        console.log("Não há próximo item");
+      }
     }
 
     // checar conquistas

@@ -12,12 +12,21 @@ export class AchievementPageComponent implements ViewDidEnter {
 
   achievements = signal<Achievement[]>([]);
 
+  loading = signal<boolean>(true);
+
   constructor(readonly achievementService: AchievementService) { }
 
   ionViewDidEnter(): void {
+    this.loading.set(true);
     this.achievementService.findAll().subscribe({
-      next: (data) => this.achievements.set(data),
-      error: (error) => console.error("Erro ao carregar conquistas:", error)
+      next: (data) => {
+        this.achievements.set(data);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error("Erro ao carregar conquistas:", error);
+        this.loading.set(false);
+      }
     });
   }
 

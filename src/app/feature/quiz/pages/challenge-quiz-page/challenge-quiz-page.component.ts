@@ -47,7 +47,6 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     this.challengeService.findById(this.challengeId()).subscribe({
       next: (data) => {
         this.questions.set(data.questions as Question[]);
-        console.log(this.questions());
 
         if (this.questions().length > 0) {
           this.currentQuestion.set(this.questions()[0]);
@@ -75,8 +74,6 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     } else {
       this.lifes.set(this.lifes() - 1); // perder vidas
     }
-
-    console.log("qtd vidas:", this.lifes())
 
     if (this.lifes() === 0) {
       this.totalCorrectAnswers.set(0);

@@ -71,19 +71,14 @@ export class CreateAccountPageComponent {
       await this.authService.signUp(email, password, name);
 
       this.statisticService.create().subscribe({
-        next: (data) => console.log(data),
-        error: (error) => console.error("Erro ao criar estatisticas:", error)
+        next: () => console.log("Estatísticas criadas para o usuário"),
+        error: (error) => console.error("Erro ao criar estatísticas:", error)
       }); // criar estatisticas para o usuario
 
       this.sectionService.create().subscribe({
-        next: (data) => console.log(data),
-        error: (error) => console.error("Erro ao criar seções para o usuario:", error)
+        next: (data) => console.log("Seções setadas para o usuário"),
+        error: (error) => console.error("Erro ao criar seções para o usuário:", error)
       }); // criar seções para o usuario
-
-      this.achievementService.checkAchievements().subscribe({
-        next: (data) => console.log(data),
-        error: (error) => console.error("Erro ao checar conquistas:", error)
-      });
 
       this.router.navigate(['account', 'created']);
     } catch (error: any) {
