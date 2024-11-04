@@ -1,0 +1,65 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-item lines="none" slot="start" class="w-full">
+      <i class="fa-solid fa-xmark fa-2xl text-gray-500 mr-5 pt-4 px-1 bg-transparent" routerLink="/tabs/home"></i>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="bg-[#fbac3a] h-full rounded-xl p-3 shadow-lg">
+    <div class="bg-white h-full rounded-xl p-4 flex flex-col">
+
+      <ng-container *ngIf="loading(); else raceContent">
+        <div class="flex justify-center items-center h-full">
+          <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+        </div>
+      </ng-container>
+
+      <ng-template #raceContent>
+        <div *ngIf="!gameOver()">
+          <div class="flex flex-col gap-10">
+            <span class="text-center text-lg">
+              Seja mais rápido que o coelho! Acerte questões para avançar.
+            </span>
+
+            <div class="bg-blue-100 rounded-xl">
+              <div class="race-track w-[100%]" #raceTrack>
+                <div class="user-animal" [style.left.%]="userPosition()">🐈</div>
+                <div class="system-animal" [style.left.%]="systemPosition()">🐇</div>
+              </div>
+            </div>
+
+            <div class="flex flex-col gap-6">
+              <div class="flex flex-col items-center gap-4">
+                <span class="text-xl text-justify">{{ questions()[currentQuestionIndex()].question }}</span>
+              </div>
+
+              <div>
+                <div *ngFor="let option of questions()[currentQuestionIndex()]?.options">
+                  <div
+                    class="items-center flex gap-3 border-solid border-gray-500 border-opacity-10 rounded-xl shadow-lg p-2 py-4 my-4 text-lg  active:bg-orange-400"
+                    (click)="answerQuestion(option)">
+                    <span class="w-full text-center">{{ option }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+
+      <div *ngIf="gameOver()" class="flex flex-col items-center justify-center h-full gap-5">
+        <span class="text-center text-lg mb-4">
+          {{ winnerMessage() }}
+        </span>
+        <img [src]="'assets/image/challenge/result/' + (win() ? 1 : 3) + '.gif'" class="w-40">
+        <p-button label="Voltar" (click)="return()" routerLinkActive="router-link-active"
+          styleClass="bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg w-[17rem]">
+        </p-button>
+      </div>
+
+    </div>
+  </div>
+
+</ion-content>

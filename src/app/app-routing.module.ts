@@ -32,7 +32,12 @@ const routes: Routes = [
     path: 'learning/section/:sectionId/item/:itemId',
     loadChildren: () => import('./feature/learning-trail/learning-trail.module'),
     canActivate: [authGuard]
-  }
+  },
+  {
+    path: 'challenge/race',
+    loadChildren: () => import('./feature/race-challenge/race-challenge.module'),
+    canActivate: [authGuard]
+  },
 ];
 
 @NgModule({

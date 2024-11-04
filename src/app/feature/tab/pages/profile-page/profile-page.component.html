@@ -86,18 +86,28 @@
         </p-button>
       </div>
       <div class="achievements">
-        <div *ngIf="achievements() && achievements().length > 0; else noAchievements" class="grid grid-cols-4 gap-4 place-items-center">
-          <div *ngFor="let a of achievements()" class="achievement" [ngStyle]="{'border-color': a.color}">
-            <img src="{{ a.image }}" class="w-8 h-8">
-          </div>
-        </div>
 
-        <ng-template #noAchievements>
-          <div class="flex flex-col items-center justify-center gap-4 text-center">
-            Você ainda está em busca de suas primeiras conquistas!
-            <img src="assets/image/profile/no-achievement.png" class="w-16 h-16">
+        <ng-container *ngIf="loading(); else achievementsContent">
+          <div class="flex justify-center items-center h-full">
+            <ion-spinner name="crescent" class="w-[4rem] h-[4rem] text-orange-500"></ion-spinner>
           </div>
+        </ng-container>
+
+        <ng-template #achievementsContent>
+          <div *ngIf="achievements() && achievements().length > 0; else noAchievements" class="grid grid-cols-4 gap-4 place-items-center">
+            <div *ngFor="let a of achievements()" class="achievement" [ngStyle]="{'border-color': a.color}">
+              <img src="{{ a.image }}" class="w-8 h-8">
+            </div>
+          </div>
+
+          <ng-template #noAchievements>
+            <div class="flex flex-col items-center justify-center gap-4 text-center">
+              Você ainda está em busca de suas primeiras conquistas!
+              <img src="assets/image/profile/no-achievement.png" class="w-16 h-16">
+            </div>
+          </ng-template>
         </ng-template>
+
       </div>
     </div>
 

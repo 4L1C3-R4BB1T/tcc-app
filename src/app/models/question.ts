@@ -14,3 +14,9 @@ export interface Question {
   alternatives: Alternative[];
   correctId: number;
 };
+
+export interface QuestionRace {
+  question: string;
+  options: string[];
+  correctAnswer: string;
+}

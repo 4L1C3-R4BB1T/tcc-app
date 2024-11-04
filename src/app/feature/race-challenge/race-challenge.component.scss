@@ -1,0 +1,21 @@
+.race-track {
+  position: relative;
+  height: 70px;
+  border: 2px solid rgba(0, 0, 0, 0.6);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  background-image: url('/assets/image/grass.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.user-animal,
+.system-animal {
+  position: absolute;
+  transition: left 0.5s ease;
+  font-size: 35px;
+  top: 40%;
+  transform: scaleX(-1);
+}

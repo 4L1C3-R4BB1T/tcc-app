@@ -109,8 +109,8 @@ export class LearningTrailComponent implements OnInit {
 
     // atualizar estatisticas do usuario
     this.statisticService.updateStatistics(updateExp).subscribe({
-      next: (response) => console.log('Estatísticas atualizadas:', response),
-      error: (error) => console.error('Erro ao atualizar estatísticas:', error),
+      next: () => console.log("Estatísticas atualizadas"),
+      error: (error) => console.error("Erro ao atualizar estatísticas:", error),
     });
 
     // se o item atual foi completa, ou seja, se foi respondido corretamente

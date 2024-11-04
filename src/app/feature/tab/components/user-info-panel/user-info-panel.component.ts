@@ -19,15 +19,16 @@ export class UserInfoPanelComponent implements OnInit {
   constructor(
     readonly statisticService: StatisticService,
     readonly auth: Auth,
-    readonly router: Router,
+    readonly router: Router
   ) { }
 
   ngOnInit(): void {
-    this.user.set(this.auth.currentUser);
     // Monitora mudanças de rota e executa a atualização nas rotas especificadas
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
       const currentRoute = this.router.url;
       if (['/tabs/home', '/tabs/challenge', '/tabs/learn'].includes(currentRoute)) {
+        this.user.set(this.auth.currentUser);
+        console.log(this.user());
         this.statisticService.findByUser().subscribe({
           next: (data) => {
             this.statistics.set(data)

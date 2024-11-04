@@ -28,6 +28,8 @@ export class ProfilePageComponent implements ViewDidEnter {
   statistics = signal<UserStatistics | null>(null);
   achievements = signal<AchievementIcon[]>([]);
 
+  loading = signal<boolean>(true);
+
   public closeAlertButtons: AlertButton[] = [
     {
       text: 'Cancelar',
@@ -83,9 +85,16 @@ export class ProfilePageComponent implements ViewDidEnter {
       error: (error) => console.error("Erro ao checar conquistas:", error)
     });
 
+    this.loading.set(true);
     this.achievementService.findByUser().subscribe({
-      next: (data) => this.achievements.set(data),
-      error: (error) => console.error("Erro ao carregar conquistas:", error)
+      next: (data) => {
+        this.achievements.set(data);
+        this.loading.set(false);
+      },
+      error: (error) => {
+        console.error("Erro ao carregar conquistas:", error);
+        this.loading.set(false);
+      }
     });
   }
 
