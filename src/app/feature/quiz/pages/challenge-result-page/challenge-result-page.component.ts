@@ -18,6 +18,9 @@ export class ChallengeResultPageComponent implements OnInit {
 
   challengeResult = signal<number>(0);
 
+  winGameSound = new Howl({ src: ['assets/sounds/win.wav'] });
+  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'] });
+
   constructor(
     readonly route: ActivatedRoute,
     readonly router: Router,
@@ -36,10 +39,13 @@ export class ChallengeResultPageComponent implements OnInit {
 
     if (totalCorrectAnswers == totalQuestions) {
       this.challengeResult.set(1);
+      this.winGameSound.play();
     } else if (totalCorrectAnswers >= totalQuestions / 2) {
       this.challengeResult.set(2);
+      this.winGameSound.play();
     } else {
       this.challengeResult.set(3);
+      this.loseGameSound.play();
     }
   }
 

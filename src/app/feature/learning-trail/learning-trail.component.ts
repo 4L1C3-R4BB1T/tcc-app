@@ -30,6 +30,9 @@ export class LearningTrailComponent implements OnInit {
 
   loading = signal<boolean>(true);
 
+  correctAnswerSound = new Howl({ src: ['assets/sounds/right.wav'] });
+  wrongAnswerSound = new Howl({ src: ['assets/sounds/wrong.wav'] });
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -61,6 +64,12 @@ export class LearningTrailComponent implements OnInit {
   checkAnswered() {
     this.isAnswered.set(true);
     this.itemActivityComponent.canMark.set(true);
+
+    if (this.itemActivityComponent.isCorrect()) {
+      this.correctAnswerSound.play();
+    } else {
+      this.wrongAnswerSound.play();
+    }
   }
 
   returnActivity() {
@@ -77,7 +86,11 @@ export class LearningTrailComponent implements OnInit {
     } else {
       updateExp.wrongAnswers = 1;
       updateExp.totalExp = 0;
-      updateItem.completed = false;
+
+      // verifica se o item ja n foi concluido antes
+      if (!this.itemContent()?.completed) {
+        updateItem.completed = false;
+      }
     }
 
     if (this.itemContent()?.completed) {

@@ -34,6 +34,9 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
   loading = signal<boolean>(true);
 
+  correctAnswerSound = new Howl({ src: ['assets/sounds/right.wav'] });
+  wrongAnswerSound = new Howl({ src: ['assets/sounds/wrong.wav'] });
+
   constructor(
     readonly router: Router,
     readonly route: ActivatedRoute,
@@ -71,8 +74,10 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
 
     if (this.activityComponent.isCorrect()) {
       this.totalCorrectAnswers.set(this.totalCorrectAnswers() + 1);
+      this.correctAnswerSound.play();
     } else {
       this.lifes.set(this.lifes() - 1); // perder vidas
+      this.wrongAnswerSound.play();
     }
 
     if (this.lifes() === 0) {

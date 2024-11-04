@@ -1,10 +1,11 @@
-import { StatisticService } from './../../services/statistic.service';
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ViewDidEnter } from '@ionic/angular';
+import { Howl } from 'howler';
 import { interval, Subscription } from 'rxjs';
 import { QuestionRace } from 'src/app/models/question';
 import { questions } from 'src/app/utils/questions';
+import { StatisticService } from './../../services/statistic.service';
 
 @Component({
   selector: 'app-race-challenge',
@@ -29,6 +30,14 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
 
   loading = signal<boolean>(true);
 
+  correctAnswerSound = new Howl({ src: ['assets/sounds/right.wav'] });
+  wrongAnswerSound = new Howl({ src: ['assets/sounds/wrong.wav'] });
+
+  winGameSound = new Howl({ src: ['assets/sounds/win.wav'] });
+  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'] });
+
+  bgGameSound = new Howl({ src: ['assets/sounds/happy-sandbox.wav'], loop: true });
+
   constructor(
     readonly router: Router,
     readonly statisticService: StatisticService
@@ -36,6 +45,7 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
 
   ngOnInit() {
     this.loadingData();
+    this.bgGameSound.play();
   }
 
   ngOnDestroy() {
@@ -60,7 +70,7 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
   startSystemMovement() {
     this.timerSubscription = interval(1000).subscribe(() => {
       this.systemPosition.set(this.systemPosition() + this.systemVelocity());
-      this.checkWinCondition();
+      if (!this.gameOver()) this.checkWinCondition();
     });
   }
 
@@ -68,8 +78,10 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
     const currentQuestion = this.questions()[this.currentQuestionIndex()];
 
     if (selectedAnswer === currentQuestion.correctAnswer) {
+      this.correctAnswerSound.play();
       this.userPosition.set(this.userPosition() + 10);
     } else {
+      this.wrongAnswerSound.play();
       this.systemVelocity.set(this.systemVelocity() + 1);
     }
 
@@ -88,11 +100,15 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
       this.winnerMessage.set("Você ganhou! Continue assim!");
       this.win.set(true);
       this.stopSystemMovement();
+      this.bgGameSound.stop();
+      this.winGameSound.play();
     } else if (this.systemPosition() >= 100) {
       this.gameOver.set(true);
       this.winnerMessage.set("Você perdeu... Mas não desista, continue praticando!");
       this.win.set(false);
       this.stopSystemMovement();
+      this.bgGameSound.stop();
+      this.loseGameSound.play();
     }
   }
 
@@ -117,6 +133,7 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
   }
 
   return() {
+    this.bgGameSound.stop();
     this.resetGame();
     this.router.navigate(['tabs', 'home']);
   }
