@@ -56,6 +56,7 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
 
   ionViewDidEnter(): void {
     this.loadingData();
+    this.bgGameSound.play();
   }
 
   loadingData() {
@@ -130,6 +131,12 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
     this.winnerMessage .set('');
     this.win.set(false);
     this.systemVelocity.set(1);
+
+    this.stopSystemMovement();
+
+    this.loseGameSound.stop();
+    this.winGameSound.stop();
+    this.bgGameSound.stop();
   }
 
   return() {
