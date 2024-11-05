@@ -3,14 +3,7 @@
     <ion-item lines="none" slot="start" class="w-full">
       <i class="fa-solid fa-xmark fa-2xl text-gray-500 mr-5 py-4 px-1 bg-transparent" routerLink="/tabs/challenge"></i>
       <span class="flex items-center" slot="end">
-        <!-- <img src="assets/image/quiz/heart.png" class="w-8">
-        <img src="assets/image/quiz/heart.png" class="w-8">
-        <img src="assets/image/quiz/heart.png" class="w-8">
-        <img src="assets/image/quiz/heart.png" class="w-8">
-        <img src="assets/image/quiz/heart.png" class="w-8"> -->
-
         <div *ngFor="let life of [].constructor(lifes()).fill(0); let i = index">
-          <!-- Conteúdo do item, usando o índice `i` se necessário -->
           <img src="assets/image/quiz/heart.png" class="w-8">
         </div>
       </span>
@@ -46,8 +39,8 @@
         } @else {
         <p-button
           label="Responder"
-          (click)="checkAnswered()"
-          [disabled]="disableButton()"
+          (click)="currentQuestion()?.type === 'objective' ? checkAnswered() : checkAnsweredDragdrop()"
+          [disabled]="currentQuestion()?.type === 'objective' && disableButton()"
           styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
         </p-button>
         }

@@ -54,6 +54,7 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
         if (this.questions().length > 0) {
           this.currentQuestion.set(this.questions()[0]);
           this.currentQuestionIndex.set(0);
+          this.lifes.set(5);
         }
 
         this.loading.set(false);
@@ -73,6 +74,22 @@ export class ChallengeQuizPageComponent implements ViewDidEnter {
     this.activityComponent.canMark.set(true);
 
     if (this.activityComponent.isCorrect()) {
+      this.totalCorrectAnswers.set(this.totalCorrectAnswers() + 1);
+      this.correctAnswerSound.play();
+    } else {
+      this.lifes.set(this.lifes() - 1); // perder vidas
+      this.wrongAnswerSound.play();
+    }
+
+    if (this.lifes() === 0) {
+      this.totalCorrectAnswers.set(0);
+      this.router.navigate(['quiz', 'fail']);
+    }
+  }
+
+  checkAnsweredDragdrop() {
+    this.isAnswered.set(true);
+    if (this.activityComponent.child.isCorrectDrop) {
       this.totalCorrectAnswers.set(this.totalCorrectAnswers() + 1);
       this.correctAnswerSound.play();
     } else {
