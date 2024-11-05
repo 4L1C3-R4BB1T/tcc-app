@@ -14,9 +14,7 @@
         <div class="h-full flex flex-col justify-between gap-3 p-2">
           <app-item-content [data]="itemContent()"></app-item-content>
           <div>
-            <p-button
-              label="Continuar"
-              (click)="returnContent()"
+            <p-button label="Continuar" (click)="returnContent()"
               styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
             </p-button>
           </div>
@@ -27,14 +25,15 @@
           @if (isAnswered()) {
           <p-button
             label="Continuar"
-            (click)="returnActivity()"
+            (click)="itemContent()?.type === 'dragdrop' ? returnActivityDragdrop() : returnActivity()"
             styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
           </p-button>
-          } @else {
+          }
+          @else {
           <p-button
             label="Responder"
-            (click)="checkAnswered()"
-            [disabled]="disableButton()"
+            (click)="itemContent()?.type === 'objective' ? checkAnswered() : checkAnsweredDragdrop()"
+            [disabled]="itemContent()?.type === 'objective' && disableButton()"
             styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
           </p-button>
           }

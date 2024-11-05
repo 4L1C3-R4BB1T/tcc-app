@@ -11,8 +11,10 @@ export interface Question {
   type: 'dragdrop' | 'objective';
   content: string;
   image?: string;
-  alternatives: Alternative[];
-  correctId: number;
+  alternatives?: Alternative[];
+  correctId?: number;
+  correctQtt?: number;
+  label?: string;
 };
 
 export interface QuestionRace {

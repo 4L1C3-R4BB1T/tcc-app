@@ -1,5 +1,6 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Howl } from 'howler';
 import { ChallengeResult } from 'src/app/models/challenge-result';
 import { UserStatistics } from 'src/app/models/user';
 import { AchievementService } from 'src/app/services/achievement.service';

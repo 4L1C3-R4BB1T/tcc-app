@@ -1,3 +1,36 @@
-<p>
-  dragdrop-question works!
-</p>
+<div class="flex flex-col gap-10 mt-5">
+
+  <div class="flex flex-col gap-5">
+    <div (dragover)="!parent.parent.isAnswered() && onDragOver($event)"
+      (drop)="!parent.parent.isAnswered() && onDrop($event)" [class.opacity-50]="parent.parent.isAnswered()"
+      [class.pointer-events-none]="parent.parent.isAnswered()"
+      class="border-solid border-gray-500 border-opacity-10 rounded-xl shadow-lg text-center py-10 flex items-center justify-center">
+      <p *ngIf="droppedItems().length === 0">Arraste aqui.</p>
+      <div *ngFor="let item of droppedItems()" class="text-3xl" (click)="removeItem(item)">
+        {{ data.label }}
+      </div>
+    </div>
+    <span class="text-xs text-gray-500 text-center">Clique na área para remover os itens.</span>
+  </div>
+
+  <div class="flex justify-center">
+    <div draggable="true" (dragstart)="onDragStart($event)"
+      class="border-solid border-gray-500 border-opacity-10 rounded-xl shadow-lg p-6" matRipple>
+      <span class="text-3xl">{{ data.label }}</span>
+    </div>
+  </div>
+
+  <div *ngIf="parent.parent.isAnswered()" class="flex justify-center mt-5">
+    @if (isCorrectDrop) {
+    <span class="text-xl bg-green-100 px-10 py-5 rounded-xl shadow-lg">
+      Você acertou!
+    </span>
+    }
+    @else {
+    <span class="text-xl bg-red-100 px-10 py-5 rounded-xl shadow-lg">
+      Você errou...
+    </span>
+    }
+  </div>
+
+</div>

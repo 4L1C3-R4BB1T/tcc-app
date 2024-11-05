@@ -1,6 +1,7 @@
-import { Component, computed, inject, Input, signal } from '@angular/core';
+import { Component, computed, inject, Input, signal, ViewChild } from '@angular/core';
 import { ALTERNATIVE } from 'src/app/models/question';
 import { LearningTrailComponent } from '../../learning-trail.component';
+import { ActivityDragdropQuestionComponent } from './components/activity-dragdrop-question/activity-dragdrop-question.component';
 
 @Component({
   selector: 'app-item-activity',
@@ -21,6 +22,9 @@ export class ItemActivityComponent {
   selectedAnswerId: number | null = null;
 
   canMark = signal(false);
+
+  @ViewChild(ActivityDragdropQuestionComponent)
+  child!: ActivityDragdropQuestionComponent;
 
   getOrder(index: number) {
     if (index < 0 || index >= ALTERNATIVE.length) {

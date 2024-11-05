@@ -1,5 +1,6 @@
 import { Component, OnInit, signal, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Howl } from 'howler';
 import { Item } from 'src/app/models/sections';
 import { UserStatistics } from 'src/app/models/user';
 import { AchievementService } from 'src/app/services/achievement.service';
@@ -72,6 +73,17 @@ export class LearningTrailComponent implements OnInit {
     }
   }
 
+  checkAnsweredDragdrop() {
+    this.isAnswered.set(true);
+    if (this.itemActivityComponent.child.isCorrectDrop) {
+      this.correctAnswerSound.play();
+      this.itemActivityComponent.child.isCorrect.set(true);
+    } else {
+      this.wrongAnswerSound.play();
+      this.itemActivityComponent.child.isCorrect.set(false);
+    }
+  }
+
   returnActivity() {
     this.itemActivityComponent.selectedAnswerId = null;
     this.itemActivityComponent.isAnswered.set(false);
@@ -98,6 +110,35 @@ export class LearningTrailComponent implements OnInit {
     }
 
     this.updateData(updateExp, updateItem);
+    this.router.navigate(['/tabs/learn']);
+  }
+
+  returnActivityDragdrop() {
+    this.isAnswered.set(false);
+
+    let updateExp = { correctAnswers: 0, wrongAnswers: 0, totalExp: 5 };
+    let updateItem = { completed: true, disabled: false };
+
+    console.log('aaaaaaaa', this.itemActivityComponent.child.isCorrect())
+
+    if (this.itemActivityComponent.child.isCorrect()) {
+      updateExp.correctAnswers = 1;
+    } else {
+      updateExp.wrongAnswers = 1;
+      updateExp.totalExp = 0;
+
+      // verifica se o item ja n foi concluido antes
+      if (!this.itemContent()?.completed) {
+        updateItem.completed = false;
+      }
+    }
+
+    if (this.itemContent()?.completed) {
+      updateExp.totalExp = 0;
+    }
+
+    this.updateData(updateExp, updateItem);
+    this.itemActivityComponent.child.isCorrect.set(false);
     this.router.navigate(['/tabs/learn']);
   }
 
