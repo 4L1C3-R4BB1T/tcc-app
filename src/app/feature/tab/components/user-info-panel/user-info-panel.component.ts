@@ -23,20 +23,19 @@ export class UserInfoPanelComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Monitora mudanças de rota e executa a atualização nas rotas especificadas
+    // Monitora todas as mudanças de rota
     this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
-      const currentRoute = this.router.url;
-      if (['/tabs/home', '/tabs/challenge', '/tabs/learn'].includes(currentRoute)) {
-        this.user.set(this.auth.currentUser);
-        console.log(this.user());
-        this.statisticService.findByUser().subscribe({
-          next: (data) => {
-            this.statistics.set(data)
-            console.log("Atualizando estatísticas do usuário...");
-          },
-          error: (error) => console.error("Erro ao carregar estatísticas:", error)
-        });
-      }
+      // Atualiza as informações do usuário e as estatísticas após qualquer navegação
+      this.user.set(this.auth.currentUser);
+      console.log(this.user());
+      // Chama o serviço de estatísticas e atualiza os dados
+      this.statisticService.findByUser().subscribe({
+        next: (data) => {
+          this.statistics.set(data);
+          console.log("Atualizando estatísticas do usuário...");
+        },
+        error: (error) => console.error("Erro ao carregar estatísticas:", error)
+      });
     });
   }
 

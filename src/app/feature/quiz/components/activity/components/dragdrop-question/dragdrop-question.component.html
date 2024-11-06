@@ -5,7 +5,7 @@
       (drop)="!parent.parent.isAnswered() && onDrop($event)" [class.opacity-50]="parent.parent.isAnswered()"
       [class.pointer-events-none]="parent.parent.isAnswered()"
       class="border-solid border-gray-500 border-opacity-10 rounded-xl shadow-lg text-center py-10 flex items-center justify-center">
-      <p *ngIf="droppedItems().length === 0">Arraste aqui.</p>
+      <p *ngIf="droppedItems().length === 0">Segure o item e arraste aqui.</p>
       <div *ngFor="let item of droppedItems()" class="text-3xl" (click)="removeItem(item)">
         {{ data.label }}
       </div>
