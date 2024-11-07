@@ -22,6 +22,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (output.outputFileName.endsWith('.apk')) {
+                def appName = "fraciona"
+                def buildType = variant.buildType.name
+                def versionCode = variant.versionCode
+                def versionName = variant.versionName
+                outputFileName = "${appName}-${buildType}-v${versionCode}(${versionName}).apk"
+            }
+        }
+    }
 }
 
 repositories {
