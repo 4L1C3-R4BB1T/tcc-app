@@ -1,16 +1,22 @@
 <ion-content>
 
   <div class="mb-16">
-    <div class="p-5">
+    <div class="flex flex-col gap-3 p-5">
 
       <div class="relative w-24 h-24 rounded-full mx-auto">
-        <img class="w-full h-full rounded-full"
+        <img class="w-full h-full rounded-full" alt="Silhouette of a person's head"
           src="{{ user()?.photoURL ? user()?.photoURL : 'assets/image/user/student.png' }}" />
-        <span
-          class="flex items-center justify-center absolute right-0 -bottom-2 shadow-lg scale-90 w-10 h-10 rounded-full bg-[var(--ion-color-secondary)] transition-transform duration-200 hover:scale-105 cursor-pointer">
-          <input (change)="onUpload($event)" type="file"
-            class="opacity-0 absolute top-0 left-0 w-full h-full rounded-full cursor-pointer" accept="image/*">
-          <i class="fa-solid fa-camera text-white text-xl"></i>
+        <span class="absolute right-0 -bottom-2 flex gap-2 items-center">
+          <span pTooltip="Adicionar foto"
+            class="flex items-center justify-center relative shadow-lg scale-90 w-10 h-10 rounded-full bg-[var(--ion-color-secondary)] cursor-pointer top-3">
+            <input (change)="onUpload($event)" type="file"
+              class="opacity-0 absolute top-0 left-0 w-full h-full rounded-full cursor-pointer" accept="image/*">
+            <i class="fa-solid fa-camera text-white text-xl"></i>
+          </span>
+          <span *ngIf="user()?.photoURL" pTooltip="Remover foto" (click)="deleteUserPhoto()"
+            class="flex items-center justify-center relative shadow-lg scale-90 w-10 h-10 rounded-full bg-red-500 cursor-pointer top-3">
+            <ion-icon name="close-outline" class="text-2xl text-white"></ion-icon>
+          </span>
         </span>
       </div>
 

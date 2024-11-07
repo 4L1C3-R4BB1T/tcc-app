@@ -3,7 +3,7 @@ import { FirebaseError } from '@angular/fire/app';
 import { Auth, deleteUser, EmailAuthProvider, reauthenticateWithCredential, updateProfile, User } from '@angular/fire/auth';
 import { deleteObject, getDownloadURL, listAll, ref, Storage, uploadBytes } from '@angular/fire/storage';
 import { Router } from '@angular/router';
-import { AlertButton, ViewDidEnter } from '@ionic/angular';
+import { AlertButton, LoadingController, ViewDidEnter } from '@ionic/angular';
 import { MessageService } from 'primeng/api';
 import { DialogService } from 'primeng/dynamicdialog';
 import { first } from 'rxjs';
@@ -69,7 +69,8 @@ export class ProfilePageComponent implements ViewDidEnter {
     readonly storage: Storage,
     readonly achievementService: AchievementService,
     readonly statisticService: StatisticService,
-    readonly userService: UserService
+    readonly userService: UserService,
+    readonly loadingController: LoadingController,
   ) { }
 
   ionViewDidEnter(): void {
@@ -100,6 +101,8 @@ export class ProfilePageComponent implements ViewDidEnter {
 
   async onUpload(event: Event) {
     try {
+      const loading = this.loadingController.create({ animated: true, spinner: 'circular', cssClass: 'no-background-spinner' });
+      (await loading).present();
       const target = event.target as HTMLInputElement;
       if (target.files === null || !target.files.length) return;
       const file = target.files[0];
@@ -110,6 +113,7 @@ export class ProfilePageComponent implements ViewDidEnter {
       await uploadBytes(storageRef, file);
       const downloadUrl = await getDownloadURL(storageRef);
       await updateProfile(this.user() as User, { photoURL: downloadUrl });
+      (await loading).dismiss();
       this.messageService.add({
         severity: 'success',
         detail: 'Foto adicionada',
@@ -119,6 +123,22 @@ export class ProfilePageComponent implements ViewDidEnter {
         severity: 'error',
         detail: 'Erro ao fazer o upload da foto',
       });
+    }
+  }
+
+  async deleteUserPhoto() {
+    try {
+      const loading = this.loadingController.create({ animated: true, spinner: 'circular', cssClass: 'no-background-spinner' });
+      (await loading).present();
+      await this.deleteUserFiles(this.user()?.uid!);
+      await updateProfile(this.user()!, { photoURL: '' });
+      (await loading).dismiss();
+      this.messageService.add({
+        severity: 'success',
+        detail: 'Foto removida',
+      });
+    } catch (err) {
+      console.log(err);
     }
   }
 

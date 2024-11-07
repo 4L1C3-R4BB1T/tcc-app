@@ -22,3 +22,12 @@
 * {
   font-family: "SUSE", sans-serif;
 }
+
+.no-background-spinner .loading-wrapper {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.no-background-spinner .spinner-circular {
+  transform: scale(3);
+}
