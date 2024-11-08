@@ -34,9 +34,9 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
   wrongAnswerSound = new Howl({ src: ['assets/sounds/wrong.wav'] });
 
   winGameSound = new Howl({ src: ['assets/sounds/win.wav'] });
-  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'] });
+  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'], volume: 0.3 });
 
-  bgGameSound = new Howl({ src: ['assets/sounds/happy-sandbox.wav'], loop: true });
+  bgGameSound = new Howl({ src: ['assets/sounds/happy-sandbox.wav'], loop: true, volume: 0.3 });
 
   constructor(
     readonly router: Router,
