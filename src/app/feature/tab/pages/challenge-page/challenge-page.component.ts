@@ -13,13 +13,15 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
 
   challenges = signal<Challenge[]>([]);
 
+  allChallenges = signal<Challenge[]>([]);
+
   formGroup!: FormGroup;
 
   stateOptions: any[] = [
-    { label: 'Todos', value: '0' },
-    { label: 'Fácil', value: '1' },
-    { label: 'Médio', value: '2' },
-    { label: 'Difícil', value: '3' }
+    { label: 'Todos', value: 0 },
+    { label: 'Fácil', value: 1 },
+    { label: 'Médio', value: 2 },
+    { label: 'Difícil', value: 3 }
   ];
 
   loading = signal<boolean>(true);
@@ -28,24 +30,25 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
-      value: new FormControl('0')
+      value: new FormControl(0)
     });
   }
 
   ionViewDidEnter(): void {
-    this.formGroup.get('value')?.setValue('0');
+    this.formGroup.get('value')?.setValue(0);
 
-    this.loadChallenges(this.formGroup.get('value')?.value);
+    this.loadChallenges();
 
     this.formGroup.get('value')?.valueChanges.subscribe((difficulty) => {
-      this.loadChallenges(difficulty);
+      this.filterChallenges(difficulty);
     });
   }
 
-  private loadChallenges(difficulty: number): void {
+  private loadChallenges(): void {
     this.loading.set(true);
-    this.challengeService.findAll(difficulty).subscribe({
+    this.challengeService.findAll().subscribe({
       next: (data) => {
+        this.allChallenges.set(data);
         this.challenges.set(data);
         this.loading.set(false);
       },
@@ -54,6 +57,16 @@ export class ChallengePageComponent implements ViewDidEnter, OnInit {
         this.loading.set(false);
       }
     });
+  }
+
+  private filterChallenges(difficulty: number) {
+    if (difficulty == null) return;
+
+    if (difficulty == 0) {
+      this.challenges.set(this.allChallenges());
+    } else {
+      this.challenges.set(this.allChallenges().filter(c => c.difficulty === difficulty));
+    }
   }
 
 }

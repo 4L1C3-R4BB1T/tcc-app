@@ -11,9 +11,8 @@ export class ChallengeService {
 
   constructor(readonly http: HttpClient) { }
 
-  findAll(difficulty: number): Observable<Challenge[]> {
-    const params = { difficulty: difficulty as number };
-    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges`, { params }).pipe(first());
+  findAll(): Observable<Challenge[]> {
+    return this.http.get<Challenge[]>(`${environment.apiUrl}/challenges`).pipe(first());
   }
 
   findById(id: string): Observable<Challenge> {
