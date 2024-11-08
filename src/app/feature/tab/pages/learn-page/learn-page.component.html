@@ -17,14 +17,13 @@
 </ion-header>
 
 <ion-content #ionContent class="ion-padding" [scrollEvents]="true" (ionScroll)="onScroll($event)">
+  <ng-container *ngIf="loading(); else trailContent">
+    <div class="flex justify-center items-center h-full">
+      <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+    </div>
+  </ng-container>
+
   <div class="pb-14 flex flex-col gap-2">
-
-    <ng-container *ngIf="loading(); else trailContent">
-      <div class="flex justify-center items-center h-full">
-        <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
-      </div>
-    </ng-container>
-
     <ng-template #trailContent>
       <ng-container *ngFor="let s of section()?.units; let impar = odd">
         <div class="mt-12">
