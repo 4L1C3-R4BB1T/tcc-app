@@ -2,19 +2,19 @@
 
 <ion-content class="ion-padding">
 
-  <div class="flex flex-col gap-5 mt-4 mb-16">
-    <form [formGroup]="formGroup">
-      <p-selectButton [options]="stateOptions" formControlName="value" optionLabel="label" optionValue="value"
-        styleClass="mb-3" />
-    </form>
+  <ng-container *ngIf="loading(); else challengesContent">
+    <div class="flex justify-center items-center h-full">
+      <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
+    </div>
+  </ng-container>
 
-    <ng-container *ngIf="loading(); else challengesContent">
-      <div class="flex justify-center items-center h-full">
-        <ion-spinner name="crescent" class="w-[6rem] h-[6rem] text-orange-500"></ion-spinner>
-      </div>
-    </ng-container>
+  <ng-template #challengesContent>
+    <div class="flex flex-col gap-5 mt-4 mb-16">
+      <form [formGroup]="formGroup">
+        <p-selectButton [options]="stateOptions" formControlName="value" optionLabel="label" optionValue="value"
+          styleClass="mb-3" />
+      </form>
 
-    <ng-template #challengesContent>
       <div *ngIf="challenges() && challenges().length > 0; else noChallenges" class="flex flex-col gap-5">
         <div *ngFor="let challenge of challenges()"
           class="flex flex-col gap-2 py-4 px-2 shadow-lg rounded-xl border-solid" [ngClass]="{
@@ -43,14 +43,14 @@
           </div>
         </div>
       </div>
-    </ng-template>
 
-    <ng-template #noChallenges>
-      <div class="flex flex-col items-center justify-center gap-4 text-center">
-        <span class="text-lg">Ainda não há desafios cadastrados!</span>
-        <img src="assets/image/challenge/sad.png" class="w-16 h-16">
-      </div>
-    </ng-template>
-  </div>
+      <ng-template #noChallenges>
+        <div class="flex flex-col items-center justify-center gap-4 text-center">
+          <span class="text-lg">Ainda não há desafios cadastrados!</span>
+          <img src="assets/image/challenge/sad.png" class="w-16 h-16">
+        </div>
+      </ng-template>
+    </div>
+  </ng-template>
 
 </ion-content>
