@@ -42,7 +42,7 @@ export const questions = [
       "1/2",
       "5/6"
     ],
-    "correctAnswer": "1/2"
+    "correctAnswer": "1/3"
   },
   {
     "question": "Quanto é 2/3 * 3/4?",
@@ -159,7 +159,7 @@ export const questions = [
       "7/8",
       "1/2"
     ],
-    "correctAnswer": "1"
+    "correctAnswer": "7/8"
   },
   {
     "question": "Quanto é 6/7 - 3/7?",
@@ -182,11 +182,11 @@ export const questions = [
   {
     "question": "Quanto é 7/10 - 1/2?",
     "options": [
-      "2/5",
+      "1/5",
       "3/10",
       "4/10"
     ],
-    "correctAnswer": "3/10"
+    "correctAnswer": "1/5"
   },
   {
     "question": "Quanto é 4/5 * 2/3?",
@@ -231,7 +231,7 @@ export const questions = [
       "3/8",
       "1/4"
     ],
-    "correctAnswer": "3/8"
+    "correctAnswer": "1/8"
   },
   {
     "question": "Quanto é 2/3 * 3/5?",
@@ -240,7 +240,7 @@ export const questions = [
       "2/5",
       "1/5"
     ],
-    "correctAnswer": "2/5"
+    "correctAnswer": "6/15"
   },
   {
     "question": "Qual fração é equivalente a 2/4?",
@@ -285,7 +285,7 @@ export const questions = [
       "1/2",
       "2/10"
     ],
-    "correctAnswer": "3/10"
+    "correctAnswer": "1/2"
   },
   {
     "question": "Quanto é 3/6 + 1/2?",
@@ -348,7 +348,7 @@ export const questions = [
       "7/6",
       "2/3"
     ],
-    "correctAnswer": "1"
+    "correctAnswer": "7/6"
   },
   {
     "question": "Quanto é 7/8 - 1/4?",
@@ -426,7 +426,7 @@ export const questions = [
     "question": "Quanto é 7/8 - 3/8?",
     "options": [
       "4/8",
-      "1/2",
+      "1/3",
       "3/8"
     ],
     "correctAnswer": "4/8"
@@ -624,7 +624,7 @@ export const questions = [
     "question": "Quanto é 7/9 ÷ 7?",
     "options": [
       "1/9",
-      "7/63",
+      "7/64",
       "3/4"
     ],
     "correctAnswer": "1/9"
@@ -633,7 +633,7 @@ export const questions = [
     "question": "Quanto é 5/7 + 2/7?",
     "options": [
       "1",
-      "7/7",
+      "7/8",
       "5/7"
     ],
     "correctAnswer": "1"
@@ -643,7 +643,7 @@ export const questions = [
     "options": [
       "4/10",
       "1/2",
-      "2/5"
+      "2/6"
     ],
     "correctAnswer": "4/10"
   },
@@ -651,7 +651,7 @@ export const questions = [
     "question": "Quanto é 5/8 x 2?",
     "options": [
       "10/8",
-      "5/4",
+      "5/6",
       "1"
     ],
     "correctAnswer": "10/8"
@@ -669,7 +669,7 @@ export const questions = [
     "question": "Quanto é 5/6 ÷ 5?",
     "options": [
       "1/6",
-      "5/30",
+      "5/33",
       "5/6"
     ],
     "correctAnswer": "1/6"
@@ -677,11 +677,11 @@ export const questions = [
   {
     "question": "Quanto é 7/8 + 1/4?",
     "options": [
-      "1 1/8",
+      "1/8",
       "9/8",
       "1/2"
     ],
-    "correctAnswer": "1 1/8"
+    "correctAnswer": "9/8"
   },
   {
     "question": "Quanto é 3/5 x 1/2?",
@@ -695,7 +695,7 @@ export const questions = [
   {
     "question": "Quanto é 4/7 + 3/7?",
     "options": [
-      "7/7",
+      "6/7",
       "4/7",
       "1"
     ],
@@ -705,7 +705,7 @@ export const questions = [
     "question": "Quanto é 2/3 ÷ 4?",
     "options": [
       "1/6",
-      "2/12",
+      "3/12",
       "2/3"
     ],
     "correctAnswer": "1/6"
@@ -731,11 +731,11 @@ export const questions = [
   {
     "question": "Quanto é 1/3 + 1/6?",
     "options": [
-      "1/2",
+      "1/3",
       "5/6",
       "3/6"
     ],
-    "correctAnswer": "1/2"
+    "correctAnswer": "3/6"
   },
   {
     "question": "Quanto é 4/5 ÷ 8?",
