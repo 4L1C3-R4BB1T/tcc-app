@@ -4,7 +4,11 @@ module.exports = {
     "./src/**/*.{html,ts}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'smh': { 'raw': '(min-height: 650px)' },
+      },
+    },
   },
   plugins: [],
   corePlugins: {

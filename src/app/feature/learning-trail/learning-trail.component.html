@@ -1,7 +1,7 @@
 <ion-content class="ion-padding">
 
-  <div class="bg-[#fbac3a] h-full rounded-xl p-3 shadow-lg">
-    <div class="bg-white h-full rounded-xl p-4">
+  <div class="bg-[#fbac3a] h-100 smh:h-full rounded-xl p-3 shadow-lg">
+    <div class="bg-white h-100 smh:h-full rounded-xl p-4">
 
       <ng-container *ngIf="loading(); else trailContent">
         <div class="flex justify-center items-center h-full">
@@ -26,7 +26,7 @@
           <p-button
             label="Continuar"
             (click)="itemContent()?.type === 'dragdrop' ? returnActivityDragdrop() : returnActivity()"
-            styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+            styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg mt-10">
           </p-button>
           }
           @else {
@@ -34,7 +34,7 @@
             label="Responder"
             (click)="itemContent()?.type === 'objective' ? checkAnswered() : checkAnsweredDragdrop()"
             [disabled]="itemContent()?.type === 'objective' && disableButton()"
-            styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg">
+            styleClass="w-full bg-[#58CC02] border-[#58CC02] hover:bg-[#4BAD00] shadow-lg p-2 rounded-xl text-lg mt-10">
           </p-button>
           }
         </div>
