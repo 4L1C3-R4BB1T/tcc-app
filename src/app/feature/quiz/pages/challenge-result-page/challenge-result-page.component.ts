@@ -20,7 +20,7 @@ export class ChallengeResultPageComponent implements OnInit {
   challengeResult = signal<number>(0);
 
   winGameSound = new Howl({ src: ['assets/sounds/win.wav'] });
-  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'] });
+  loseGameSound = new Howl({ src: ['assets/sounds/lose.wav'], volume: 0.3 });
 
   constructor(
     readonly route: ActivatedRoute,
