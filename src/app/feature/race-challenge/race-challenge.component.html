@@ -21,11 +21,15 @@
           <div class="flex flex-col gap-10">
             <span class="text-center text-lg">
               Seja mais rápido! Acerte questões para avançar.
+              <span class="text-red-500 font-bold">Você: 🐈</span>
             </span>
 
             <div class="bg-blue-100 rounded-xl">
               <div class="race-track w-[100%]" #raceTrack>
-                <div class="user-animal" [style.left.%]="userPosition()">🐈</div>
+                <div class="user-animal flex flex-col" [style.left.%]="userPosition()">
+                  <span class="animate-up-down">🔻</span>
+                  <span>🐈</span>
+                </div>
                 <div class="system-animal" [style.left.%]="systemPosition()">🐇</div>
               </div>
             </div>

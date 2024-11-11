@@ -83,7 +83,7 @@ export class RaceChallengeComponent implements OnInit, OnDestroy, ViewDidEnter {
       this.userPosition.set(this.userPosition() + 10);
     } else {
       this.wrongAnswerSound.play();
-      this.systemVelocity.set(this.systemVelocity() + 1);
+      this.systemVelocity.set(this.systemVelocity() + 0.5);
     }
 
     this.checkWinCondition();
